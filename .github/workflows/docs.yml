@@ -36,9 +36,6 @@ jobs:
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/loyep/aora.git
           cd docs
           yarn run deploy -- -u "github-actions-bot <support+actions@github.com>"
-        with:
-          github_token: ${{ secrets.DOCS_TOKEN }}
-          publish_dir: ./docs/docs-dist
         env:
           CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
