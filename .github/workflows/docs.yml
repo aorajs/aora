@@ -27,9 +27,10 @@ jobs:
           node-version: ${{ matrix.node_version }}
           registry-url: 'https://registry.npmjs.org/'
       - name: Yarn
-        run: cd docs && yarn
-      - run: yarn build
-      - run: yarn deploy
+        run: |
+          cd docs
+          yarn
+          yarn build
+          yarn deploy
         env:
           CI: true
-          NODE_ENV: test
