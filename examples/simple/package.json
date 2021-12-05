@@ -1,3 +1,6 @@
 {
-    "name": "example-simple"
+    "name": "example-simple",
+    "dependencies": {
+        "aora": "^0.2.12"
+    }
 }

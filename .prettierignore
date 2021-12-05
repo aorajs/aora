@@ -2,7 +2,6 @@ node_modules
 .aora
 .aora-production
 dist
-.mfsu
 *.d.ts
 compiled
 *.js
