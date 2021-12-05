@@ -34,9 +34,7 @@ jobs:
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/loyep/aora.git
-          cd docs
-          pwd
-          yarn run deploy
+          npx gh-pages -d ./docs/docs-dist -u "github-actions-bot <support+actions@github.com>"
         env:
           CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
