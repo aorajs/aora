@@ -1,7 +1,7 @@
 ---
 hero:
-  title: Site Name
-  desc: dumi site app example
+  title: Aora
+  desc: Aora example
   actions:
     - text: Getting Started
       link: /getting-started
