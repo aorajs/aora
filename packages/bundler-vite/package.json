@@ -1,0 +1,39 @@
+{
+    "name": "@aora/bundler-vite",
+    "version": "0.0.1",
+    "description": "aora builder vite",
+    "homepage": "https://github.com/loyep/aora/tree/master/packages/bundler-vite#readme",
+    "bugs": "https://github.com/loyep/aora/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/loyep/aora"
+    },
+    "bin": {
+        "aora-vite": "bin/aora-vite.js"
+    },
+    "files": [
+        "dist",
+        "bin"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "dependencies": {
+        "v8-compile-cache": "^2.3.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.0.0"
+    },
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "author": {
+        "name": "Loyep",
+        "email": "mwl@live.com",
+        "url": "https://github.com/loyep"
+    }
+}

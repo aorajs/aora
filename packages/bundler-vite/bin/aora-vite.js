@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-require('v8-compile-cache');
-require('../dist/cli/cli')
+require('../dist/cli')
   .run()
   .catch((e) => {
     console.error(e);
