@@ -1,7 +1,7 @@
 import { exec } from 'child_process'
 import { logGreen, loadConfig } from '../utils'
-
-const spinner = require('ora')('starting ')
+import * as ora from 'ora';
+const spinner = ora('starting')
 
 const start = () => {
   const { serverPort, nestStartTips } = loadConfig()

@@ -8,14 +8,10 @@ export function reactPlugin () {
       const { startServerBuild } = await import('../webpack/server')
       const { getServerWebpack } = await import('./config/server')
       const serverConfigChain = new WebpackChain()
-      if (process.env.BUILD_TOOL === 'vite') {
-        await startServerBuild(getServerWebpack(serverConfigChain))
-      } else {
         const { startClientServer } = await import('../webpack')
         const { getClientWebpack } = await import('./config')
         const clientConfigChain = new WebpackChain()
         await Promise.all([startServerBuild(getServerWebpack(serverConfigChain)), startClientServer(getClientWebpack(clientConfigChain))])
-      }
     },
     build: async () => {
       const { startServerBuild, startClientBuild } = await import('../webpack')

@@ -1,6 +1,6 @@
 import { exec } from 'child_process'
-
-const spinner = require('ora')('building')
+import * as ora from 'ora';
+const spinner = ora('正在构建')
 
 const build = () => {
   spinner.start()

@@ -1,3 +1,4 @@
 #!/usr/bin/env node
 
-require('../dist/cli/index.js')
+require('v8-compile-cache');
+require('../dist/cli/index.js');

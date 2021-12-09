@@ -3,7 +3,7 @@ import { resolve } from 'path'
 import { fork } from 'child_process'
 import * as yargs from 'yargs'
 import { Argv } from '../types'
-import { generateHtml } from './html'
+// import { generateHtml } from './html'
 import { cleanOutDir } from './clean'
 import { transformConfig, handleEnv } from './preprocess'
 
@@ -20,6 +20,7 @@ const spinner = {
 }
 
 yargs
+.version('1.0.0')
   .command('start', 'Start Server', {}, async (argv: Argv) => {
     spinner.start()
     await transformConfig()
@@ -54,7 +55,7 @@ yargs
     await plugin.clientPlugin?.build?.(argv)
     await cleanOutDir()
     await plugin.serverPlugin?.build?.(argv)
-    await generateHtml(argv)
+    // await generateHtml(argv)
   })
   .command('deploy', 'Deploy function to aliyun cloud or tencent cloud', {}, async (argv: Argv) => {
     process.env.NODE_ENV = 'production'

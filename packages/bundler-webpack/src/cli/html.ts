@@ -1,4 +1,4 @@
-import { promises } from "fs";
+import { promises, readFileSync } from "fs";
 import { join } from "path";
 import { Argv } from "../types";
 
@@ -33,11 +33,7 @@ export const generateHtml = async (_argv: Argv) => {
     const { loadConfig, getCwd } = await import("../utils");
     const { jsOrder, cssOrder } = loadConfig();
     const cwd = getCwd();
-    const manifest = JSON.parse(
-      await promises.readFile(join(cwd, "./build/client/asset-manifest.json"), {
-        encoding: "utf-8",
-      })
-    );
+    const manifest = JSON.parse(     readFileSync(join(cwd, "./build/client/asset-manifest.json"), {        encoding: "utf-8",      })    );
     let jsManifest = "";
     jsOrder.forEach((item) => {
       jsManifest += `<script src=${manifest[item]}></script>`;

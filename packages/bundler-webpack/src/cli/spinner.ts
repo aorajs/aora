@@ -1,4 +1,5 @@
-const spinner = require('ora')('正在构建')
+import * as ora from 'ora';
+const spinner = ora('正在构建')
 
 interface Message {
   message: 'start' | 'stop'

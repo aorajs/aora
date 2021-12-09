@@ -13,3 +13,5 @@
 /packages/*/src/**/fixtures/*/.aora
 /packages/*/src/**/fixtures/*/.aora-production
 .DS_Store
+examples/*/build
+examples/*/dist

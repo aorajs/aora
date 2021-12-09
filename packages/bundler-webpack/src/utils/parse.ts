@@ -60,11 +60,6 @@ const parseFeRoutes = async () => {
   const { dynamic, routerPriority, routerOptimize } = loadConfig()
   const prefix = getPrefix()
   const isVue = require(join(cwd, './package.json')).dependencies.vue
-  const viteMode = process.env.BUILD_TOOL === 'vite'
-  if (viteMode && !dynamic) {
-    console.log('vite模式禁止关闭 dynamic ')
-    return
-  }
 
   let routes = ''
   const declaretiveRoutes = await accessFile(join(getFeDir(), './route.ts')) // 是否存在自定义路由
