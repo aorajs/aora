@@ -2,7 +2,15 @@ import { join } from 'path'
 import { IConfig } from '../types'
 import { getCwd, getUserConfig, normalizeStartPath, normalizeEndPath } from './cwd'
 
+let cacheConfig: IConfig | null = null
+
 const loadConfig = (): IConfig => {
+  if (cacheConfig && !cacheConfig.isDev)  {
+    return {
+      ...cacheConfig
+    }
+  }
+  const start = new Date()
   const userConfig = getUserConfig()
   const cwd = getCwd()
   const mode = 'ssr'
@@ -136,7 +144,8 @@ const loadConfig = (): IConfig => {
   }, userConfig)
 
   config.webpackDevServerConfig = webpackDevServerConfig // 防止把整个 webpackDevServerConfig 全量覆盖了
-
+  console.log('load config', Date.now() - start.getTime())
+  cacheConfig = config
   return config
 }
 
