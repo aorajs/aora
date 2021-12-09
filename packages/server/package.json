@@ -22,7 +22,7 @@
         "v8-compile-cache": "^2.3.0"
     },
     "devDependencies": {
-        "typescript": "^4.0.0"
+        "typescript": "4.5.2"
     },
     "license": "MIT",
     "publishConfig": {
