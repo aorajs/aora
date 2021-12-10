@@ -20,7 +20,7 @@ const spinner = {
 }
 
 yargs
-.version('1.0.0')
+.version(false)
   .command('start', 'Start Server', {}, async (argv: Argv) => {
     spinner.start()
     await transformConfig()

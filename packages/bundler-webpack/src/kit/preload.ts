@@ -10,8 +10,10 @@ const preloadComponent = async (Routes: ReactClientESMFeRouteItem[], PrefixRoute
     if (PrefixRouterBase) {
       pathname = normalizePath(pathname, PrefixRouterBase)
     }
-    if (component.name === 'dynamicComponent' && pathToRegexp(path).test(pathname)) {
-      route.component = (await component()).default
+    if (component.name === 'dynamicComponent') {
+      const Component = (await component())
+      route.component = Component.default
+      route.fetch = Component.fetch
     }
   }
   return Routes

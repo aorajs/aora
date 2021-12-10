@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useContext, useEffect, useState } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { DynamicFC, StaticFC, Action, IWindow, ReactESMFetch, ReactFetch } from '../types'
+import { DynamicFC, StaticFC, Action, IWindow, ReactFetch } from '../types'
 // @ts-expect-error
 import { STORE_CONTEXT } from '_build/create-context'
 
@@ -10,7 +10,7 @@ declare const window: IWindow
 let hasRender = false
 
 interface fetchType {
-  fetch?: ReactESMFetch
+  fetch?: ReactFetch
   layoutFetch?: ReactFetch
 }
 
@@ -21,8 +21,7 @@ const fetchAndDispatch = async ({ fetch, layoutFetch }: fetchType, dispatch: Rea
     asyncLayoutData = await layoutFetch({ routerProps, state })
   }
   if (fetch) {
-    const fetchFn = await fetch()
-    asyncData = await fetchFn.default({ routerProps, state })
+    asyncData = await fetch({ routerProps, state })
   }
 
   const combineData = Object.assign({}, asyncLayoutData, asyncData)
@@ -46,10 +45,10 @@ function wrapComponent (WrappedComponent: DynamicFC|StaticFC) {
       if (hasRender || !window.__USE_SSR__) {
         // ssr 情况下只有路由切换的时候才需要调用 fetch
         // csr 情况首次访问页面也需要调用 fetch
-        const { layoutFetch } = (WrappedComponent as DynamicFC)
+        const { layoutFetch, fetch } = (WrappedComponent as DynamicFC)
+        await fetchAndDispatch({ fetch, layoutFetch }, dispatch, props, state)
         if (WrappedComponent.name === 'dynamicComponent') {
-          const { default: Component, fetch } = (await (WrappedComponent as DynamicFC)())
-          await fetchAndDispatch({ fetch, layoutFetch }, dispatch, props, state)
+          const { default: Component } = (await (WrappedComponent as DynamicFC)())
           WrappedComponent = Component
           WrappedComponent.fetch = fetch
           WrappedComponent.layoutFetch = layoutFetch

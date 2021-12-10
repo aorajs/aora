@@ -1,6 +1,6 @@
 {
     "name": "@aora/bundler-webpack",
-    "version": "0.0.7",
+    "version": "0.0.10",
     "description": "aora builder webpack",
     "homepage": "https://github.com/loyep/aora/tree/master/packages/bundler-webpack#readme",
     "bugs": "https://github.com/loyep/aora/issues",
