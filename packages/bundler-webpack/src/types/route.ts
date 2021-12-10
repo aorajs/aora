@@ -45,6 +45,7 @@ export interface StaticFC<T={}> extends React.FC<T> {
 export interface DynamicFC<T = {}> extends React.FC<T>{
   (): Promise<{
     default: StaticFC<T>
+    fetch?: ReactESMFetch
   }>
   name: 'dynamicComponent'
   fetch?: ReactESMFetch

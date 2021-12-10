@@ -62,7 +62,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
 
   const isCsr = !!(mode === 'csr' || ctx.request.query?.csr)
   const { component, fetch } = routeItem
-  const Component = (await component()).default
+  const { default: Component, fetch: compFetch } = (await component())
 
   if (isCsr) {
     logGreen(`Current path ${path} use csr render mode`)
@@ -70,7 +70,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   let layoutFetchData = {}
   let fetchData = {}
   if (!isCsr) {
-    const currentFetch = fetch ? (await fetch()).default : null
+    const currentFetch = compFetch ? compFetch : (fetch ? (await fetch()).default : null) 
 
     // csr 下不需要服务端获取数据
     if (parallelFetch) {
