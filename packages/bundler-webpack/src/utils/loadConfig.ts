@@ -14,6 +14,7 @@ const loadConfig = (): IConfig => {
   const userConfig = getUserConfig()
   const cwd = getCwd()
   const mode = 'ssr'
+  const ssr = true
   const stream = false
   type ClientLogLevel = 'error'
 
@@ -136,6 +137,7 @@ const loadConfig = (): IConfig => {
     whiteList,
     dynamic,
     mode,
+    ssr,
     stream,
     corejs,
     https,

@@ -48,6 +48,7 @@ export interface IConfig {
   prefix?: string
   dynamic: boolean
   mode: 'ssr' | 'csr'
+  ssr: boolean
   webpackDevServerConfig?: any
   stream: boolean
   customeHeadScript?: (ctx: ISSRContext) => Script | Script

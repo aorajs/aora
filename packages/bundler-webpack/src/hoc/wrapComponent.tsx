@@ -30,12 +30,14 @@ const fetchAndDispatch = async ({ fetch, layoutFetch }: fetchType, dispatch: Rea
     type: 'updateContext',
     payload: combineData
   })
+  return asyncData
 }
 
 function wrapComponent (WrappedComponent: DynamicFC|StaticFC) {
-  return withRouter(props => {
-    const [ready, setReady] = useState(WrappedComponent.name !== 'dynamicComponent')
+  return withRouter(function withRouter(props) {
     const { state, dispatch } = useContext(STORE_CONTEXT)
+    // @ts-ignore
+    const [pageProps, setPageProps] = useState(window.pageProps || {})
 
     useEffect(() => {
       didMount()
@@ -46,19 +48,20 @@ function wrapComponent (WrappedComponent: DynamicFC|StaticFC) {
         // ssr 情况下只有路由切换的时候才需要调用 fetch
         // csr 情况首次访问页面也需要调用 fetch
         const { layoutFetch, fetch } = (WrappedComponent as DynamicFC)
-        await fetchAndDispatch({ fetch, layoutFetch }, dispatch, props, state)
-        if (WrappedComponent.name === 'dynamicComponent') {
-          const { default: Component } = (await (WrappedComponent as DynamicFC)())
-          WrappedComponent = Component
-          WrappedComponent.fetch = fetch
-          WrappedComponent.layoutFetch = layoutFetch
-          setReady(true)
-        }
+        const _pageProps = await fetchAndDispatch({ fetch, layoutFetch }, dispatch, props, state)
+        setPageProps(_pageProps)
+        // if (WrappedComponent.name === 'dynamicComponent') {
+        //   const { default: Component } = (await (WrappedComponent as DynamicFC)())
+        //   WrappedComponent = Component
+        //   WrappedComponent.fetch = fetch
+        //   WrappedComponent.layoutFetch = layoutFetch
+        //   setReady(true)
+        // }
       }
       hasRender = true
     }
     return (
-      ready ? <WrappedComponent {...props}></WrappedComponent> : null
+      <WrappedComponent {...pageProps} {...props} /> 
     )
   })
 }

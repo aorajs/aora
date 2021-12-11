@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { StaticRouter } from 'react-router-dom'
 import { findRoute, getManifest, logGreen, normalizePath, addAsyncChunk } from '../../utils'
 import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '../../types'
 import * as serialize from 'serialize-javascript'
@@ -86,15 +87,17 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   const combineData = isCsr ? null : Object.assign(state ?? {}, layoutFetchData ?? {}, fetchData ?? {})
 
   const injectState = isCsr ? null : <script dangerouslySetInnerHTML={{
-    __html: `window.__USE_SSR__=true; window.__INITIAL_DATA__ =${serialize(combineData)}`
+    __html: `window.__USE_SSR__=true;window.__INITIAL_DATA__=${serialize(combineData)};window.pageProps=${serialize(fetchData)}`
   }} />
 
   return (
-    <Context.Provider value={{ state: combineData }}>
-      <Layout ctx={ctx} config={config} staticList={staticList} injectState={injectState}>
-        {isCsr ? <></> : <Component />}
-      </Layout>
-    </Context.Provider>
+    <StaticRouter location={ctx.request.url} basename={base}>
+      <Context.Provider value={{ state: combineData }}>
+        <Layout ctx={ctx} config={config} staticList={staticList} injectState={injectState}>
+          {isCsr ? <></> : <Component {...fetchData}/>}
+        </Layout>
+      </Context.Provider>
+    </StaticRouter>
   )
 }
 
