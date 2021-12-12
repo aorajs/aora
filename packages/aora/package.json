@@ -1,6 +1,6 @@
 {
     "name": "aora",
-    "version": "0.2.35",
+    "version": "0.2.37",
     "description": "aora",
     "homepage": "https://github.com/loyep/aora/tree/master/packages/aora#readme",
     "bugs": "https://github.com/loyep/aora/issues",
@@ -18,8 +18,8 @@
         "context.js",
         "render.d.ts",
         "render.js",
-        "noSsr.d.ts",
-        "noSsr.js"
+        "no-ssr.d.ts",
+        "no-ssr.js"
     ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
