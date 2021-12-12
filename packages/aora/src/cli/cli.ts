@@ -28,14 +28,10 @@ yargs
     const { parseFeRoutes } = await import('../utils')
     await parseFeRoutes()
     debug(`require ssr-server-utils time: ${Date.now() - start} ms`)
-    // const plugin = loadPlugin()
     debug(`loadPlugin time: ${Date.now() - start} ms`)
     spinner.stop()
     const { start: client } = await import('../entity')
     debug(`parseFeRoutes ending time: ${Date.now() - start} ms`)
-    // if (plugin.clientPlugin?.name === 'plugin-react') {
-    //   await copyReactContext()
-    // }
     await client()
     debug(`clientPlugin ending time: ${Date.now() - start} ms`)
     await cleanOutDir()
@@ -49,17 +45,12 @@ yargs
     await transformConfig()
     const { parseFeRoutes } = await import('../utils')
     await parseFeRoutes()
-    // const plugin = loadPlugin()
     spinner.stop()
-    // if (plugin.clientPlugin?.name === 'plugin-react') {
-    //   await copyReactContext()
-    // }
     const { build: client } = await import('../entity')
     await client()
     await cleanOutDir()
     const { build: server } = await import('../server/build')
     await server()
-    // await generateHtml(argv)
   })
   .command('deploy', 'Deploy function to aliyun cloud or tencent cloud', {}, async (argv: Argv) => {
     process.env.NODE_ENV = 'production'

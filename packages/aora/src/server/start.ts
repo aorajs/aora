@@ -4,6 +4,8 @@ import * as ora from 'ora';
 const spinner = ora('starting')
 
 export const start = () => {
+  return new Promise<void>((resolve, reject) => {
+
   const { serverPort, nestStartTips } = loadConfig()
   spinner.start()
   const { stdout, stderr } = exec('npx nest start --watch', {
@@ -15,9 +17,12 @@ export const start = () => {
       spinner.stop()
       const https = process.env.HTTPS
       logGreen(nestStartTips ?? `Server is listening on ${https ? 'https' : 'http'}://localhost:${serverPort}`)
+      resolve()
     }
   })
   stderr?.on('data', function (data) {
     console.error(`error: ${data}`)
+    reject(data)
   })
+})
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useContext, useEffect, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { DynamicFC, StaticFC, Action, IWindow, ReactFetch } from "@aora/types";
-// @ts-expect-error
+// @ts-ignore
 import { STORE_CONTEXT } from "aora/context";
 
 declare const window: IWindow;
@@ -42,7 +42,7 @@ function wrapComponent(WrappedComponent: DynamicFC | StaticFC) {
   return withRouter(function withRouter(props) {
     const { state, dispatch } = useContext(STORE_CONTEXT);
     // @ts-ignore
-    const [pageProps, setPageProps] = useState(window.pageProps || {});
+    const [pageProps, setPageProps] = useState({...window.pageProps || {}});
 
     useEffect(() => {
       didMount();
@@ -60,13 +60,6 @@ function wrapComponent(WrappedComponent: DynamicFC | StaticFC) {
           state
         );
         setPageProps(_pageProps);
-        // if (WrappedComponent.name === 'dynamicComponent') {
-        //   const { default: Component } = (await (WrappedComponent as DynamicFC)())
-        //   WrappedComponent = Component
-        //   WrappedComponent.fetch = fetch
-        //   WrappedComponent.layoutFetch = layoutFetch
-        //   setReady(true)
-        // }
       }
       hasRender = true;
     };
