@@ -1,3 +1,3 @@
 export * from './defineConfig'
-export { render } from './render'
+export * from './types'
 export * from './utils'

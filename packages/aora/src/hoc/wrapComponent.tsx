@@ -16,7 +16,7 @@ interface fetchType {
 
 const fetchAndDispatch = async (
   { fetch, layoutFetch }: fetchType,
-  dispatch: React.Dispatch<Action>,
+  dispatch: React.Dispatch<Action> | undefined,
   routerProps: RouteComponentProps,
   state: any
 ) => {
@@ -31,7 +31,7 @@ const fetchAndDispatch = async (
 
   const combineData = Object.assign({}, asyncLayoutData, asyncData);
 
-  await dispatch({
+  await dispatch?.({
     type: "updateContext",
     payload: combineData,
   });
@@ -55,7 +55,7 @@ function wrapComponent(WrappedComponent: DynamicFC | StaticFC) {
         const { layoutFetch, fetch } = WrappedComponent as DynamicFC;
         const _pageProps = await fetchAndDispatch(
           { fetch, layoutFetch },
-          dispatch!,
+          dispatch,
           props,
           state
         );

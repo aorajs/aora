@@ -3,7 +3,7 @@ import { logGreen, loadConfig } from '../utils'
 import * as ora from 'ora';
 const spinner = ora('starting')
 
-const start = () => {
+export const start = () => {
   const { serverPort, nestStartTips } = loadConfig()
   spinner.start()
   const { stdout, stderr } = exec('npx nest start --watch', {
@@ -20,8 +20,4 @@ const start = () => {
   stderr?.on('data', function (data) {
     console.error(`error: ${data}`)
   })
-}
-
-export {
-  start
 }

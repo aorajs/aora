@@ -5,8 +5,8 @@ import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } f
 import * as serialize from 'serialize-javascript'
 // @ts-expect-error
 import * as Routes from '_build/ssr-temporary-routes'
-
-import { STORE_CONTEXT as Context } from '@aora/bundler-webpack/context'
+// @ts-ignore
+import { STORE_CONTEXT as Context } from 'aora/context'
 // @ts-expect-error
 import Layout from '@/components/layout/index.tsx'
 

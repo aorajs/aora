@@ -3,7 +3,7 @@ import { useReducer } from 'react'
 import { IProps, Action, IWindow, ReactRoutesType } from '@aora/types'
 
 // @ts-expect-error
-import { STORE_CONTEXT } from '@aora/bundler-webpack/context'
+import { STORE_CONTEXT } from 'aora/context'
 // @ts-expect-error
 import * as Routes from '_build/ssr-temporary-routes'
 
