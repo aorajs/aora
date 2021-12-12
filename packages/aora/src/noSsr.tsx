@@ -2,9 +2,9 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 
-export const NoSsr = (props: {
-  children?: React.ReactNode | React.ReactNode[]
-}): JSX.Element => {
+export const NoSsr: React.FC<{
+  childre?: React.ReactNode | React.ReactNode[]
+}> = (props) => {
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
       setIsClient(true)
