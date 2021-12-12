@@ -8,7 +8,7 @@ export interface ExpressContext {
 export type ISSRContext<T = {}> = ExpressContext & T;
 
 export interface Options {
-  mode?: string;
+  ssr?: boolean;
 }
 declare var window: Window;
 

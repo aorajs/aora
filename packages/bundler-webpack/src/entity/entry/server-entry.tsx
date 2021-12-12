@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import { findRoute, getManifest, logGreen, normalizePath, addAsyncChunk } from '../../utils'
-import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '../../types'
+import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '@aora/types'
 import * as serialize from 'serialize-javascript'
 // @ts-expect-error
 import * as Routes from '_build/ssr-temporary-routes'
 // @ts-expect-error
-import { STORE_CONTEXT as Context } from '_build/create-context'
+import { STORE_CONTEXT as Context } from '@aora/bundler-webpack/context'
 // @ts-expect-error
 import Layout from '@/components/layout/index.tsx'
 
@@ -15,7 +15,7 @@ const { FeRoutes, layoutFetch, PrefixRouterBase, state } = Routes as ReactRoutes
 declare const global: IGlobal
 
 const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.ReactElement> => {
-  const { cssOrder, jsOrder, dynamic, mode, parallelFetch, disableClientRender, prefix } = config
+  const { cssOrder, jsOrder, dynamic, ssr = true, parallelFetch, disableClientRender, prefix } = config
   global.window = global.window ?? {} // 防止覆盖上层应用自己定义的 window 对象
   let path = ctx.request.path // 这里取 pathname 不能够包含 queryString
   const base = prefix ?? PrefixRouterBase // 以开发者实际传入的为最高优先级
@@ -61,7 +61,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
     injectScript
   }
 
-  const isCsr = !!(mode === 'csr' || ctx.request.query?.csr)
+  const isCsr = !!(!ssr|| ctx.request.query?.csr)
   const { component, fetch } = routeItem
   const { default: Component, fetch: compFetch } = (await component())
 

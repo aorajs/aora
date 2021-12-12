@@ -1,8 +1,6 @@
 import { RouteComponentProps } from 'react-router-dom'
-import { ISSRContext, } from './ctx'
+import { ISSRContext } from './ctx'
 import { IConfig } from './config'
-
-import { Action } from './component'
 
 export interface LayoutProps {
   ctx?: ISSRContext
@@ -67,9 +65,4 @@ export interface ReactRoutesType {
   PrefixRouterBase?: string
   state?: any
   reducer?: any
-}
-
-export interface IContext<T=any> {
-  state?: T
-  dispatch?: React.Dispatch<Action>
 }
