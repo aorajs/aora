@@ -1,4 +1,4 @@
-import { IWindow } from '@aora/bundler-webpack/dist/types'
+import { IWindow } from 'aora'
 
 declare global {
   interface Window {

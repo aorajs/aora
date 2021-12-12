@@ -1,5 +1,3 @@
-import { defineConfig } from '@aora/bundler-webpack';
+import { defineConfig } from "aora";
 
-export default defineConfig({
-
-});
+export default defineConfig({} as any);

@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './index.module.less'
 
-function Rectangle (props) {
+function Rectangle (props: { data: any[]; history: string[] }) {
   const data = props.data[0]
   return (
     <div className={styles.pbbContainer}>
       {
-        data.itemMap.map(val => {
+        data.itemMap.map((val: { img: React.Key | null | undefined; title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; subtitle: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined }) => {
           const imgUrl = val.img
           return (
             <div className={styles.pbbItemContainer} key={val.img} onClick={() => props.history.push('/detail/cbba934b14f747049187')}>

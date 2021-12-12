@@ -21,7 +21,7 @@ function Brief (props: Props) {
                 <span className={`${(item.subtitleType === 'PLAY_VV' && styles.hotVv) || ''}`} key={`subtile${index}`}>
                   {
                     item.subtitleType === 'PLAY_VV'
-                      ? <img src={data.heatIcon} />
+                      ? <img src={data.heatIcon} alt="" />
                       : (index > 0) ? (<span className={styles.divide}>/</span>) : ''
                   }
                   <span>{item.subtitle}</span>

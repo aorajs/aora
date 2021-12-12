@@ -1,7 +1,7 @@
 import { Controller, Get, Req, Res } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { Readable } from 'stream'
-import { render } from '@aora/bundler-webpack/dist/render'
+import { render } from 'aora/render'
 
 import { ApiDetailService } from './detail.service'
 

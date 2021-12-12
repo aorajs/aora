@@ -18,6 +18,7 @@
     "baseUrl": "./",
     "strictNullChecks": true,
     "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "es2018"],
     "jsx": "react",
     "paths": {
       "@/*": ["./*"],

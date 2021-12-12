@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { NestFactory } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import { initialSSRDevProxy, loadConfig, getCwd } from '@aora/bundler-webpack/dist/utils'
+import { initialSSRDevProxy, loadConfig, getCwd } from 'aora'
 
 import { AppModule } from './app.module'
 

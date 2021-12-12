@@ -29,7 +29,7 @@ function Slider (props: Props) {
           data.itemMap.map(val => (
             <SwiperSlide key={val.img} >
               <div className={styles.sliderContainer} onClick={() => props.history.push('/detail/cbba934b14f747049187')}>
-                <img src={val.img} className={styles.carouselImg} />
+                <img src={val.img} className={styles.carouselImg} alt="" />
                 <div className={styles.sliderDescContainer}>
                   <span className={styles.sliderTitle}>
                     {val.title}

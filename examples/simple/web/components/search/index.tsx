@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { IContext } from 'ssr-types-react'
+import { IContext } from 'aora'
 import { IData } from '~/typings/data'
 import styles from './index.module.less'
-import { STORE_CONTEXT } from '_build/create-context'
+import { STORE_CONTEXT } from 'aora/context'
 
 interface SearchState extends IData {
   search?: {

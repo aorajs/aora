@@ -7,7 +7,7 @@ module.exports = {
       max_memory_restart: '500M',
       env: {
         NODE_ENV: 'production',
-        BUILD_TOOL: ''
+        BUILD_TOOL: process.env.BUILD_TOOL === 'vite' ? 'vite' : ''
       }
     }
   ]
