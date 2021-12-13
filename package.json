@@ -29,7 +29,7 @@
     "prettier": "2.5.1",
     "prettier-plugin-organize-imports": "2.3.4",
     "prettier-plugin-packagejson": "2.2.15",
-    "jest": "27.4.4",
+    "jest": "27.4.5",
     "rimraf": "3.0.2",
     "aora": "*",
     "husky": "7.0.4"
