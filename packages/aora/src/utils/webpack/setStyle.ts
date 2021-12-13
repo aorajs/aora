@@ -2,13 +2,12 @@ import { StyleOptions } from '@aora/types'
 import { Config } from '@aora/types/dist/third-party/webpack-chain'
 import type { loader } from 'webpack'
 import { loadConfig } from '../loadConfig'
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const genericNames = require('generic-names')
 
-const setStyle = (chain: Config, reg: RegExp, options: StyleOptions) => {
+export const setStyle = (chain: Config, reg: RegExp, options: StyleOptions) => {
   const { css, isDev } = loadConfig()
   const { include, exclude, importLoaders, loader, isServer } = options
-  const MiniCssExtractPlugin = require('mini-css-extract-plugin')
   const loadModule = require.resolve
 
   const userCssloaderOptions = css?.().loaderOptions?.cssOptions ?? {}
@@ -50,13 +49,13 @@ const setStyle = (chain: Config, reg: RegExp, options: StyleOptions) => {
   chain.module
     .rule(options.rule)
     .test(reg)
-    .when(Boolean(include), rule => {
+    .when(Boolean(include), (rule: any) => {
       include && rule.include.add(include).end()
     })
-    .when(Boolean(exclude), rule => {
+    .when(Boolean(exclude), (rule: any) => {
       exclude && rule.exclude.add(exclude).end()
     })
-    .when(isDev, rule => {
+    .when(isDev, (rule: any) => {
       rule.use('hmr')
         .loader(loadModule('css-hot-loader'))
         .end()
@@ -78,23 +77,19 @@ const setStyle = (chain: Config, reg: RegExp, options: StyleOptions) => {
       postcssOptions: postcssOptions
     })
     .end()
-    .when(Boolean(loader), rule => {
+    .when(Boolean(loader), (rule: any) => {
       loader && rule.use(loader)
         .loader(loadModule(loader))
-        .when(loader === 'less-loader', rule => {
+        .when(loader === 'less-loader', (rule: any) => {
           rule.options(css?.().loaderOptions?.less ?? {
             lessOptions: {
               javascriptEnabled: true
             }
           })
         })
-        .when(loader === 'sass-loader', rule => {
+        .when(loader === 'sass-loader', (rule: any) => {
           rule.options(css?.().loaderOptions?.sass ?? {})
         })
         .end()
     })
-}
-
-export {
-  setStyle
 }

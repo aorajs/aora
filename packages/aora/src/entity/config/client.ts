@@ -1,5 +1,5 @@
 import { promises } from 'fs'
-import { resolve } from 'path'
+import { resolve, join } from 'path'
 import { loadConfig, getCwd, cryptoAsyncChunkName, getOutputPublicPath } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import { getBaseConfig } from './base'
@@ -18,7 +18,8 @@ const getClientWebpack = (chain: WebpackChain) => {
   getBaseConfig(chain, false)
   chain.devtool(isDev ? 'cheap-module-source-map' : (shouldUseSourceMap ? 'source-map' : false))
   chain.entry(chunkName)
-    .add(loadModule('../entry/client-entry'))
+    // .add(loadModule('../entry/client-entry'))
+    .add(join(__dirname, '../entry/client-entry'))
     .end()
     .output
     .path(getOutput().clientOutPut)

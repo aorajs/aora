@@ -41,7 +41,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
 
   const injectCss: JSX.Element[] = []
   
-  dynamicCssOrder.forEach(css => {
+  dynamicCssOrder.forEach((css: string) => {
     if (manifest[css]) {
       const item = manifest[css]
       injectCss.push(<link rel='stylesheet' key={item} href={item} />)
@@ -54,7 +54,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
     }}/>)
   }
 
-  const injectScript = jsOrder.map(js => manifest[js]).map(item => <script key={item} src={item} />)
+  const injectScript = jsOrder.map((js: string) => manifest[js]).map((item: string) => <script key={item} src={item} />)
 
   const staticList = {
     injectCss,

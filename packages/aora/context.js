@@ -1,1 +1,1 @@
-module.exports = require('./dist/context');
+module.exports = require('./dist/client/context');

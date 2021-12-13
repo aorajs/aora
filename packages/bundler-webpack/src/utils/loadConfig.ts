@@ -50,7 +50,7 @@ const loadConfig = (): IConfig => {
 
   const host = '0.0.0.0'
 
-  const chunkName = 'Page'
+  const chunkName = 'aora'
 
   const clientLogLevel: ClientLogLevel = 'error'
 

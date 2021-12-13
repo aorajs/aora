@@ -4,7 +4,7 @@ import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'
 import { getBaseConfig } from './base'
 
-const loadModule = require.resolve
+// const loadModule = require.resolve
 
 const getServerWebpack = (chain: WebpackChain) => {
   const config = loadConfig()
@@ -13,7 +13,8 @@ const getServerWebpack = (chain: WebpackChain) => {
   chain.devtool(isDev ? 'inline-source-map' : false)
   chain.target('node')
   chain.entry(chunkName)
-    .add(loadModule('../entry/server-entry'))
+    // .add(loadModule('../entry/server-entry'))
+    .add(join(__dirname, '../entry/server-entry'))
     .end()
     .output
     .path(getOutput().serverOutPut)

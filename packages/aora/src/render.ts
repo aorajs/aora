@@ -6,14 +6,13 @@ import { ISSRContext, UserConfig, ExpressContext } from '@aora/types'
 const cwd = getCwd()
 const defaultConfig = loadConfig()
 
-function render (ctx: ISSRContext, options?: UserConfig): Promise<string>
-function render<T> (ctx: ISSRContext, options?: UserConfig): Promise<T>
-
-async function render (ctx: ISSRContext, options?: UserConfig) {
+export function render (ctx: ISSRContext, options?: UserConfig): Promise<string>
+export function render<T> (ctx: ISSRContext, options?: UserConfig): Promise<T>
+export async function render (ctx: ISSRContext, options?: UserConfig) {
   const config = Object.assign({}, defaultConfig, options ?? {})
   const { isDev, chunkName, stream } = config
   const isLocal = isDev || process.env.NODE_ENV !== 'production'
-  const serverFile = resolve(cwd, `./build/server/${chunkName ?? 'Page'}.server.js`)
+  const serverFile = resolve(cwd, `./build/server/${chunkName}.server.js`)
   if (isLocal) {
     // clear cache in development environment
     delete require.cache[serverFile]
@@ -38,6 +37,4 @@ async function render (ctx: ISSRContext, options?: UserConfig) {
   }
 }
 
-export {
-  render
-}
+export default render

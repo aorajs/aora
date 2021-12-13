@@ -3,7 +3,6 @@ import { resolve } from 'path'
 import { fork } from 'child_process'
 import * as yargs from 'yargs'
 import { Argv } from '@aora/types'
-// import { generateHtml } from './html'
 import { cleanOutDir } from './clean'
 import { transformConfig, handleEnv } from './preprocess'
 
