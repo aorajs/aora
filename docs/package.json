@@ -22,7 +22,7 @@
     ]
   },
   "devDependencies": {
-    "dumi": "1.1.35",
+    "dumi": "1.1.36",
     "gh-pages": "3.2.3",
     "lint-staged": "12.1.2",
     "prettier": "2.5.1",
