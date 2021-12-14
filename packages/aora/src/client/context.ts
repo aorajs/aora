@@ -8,7 +8,7 @@ function getContext() {
     // @ts-ignore
     context =  (window.STORE_CONTEXT || createContext<IContext>({ state: {}, }))
     // @ts-ignore
-    window.STORE_CONTEXT = context;
+    // window.STORE_CONTEXT = context;
   } else {
     context = createContext<IContext>({
       state: {},
@@ -18,6 +18,7 @@ function getContext() {
 }
 
 export const STORE_CONTEXT: Context<IContext> = getContext()
+export const context = STORE_CONTEXT
 
 export const useAoraContext = () => {
   return useContext(STORE_CONTEXT)

@@ -33,6 +33,7 @@ const initialState = Object.assign({}, userState ?? {}, window.__INITIAL_DATA__)
 function combineReducer (state: any, action: any) {
   return defaultReducer(state, action) || userReducer(state, action)
 }
+
 export function AppContext (props: IProps) {
   const [state, dispatch] = useReducer(combineReducer, initialState)
   return (
