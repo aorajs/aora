@@ -8,9 +8,7 @@
         "type": "git",
         "url": "https://github.com/loyep/aora"
     },
-    "bin": {
-        "aorb": "bin/aorb.js"
-    },
+    "bin": "bin/aorb.js",
     "files": [
         "dist",
         "bin"

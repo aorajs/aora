@@ -2,7 +2,6 @@
   "name": "aorajs",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm",
   "description": "A universal framework based on React.js",
   "author": "loyep",
   "license": "MIT",
@@ -12,17 +11,24 @@
   "workspaces": [
     "packages/*"
   ],
+  "installConfig": {
+    "hoistingLimits": [
+      "**/core-js"
+    ]
+  },
+  "homepage": "https://github.com/loyep/aora#readme",
   "devDependencies": {
     "@types/jest": "^27.0.3",
+    "aora": "*",
+    "husky": "7.0.4",
+    "jest": "^27.4.3",
     "lerna": "^4.0.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.5.2",
     "prettier": "^2.5.0",
     "prettier-plugin-organize-imports": "^2.3.4",
     "prettier-plugin-packagejson": "^2.2.15",
-    "jest": "^27.4.3",
     "rimraf": "^3.0.2",
-    "aora": "*",
-    "husky": "7.0.4"
-  }
+    "ts-node": "^9.1.1",
+    "typescript": "^4.5.2"
+  },
+  "packageManager": "yarn@3.1.1"
 }

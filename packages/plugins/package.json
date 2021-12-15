@@ -18,7 +18,6 @@
         "build": "tsc",
         "dev": "tsc --watch"
     },
-    "dependencies": {},
     "devDependencies": {
         "typescript": "4.5.2"
     },
