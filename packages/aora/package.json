@@ -1,6 +1,6 @@
 {
     "name": "aora",
-    "version": "0.2.51",
+    "version": "0.2.53",
     "description": "aora",
     "homepage": "https://github.com/loyep/aora/tree/master/packages/aora#readme",
     "bugs": "https://github.com/loyep/aora/issues",
@@ -45,6 +45,8 @@
         "concurrently": "^5.1.0",
         "core-js": "^3.6.4",
         "css-hot-loader": "^1.4.4",
+        "crypto": "^1.0.1",
+        "cacache": "^15.3.0",
         "css-loader": "^5.2.7",
         "debug": "^4.1.1",
         "esbuild": "^0.13.14",
