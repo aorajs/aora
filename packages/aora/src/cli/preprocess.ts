@@ -2,13 +2,12 @@ import { promises } from 'fs'
 import { join } from 'path'
 import { transform } from 'esbuild'
 import { cp, mkdir } from 'shelljs'
-import { Argv } from '@aora/types'
+import { Argv, IConfig } from '@aora/types'
+import { loadConfig } from '..'
 
-export const handleEnv = async (_argv: Argv, _spinner: any) => {
+export const handleEnv = async (_argv: Argv, _spinner: any, https: IConfig['https']) => {
   process.env.BUILD_TOOL = 'webpack'
   process.env.NODE_ENV = 'development'
-  const { loadConfig } = await import('../utils')
-  const { https } = loadConfig()
   if (https) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
   }
@@ -32,4 +31,5 @@ export const transformConfig = async () => {
     })
     await promises.writeFile(join(cwd, './build/config.js'), code)
   }
+  return loadConfig()
 }

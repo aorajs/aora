@@ -2,7 +2,7 @@
   "name": "aorajs",
   "version": "0.0.0",
   "private": true,
-  "npmClient": "yarn",
+  "packageManager": "pnpm",
   "description": "A universal framework based on React.js",
   "author": "loyep",
   "license": "MIT",

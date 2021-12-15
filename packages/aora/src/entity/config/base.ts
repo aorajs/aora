@@ -1,7 +1,7 @@
 
 import { join } from 'path'
-import { Mode } from '@aora/types'
-import { getFeDir, getCwd, loadConfig, getLocalNodeModules, setStyle, addImageChain } from '../../utils'
+import { IConfig, Mode } from '@aora/types'
+import { getFeDir, getCwd, getLocalNodeModules, setStyle, addImageChain } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'
 
@@ -43,8 +43,8 @@ const addBabelLoader = (chain: WebpackChain.Rule<WebpackChain.Module>, envOption
     })
     .end()
 }
-const getBaseConfig = (chain: WebpackChain, isServer: boolean) => {
-  const config = loadConfig()
+
+export const getBaseConfig = (chain: WebpackChain, config: IConfig, isServer: boolean) => {
   const { moduleFileExtensions, useHash, isDev, chainBaseConfig, corejs, babelExtraModule } = config
   const mode = process.env.NODE_ENV as Mode
   const envOptions = {
@@ -82,7 +82,7 @@ const getBaseConfig = (chain: WebpackChain, isServer: boolean) => {
     .set('react-router', loadModule('react-router'))
     .set('react-router-dom', loadModule('react-router-dom'))
 
-  addImageChain(chain, isServer)
+  addImageChain(config, chain, isServer)
 
   const babelModule = chain.module
     .rule('compileBabel')
@@ -107,13 +107,13 @@ const getBaseConfig = (chain: WebpackChain, isServer: boolean) => {
   addBabelLoader(babelModule, envOptions)
   addBabelLoader(babelForExtraModule, envOptions)
 
-  setStyle(chain, /\.css$/, {
+  setStyle(config, chain, /\.css$/, {
     rule: 'css',
     isServer,
     importLoaders: 1
   })
 
-  setStyle(chain, /\.less$/, {
+  setStyle(config, chain, /\.less$/, {
     rule: 'less',
     loader: 'less-loader',
     isServer,
@@ -145,8 +145,4 @@ const getBaseConfig = (chain: WebpackChain, isServer: boolean) => {
   }])
   chainBaseConfig(chain)
   return config
-}
-
-export {
-  getBaseConfig
 }

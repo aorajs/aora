@@ -3,7 +3,7 @@ import { ReactClientESMFeRouteItem } from '@aora/types'
 import { pathToRegexp } from 'path-to-regexp'
 import { normalizePath } from './utils'
 
-const preloadComponent = async (Routes: ReactClientESMFeRouteItem[], PrefixRouterBase?: string) => {
+export const preloadComponent = async (Routes: ReactClientESMFeRouteItem[], PrefixRouterBase?: string) => {
   for (const route of Routes) {
     const { component, path } = route
     let pathname = location.pathname
@@ -18,5 +18,3 @@ const preloadComponent = async (Routes: ReactClientESMFeRouteItem[], PrefixRoute
   }
   return Routes
 }
-
-export { preloadComponent }

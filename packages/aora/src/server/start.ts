@@ -1,12 +1,12 @@
 import { exec } from 'child_process'
-import { logGreen, loadConfig } from '../utils'
+// import { logGreen } from '../utils'
 import * as ora from 'ora';
+import { IConfig } from '@aora/types';
 const spinner = ora('starting')
 
-export const start = () => {
+export const start = (_config: IConfig) => {
   return new Promise<void>((resolve, reject) => {
-
-  const { serverPort, nestStartTips } = loadConfig()
+  // const { serverPort, nestStartTips } = config
   spinner.start()
   const { stdout, stderr } = exec('npx nest start --watch', {
     env: { ...process.env, FORCE_COLOR: '1' }
@@ -15,8 +15,8 @@ export const start = () => {
     console.log(data)
     if (data.match('Nest application successfully started')) {
       spinner.stop()
-      const https = process.env.HTTPS
-      logGreen(nestStartTips ?? `Server is listening on ${https ? 'https' : 'http'}://localhost:${serverPort}`)
+      // const https = process.env.HTTPS
+      // logGreen(nestStartTips ?? `Server is listening on ${https ? 'https' : 'http'}://localhost:${serverPort}`)
       resolve()
     }
   })

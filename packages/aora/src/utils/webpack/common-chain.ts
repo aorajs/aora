@@ -1,10 +1,11 @@
+import { IConfig } from '@aora/types'
 import * as WebpackChain from 'webpack-chain'
 import { getImageOutputPath } from '../parse'
 
 const loadModule = require.resolve
 
-const addImageChain = (chain: WebpackChain, isServer: boolean) => {
-  const { publicPath, imagePath } = getImageOutputPath()
+const addImageChain = (config: IConfig, chain: WebpackChain, isServer: boolean) => {
+  const { publicPath, imagePath } = getImageOutputPath(config.publicPath, config.isDev)
   chain.module
     .rule('images')
     .test(/\.(jpe?g|png|svg|gif)(\?[a-z0-9=.]+)?$/)

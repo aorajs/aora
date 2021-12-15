@@ -1,6 +1,5 @@
 import { createProxyMiddleware } from 'http-proxy-middleware'
-import { proxyOptions } from '@aora/types'
-import { loadConfig } from '../loadConfig'
+import { IConfig, proxyOptions } from '@aora/types'
 
 function onProxyReq (proxyReq: any, req: any) {
   Object.keys(req.headers).forEach(function (key) {
@@ -8,8 +7,8 @@ function onProxyReq (proxyReq: any, req: any) {
   })
 }
 
-const getDevProxyMiddlewaresArr = async (_options?: proxyOptions) => {
-  const { fePort, proxy, isDev, https, proxyKey } = loadConfig()
+const getDevProxyMiddlewaresArr = async (config: IConfig, _options?: proxyOptions) => {
+  const { fePort, proxy, isDev, https, proxyKey } = config
   const proxyMiddlewaresArr: any[] = []
 
   function registerProxy (proxy: any) {

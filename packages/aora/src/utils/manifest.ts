@@ -2,7 +2,7 @@ import { join } from 'path'
 import axios from 'axios'
 import { promises } from 'fs'
 import { getCwd } from './cwd'
-import { loadConfig } from './loadConfig'
+import { IConfig } from '@aora/types'
 
 // 创建一个实例来请求，防止业务代码的 axios 设置了 defaults 配置导致获取 manifest 失败
 const instance = axios.create({
@@ -10,8 +10,8 @@ const instance = axios.create({
   proxy: false
 })
 
-const getManiFest = async (): Promise<Record<string, string>> => {
-  const { isDev, fePort, https, manifestPath } = loadConfig()
+const _getManiFest = async (config: IConfig): Promise<Record<string, string>> => {
+  const { isDev, fePort, https, manifestPath } = config
   let manifest = {}
   const cwd = getCwd()
   if (isDev) {
@@ -26,10 +26,8 @@ const getManiFest = async (): Promise<Record<string, string>> => {
   }
   return manifest
 }
-const getManifest = async () => {
-  return await getManiFest()
+
+export const getManifest = async (config: IConfig) => {
+  return await _getManiFest(config)
 }
 
-export {
-  getManifest
-}

@@ -1,13 +1,10 @@
-import * as webpack from 'webpack'
-import { loadConfig } from '../utils'
+import { IConfig } from '@aora/types'
+import { getServerWebpack } from '../entity/config'
 import { webpackPromisify } from './utils/promisify'
 
-const startServerBuild = async (webpackConfig: webpack.Configuration) => {
-  const { webpackStatsOption } = loadConfig()
+export const startServerBuild = async (config: IConfig) => {
+  const webpackConfig = getServerWebpack(config)
+  const { webpackStatsOption } = config
   const stats = await webpackPromisify(webpackConfig)
   console.log(stats.toString(webpackStatsOption))
-}
-
-export {
-  startServerBuild
 }

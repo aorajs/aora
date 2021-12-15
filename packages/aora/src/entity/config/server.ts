@@ -1,19 +1,17 @@
 import { join } from 'path'
-import { loadConfig, getLocalNodeModules, nodeExternals } from '../../utils'
+import { getLocalNodeModules, nodeExternals } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'
 import { getBaseConfig } from './base'
+import { IConfig } from '@aora/types'
 
-// const loadModule = require.resolve
-
-const getServerWebpack = (chain: WebpackChain) => {
-  const config = loadConfig()
+export const getServerWebpack = (config: IConfig) => {
   const { isDev, cwd, getOutput, chainServerConfig, whiteList, chunkName } = config
-  getBaseConfig(chain, true)
+  const chain = new WebpackChain()
+  getBaseConfig(chain, config, true)
   chain.devtool(isDev ? 'inline-source-map' : false)
   chain.target('node')
   chain.entry(chunkName)
-    // .add(loadModule('../entry/server-entry'))
     .add(join(__dirname, '../entry/server-entry'))
     .end()
     .output
@@ -41,8 +39,4 @@ const getServerWebpack = (chain: WebpackChain) => {
   chainServerConfig(chain) // 合并用户自定义配置
 
   return chain.toConfig()
-}
-
-export {
-  getServerWebpack
 }

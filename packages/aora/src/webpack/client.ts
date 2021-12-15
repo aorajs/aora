@@ -1,13 +1,14 @@
+import { IConfig } from '@aora/types'
 import * as webpack from 'webpack'
-import { loadConfig } from '../utils'
+import { getClientWebpack } from '../entity/config'
 import { webpackPromisify } from './utils/promisify'
 
 // fork 后移除 webpack-dev-server 默认的启动 log，只展示服务端 Node.js 的启动监听端口
 const WebpackDevServer = require('webpack-dev-server-ssr')
-const config = loadConfig()
 
-const startClientServer = async (webpackConfig: webpack.Configuration): Promise<void> => {
+const startClientServer = async (config: IConfig): Promise<void> => {
   const { webpackDevServerConfig, fePort, host } = config
+  const webpackConfig = getClientWebpack(config)
   return await new Promise((resolve) => {
     const compiler = webpack(webpackConfig)
 
@@ -20,8 +21,9 @@ const startClientServer = async (webpackConfig: webpack.Configuration): Promise<
   })
 }
 
-const startClientBuild = async (webpackConfig: webpack.Configuration) => {
+const startClientBuild = async (config: IConfig) => {
   const { webpackStatsOption } = config
+  const webpackConfig = getClientWebpack(config)
   const stats = await webpackPromisify(webpackConfig)
   console.log(stats.toString(webpackStatsOption))
 }

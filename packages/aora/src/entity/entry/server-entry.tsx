@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
-import { findRoute, getManifest, logGreen, normalizePath, addAsyncChunk } from '../../utils'
+import { findRoute, getManifest, normalizePath, addAsyncChunk } from '../../utils'
 import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '@aora/types'
 import * as serialize from 'serialize-javascript'
 // @ts-expect-error
@@ -20,7 +20,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   let path = ctx.request.path // 这里取 pathname 不能够包含 queryString
   const base = prefix ?? PrefixRouterBase // 以开发者实际传入的为最高优先级
   if (base) {
-    path = normalizePath(path, base)
+    path = normalizePath(config, path, base)
   }
   const routeItem = findRoute<ReactESMFeRouteItem>(FeRoutes, path)
 
@@ -37,7 +37,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
     dynamicCssOrder = cssOrder.concat([`${routeItem.webpackChunkName}.css`])
     dynamicCssOrder = await addAsyncChunk(dynamicCssOrder, routeItem.webpackChunkName)
   }
-  const manifest = await getManifest()
+  const manifest = await getManifest(config)
 
   const injectCss: JSX.Element[] = []
   
@@ -65,9 +65,6 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   const { component, fetch } = routeItem
   const { default: Component, fetch: compFetch } = (await component())
 
-  if (isCsr) {
-    logGreen(`Current path ${path} use csr render mode`)
-  }
   let layoutFetchData = {}
   let fetchData = {}
   if (!isCsr) {

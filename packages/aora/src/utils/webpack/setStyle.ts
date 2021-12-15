@@ -1,12 +1,11 @@
-import { StyleOptions } from '@aora/types'
+import { IConfig, StyleOptions } from '@aora/types'
 import { Config } from '@aora/types/dist/third-party/webpack-chain'
 import type { loader } from 'webpack'
-import { loadConfig } from '../loadConfig'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const genericNames = require('generic-names')
 
-export const setStyle = (chain: Config, reg: RegExp, options: StyleOptions) => {
-  const { css, isDev } = loadConfig()
+export const setStyle = (config: IConfig, chain: Config, reg: RegExp, options: StyleOptions) => {
+  const { css, isDev } = config
   const { include, exclude, importLoaders, loader, isServer } = options
   const loadModule = require.resolve
 

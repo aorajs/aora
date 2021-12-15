@@ -1,23 +1,18 @@
 import { promises as fs } from 'fs'
 import { resolve, join } from 'path'
-import { ParseFeRouteItem } from '@aora/types'
+import { IConfig, ParseFeRouteItem } from '@aora/types'
 import { getCwd, getPagesDir, getFeDir, accessFile, normalizeStartPath } from './cwd'
-import { loadConfig } from './loadConfig'
 
 const debug = require('debug')('ssr:parse')
 const pageDir = getPagesDir()
 const cwd = getCwd()
 
-const getPrefix = () => {
-  let { prefix } = loadConfig()
-  if (prefix) {
-    prefix = normalizeStartPath(prefix)
-  }
-  return prefix
+const getPrefix = (prefix: IConfig['prefix']) => {
+  return prefix ? normalizeStartPath(prefix) : prefix
 }
 
-export const normalizePath = (path: string, base?: string) => {
-  const prefix = getPrefix()
+export const normalizePath = (config: IConfig, path: string, base?: string, ) => {
+  const prefix = getPrefix(config.prefix)
   // 移除 prefix 保证 path 跟路由表能够正确匹配
   const baseName = base ?? prefix
   if (baseName) {
@@ -40,14 +35,12 @@ export const normalizePublicPath = (path: string) => {
   return path
 }
 
-export const getOutputPublicPath = () => {
-  const { publicPath, isDev } = loadConfig()
+export const getOutputPublicPath = (publicPath: string, isDev: boolean) => {
   const path = normalizePublicPath(publicPath)
   return isDev ? path : `${path}client/`
 }
 
-export const getImageOutputPath = () => {
-  const { publicPath, isDev } = loadConfig()
+export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
   const imagePath = 'static/images'
   const normalizePath = normalizePublicPath(publicPath)
   return {
@@ -56,9 +49,9 @@ export const getImageOutputPath = () => {
   }
 }
 
-const parseFeRoutes = async () => {
-  const { dynamic, routerPriority, routerOptimize } = loadConfig()
-  const prefix = getPrefix()
+const parseFeRoutes = async (config: IConfig) => {
+  const { dynamic, routerPriority, routerOptimize } = config
+  const prefix = getPrefix(config.prefix)
   const isVue = require(join(cwd, './package.json')).dependencies.vue
 
   let routes = ''

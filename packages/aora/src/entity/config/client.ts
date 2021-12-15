@@ -1,8 +1,9 @@
 import { promises } from 'fs'
 import { resolve, join } from 'path'
-import { loadConfig, getCwd, cryptoAsyncChunkName, getOutputPublicPath } from '../../utils'
+import { getCwd, cryptoAsyncChunkName, getOutputPublicPath } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import { getBaseConfig } from './base'
+import { IConfig } from '@aora/types'
 
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const safePostCssParser = require('postcss-safe-parser')
@@ -11,14 +12,14 @@ const generateAnalysis = Boolean(process.env.GENERATE_ANALYSIS)
 const loadModule = require.resolve
 let asyncChunkMap: Record<string, string> = {}
 
-const getClientWebpack = (chain: WebpackChain) => {
-  const { isDev, chunkName, getOutput, cwd, useHash, chainClientConfig } = loadConfig()
+export const getClientWebpack = (config: IConfig) => {
+  const { isDev, chunkName, getOutput, cwd, useHash, chainClientConfig } = config
+  const chain = new WebpackChain()
   const shouldUseSourceMap = isDev || Boolean(process.env.GENERATE_SOURCEMAP)
-  const publicPath = getOutputPublicPath()
-  getBaseConfig(chain, false)
+  const publicPath = getOutputPublicPath(config.publicPath, isDev)
+  getBaseConfig(chain, config, false)
   chain.devtool(isDev ? 'cheap-module-source-map' : (shouldUseSourceMap ? 'source-map' : false))
   chain.entry(chunkName)
-    // .add(loadModule('../entry/client-entry'))
     .add(join(__dirname, '../entry/client-entry'))
     .end()
     .output
@@ -113,8 +114,4 @@ const getClientWebpack = (chain: WebpackChain) => {
   chainClientConfig(chain) // 合并用户自定义配置
 
   return chain.toConfig()
-}
-
-export {
-  getClientWebpack
 }
