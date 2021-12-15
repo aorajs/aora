@@ -1,12 +1,16 @@
-import { Module } from '@nestjs/common'
+import { Global, Module } from '@nestjs/common'
+import { AoraRenderService } from './aora.service'
 
+@Global()
 @Module({
   imports: [
 
   ],
-  controllers: [],
-  providers: []
+  providers: [
+    AoraRenderService
+  ],
+  exports: [
+    AoraRenderService,
+  ],
 })
 export class AoraModule {}
-
-export default AoraModule

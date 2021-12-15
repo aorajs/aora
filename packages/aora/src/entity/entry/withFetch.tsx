@@ -38,7 +38,7 @@ const fetchAndDispatch = async (
   return asyncData;
 };
 
-function wrapComponent(WrappedComponent: DynamicFC | StaticFC) {
+export function withFetch(WrappedComponent: DynamicFC | StaticFC) {
   return withRouter(function withRouter(props) {
     const { state, dispatch } = useContext(STORE_CONTEXT);
     // @ts-ignore
@@ -66,5 +66,3 @@ function wrapComponent(WrappedComponent: DynamicFC | StaticFC) {
     return <WrappedComponent {...pageProps} {...props} />;
   });
 }
-
-export { wrapComponent };

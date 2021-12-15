@@ -1,12 +1,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { preloadComponent } from '../../kit'
-import { wrapComponent } from '../../hoc'
+import { preloadComponent } from './preload'
+import { withFetch } from './withFetch'
 import { IWindow, LayoutProps, ReactESMFeRouteItem, ReactRoutesType } from '@aora/types'
 // @ts-expect-error
 import * as Routes from '_build/ssr-temporary-routes'
-import { AppContext } from './context'
+import { AppContext } from './app-context'
 
 const { FeRoutes, layoutFetch, App, PrefixRouterBase } = Routes as ReactRoutesType
 
@@ -32,7 +32,7 @@ const clientRender = async (): Promise<void> => {
                   const { component, path, fetch } = item
                   component.fetch = fetch
                   component.layoutFetch = layoutFetch
-                  const WrappedComponent = wrapComponent(component)
+                  const WrappedComponent = withFetch(component)
                   return (
                     <Route exact={true} key={path} path={path} render={() => <WrappedComponent key={location.pathname}/>}/>
                   )

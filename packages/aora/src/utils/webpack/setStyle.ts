@@ -1,6 +1,7 @@
 import { IConfig, StyleOptions } from '@aora/types'
 import { Config } from '@aora/types/dist/third-party/webpack-chain'
 import type { loader } from 'webpack'
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const genericNames = require('generic-names')
 
