@@ -112,6 +112,7 @@ export const getClientWebpack = (config: IConfig) => {
     }
   )
   chainClientConfig(chain) // 合并用户自定义配置
+  chain.optimization.get('splitChunks').chunks = 'initial'
 
   return chain.toConfig()
 }
