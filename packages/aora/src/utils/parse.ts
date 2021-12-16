@@ -52,7 +52,6 @@ export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
 const parseFeRoutes = async (config: IConfig) => {
   const { dynamic, routerPriority, routerOptimize } = config
   const prefix = getPrefix(config.prefix)
-  const isVue = require(join(cwd, './package.json')).dependencies.vue
 
   let routes = ''
   const declaretiveRoutes = await accessFile(join(getFeDir(), './route.ts')) // 是否存在自定义路由
@@ -85,69 +84,36 @@ const parseFeRoutes = async (config: IConfig) => {
 
     debug('Before the result that parse web folder to routes is: ', arr)
 
-    if (isVue) {
-      const layoutPath = '@/components/layout/index.vue'
-      const accessVueApp = await accessFile(join(getFeDir(), './components/layout/App.vue'))
-      const layoutFetch = await accessFile(join(getFeDir(), './components/layout/fetch.ts'))
-      const store = await accessFile(join(getFeDir(), './store/index.ts'))
-      const AppPath = `@/components/layout/App.${accessVueApp ? 'vue' : 'tsx'}`
+    // React 场景
+    const accessReactApp = await accessFile(join(getFeDir(), './layouts/App.tsx'))
+    const layoutFetch = await accessFile(join(getFeDir(), './layouts/fetch.ts'))
+    const accessStore = await accessFile(join(getFeDir(), './store/index.ts'))
+    const re = /"webpackChunkName":("(.+?)")/g
+    routes = `
+    // The file is provisional，don't depend on it 
+      export const FeRoutes = ${JSON.stringify(arr)} 
+      ${accessReactApp ? 'export { default as App, fetch as layoutFetch } from "@/layouts/App.tsx"' : ''}
+      ${layoutFetch ? 'export { default as layoutFetch } from "@/layouts/fetch.ts"' : ''}
+      ${accessStore ? 'export * from "@/store/index.ts"' : ''}
+      ${prefix ? `export const PrefixRouterBase='${prefix}'` : ''}
 
-      const re = /"webpackChunkName":("(.+?)")/g
-      routes = `
-      // The file is provisional，don't depend on it 
-        ${store ? 'import * as store from "@/store/index.ts"' : ''}
-        export const FeRoutes = ${JSON.stringify(arr)} 
-        export { default as Layout } from "${layoutPath}"
-        export { default as App } from "${AppPath}"
-        ${layoutFetch ? 'export { default as layoutFetch } from "@/components/layout/fetch.ts"' : ''}
-        ${store ? 'export { store }' : ''}
-        ${prefix ? `export const PrefixRouterBase='${prefix}'` : ''}
-        `
-      routes = routes.replace(/"component":("(.+?)")/g, (_global, _m1, m2) => {
-        const currentWebpackChunkName = re.exec(routes)![2]
-        if (dynamic) {
-          return `"component": () => import(/* webpackChunkName: "${currentWebpackChunkName}" */ '${m2.replace(/\^/g, '"')}')`
-        } else {
-          return `"component": require('${m2.replace(/\^/g, '"')}').default`
+      `
+    routes = routes.replace(/"component":("(.+?)")/g, (_global, _m1, m2) => {
+      const currentWebpackChunkName = re.exec(routes)![2]
+      if (dynamic) {
+        return `"component": function dynamicComponent () {
+          return import(/* webpackChunkName: "${currentWebpackChunkName}" */ '${m2.replace(/\^/g, '"')}')
         }
-      })
-      re.lastIndex = 0
-      routes = routes.replace(/"fetch":("(.+?)")/g, (_global, _m1, m2) => {
-        const currentWebpackChunkName = re.exec(routes)![2]
-        return `"fetch": () => import(/* webpackChunkName: "${currentWebpackChunkName}-fetch" */ '${m2.replace(/\^/g, '"')}')`
-      })
-    } else {
-      // React 场景
-      const accessReactApp = await accessFile(join(getFeDir(), './components/layout/App.tsx'))
-      const layoutFetch = await accessFile(join(getFeDir(), './components/layout/fetch.ts'))
-      const accessStore = await accessFile(join(getFeDir(), './store/index.ts'))
-      const re = /"webpackChunkName":("(.+?)")/g
-      routes = `
-      // The file is provisional，don't depend on it 
-        export const FeRoutes = ${JSON.stringify(arr)} 
-        ${accessReactApp ? 'export { default as App } from "@/components/layout/App.tsx"' : ''}
-        ${layoutFetch ? 'export { default as layoutFetch } from "@/components/layout/fetch.ts"' : ''}
-        ${accessStore ? 'export * from "@/store/index.ts"' : ''}
-        ${prefix ? `export const PrefixRouterBase='${prefix}'` : ''}
-
         `
-      routes = routes.replace(/"component":("(.+?)")/g, (_global, _m1, m2) => {
-        const currentWebpackChunkName = re.exec(routes)![2]
-        if (dynamic) {
-          return `"component": function dynamicComponent () {
-            return import(/* webpackChunkName: "${currentWebpackChunkName}" */ '${m2.replace(/\^/g, '"')}')
-          }
-          `
-        } else {
-          return `"component": require('${m2.replace(/\^/g, '"')}').default`
-        }
-      })
-      re.lastIndex = 0
-      routes = routes.replace(/"fetch":("(.+?)")/g, (_global, _m1, m2) => {
-        const currentWebpackChunkName = re.exec(routes)![2]
-        return `"fetch": () => import(/* webpackChunkName: "${currentWebpackChunkName}-fetch" */ '${m2.replace(/\^/g, '"')}')`
-      })
-    }
+      } else {
+        return `"component": require('${m2.replace(/\^/g, '"')}').default`
+      }
+    })
+    re.lastIndex = 0
+    routes = routes.replace(/"fetch":("(.+?)")/g, (_global, _m1, m2) => {
+      const currentWebpackChunkName = re.exec(routes)![2]
+      return `"fetch": () => import(/* webpackChunkName: "${currentWebpackChunkName}-fetch" */ '${m2.replace(/\^/g, '"')}')`
+    })
   } else {
     // 使用了声明式路由
     routes = (await fs.readFile(join(getFeDir(), './route.ts'))).toString()

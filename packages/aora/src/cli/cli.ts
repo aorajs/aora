@@ -18,6 +18,7 @@ const spinner = {
 }
 
 yargs
+  .version(false)
   .command('start', 'Start Server', {}, async (argv: Argv) => {
     spinner.start()
     const config = await transformConfig()
@@ -41,10 +42,6 @@ yargs
     await aora.buildServer()
   })
   .demandCommand(1, 'You need at least one command before moving on')
-  .option('version', {
-    alias: 'v',
-    default: false
-  })
   .fail((msg, err) => {
     if (err) {
       console.log(err)

@@ -8,7 +8,7 @@ import * as Routes from '_build/ssr-temporary-routes'
 // @ts-ignore
 import { STORE_CONTEXT as Context } from 'aora/context'
 // @ts-expect-error
-import Layout from '@/components/layout/index.tsx'
+import Layout from '@/layouts/index.tsx'
 
 const { FeRoutes, layoutFetch, PrefixRouterBase, state } = Routes as ReactRoutesType
 
@@ -90,7 +90,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   return (
     <StaticRouter location={ctx.request.url} basename={base}>
       <Context.Provider value={{ state: combineData }}>
-        <Layout ctx={ctx} config={config} staticList={staticList} injectState={injectState}>
+        <Layout ctx={ctx} config={config} staticList={staticList} injectState={injectState} state={combineData}>
           {isCsr ? <></> : <Component {...fetchData}/>}
         </Layout>
       </Context.Provider>

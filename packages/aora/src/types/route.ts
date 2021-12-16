@@ -8,6 +8,7 @@ export interface LayoutProps {
   children?: JSX.Element
   staticList?: StaticList
   injectState?: any
+  state?: any
 }
 export interface StaticList {
   injectCss: JSX.Element[]
