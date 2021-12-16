@@ -16,10 +16,10 @@ export const transformConfig = async () => {
   const { accessFile, getCwd } = await import('../utils')
   const cwd = getCwd()
   if (!await accessFile(join(cwd, './build'))) {
-    fsp.mkdir(join(cwd, './build'))
+    await fsp.mkdir(join(cwd, './build'))
   }
   if (await accessFile(join(cwd, './config.js'))) {
-    fsp.copyFile(`${join(cwd, './config.js')}`, `${join(cwd, './build/config.js')}`)
+    await fsp.copyFile(`${join(cwd, './config.js')}`, `${join(cwd, './build/config.js')}`)
   }
   const configWithTs = await accessFile(join(cwd, './config.ts'))
   if (configWithTs) {

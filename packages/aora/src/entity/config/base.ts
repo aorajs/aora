@@ -36,6 +36,13 @@ const addBabelLoader = (chain: WebpackChain.Rule<WebpackChain.Module>, envOption
             libraryDirectory: 'lib',
             style: true
           }, 'antd'
+        ],[
+          loadModule('babel-plugin-import'),
+          {
+            libraryName: 'react-vant',
+            libraryDirectory: 'lib',
+            style: true
+          }, 'react-vant'
         ],
         [loadModule('@babel/plugin-proposal-private-methods'), { loose: true }],
         [loadModule('@babel/plugin-proposal-private-property-in-object'), { loose: true }]

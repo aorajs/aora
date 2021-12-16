@@ -76,6 +76,7 @@ export class AoraRenderService {
       }
       return res
     } catch (error) {
+      console.log(error)
       this.response.status(500).send(error);
     }
   }
