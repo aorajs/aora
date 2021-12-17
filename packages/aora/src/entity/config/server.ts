@@ -23,8 +23,8 @@ export const getServerWebpack = (config: IConfig) => {
   modulesDir.push(getLocalNodeModules())
 
   chain.externals(nodeExternals({
-    whitelist: [/\.(css|less|sass|scss)$/, /antd.*?(style)/, /react-vant.*?(style)/].concat(whiteList || []),
-    // externals Dir contains example/xxx/node_modules ssr/node_modules
+  whitelist: [/\.(css|less|sass|scss)$/, /react-vant.*?style/, /antd.*?(style)/, /store$/, /antd-mobile.*/].concat(whiteList || []),
+  // externals Dir contains example/xxx/node_modules ssr/node_modules
     modulesDir
   }))
 

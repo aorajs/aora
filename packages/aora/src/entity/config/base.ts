@@ -43,6 +43,13 @@ const addBabelLoader = (chain: WebpackChain.Rule<WebpackChain.Module>, envOption
             libraryDirectory: 'lib',
             style: true
           }, 'react-vant'
+        ],[
+          loadModule('babel-plugin-import'),
+          {
+            libraryName: "antd-mobile",
+            libraryDirectory: "cjs/components",
+            style: false,
+          }, 'antd-mobile'
         ],
         [loadModule('@babel/plugin-proposal-private-methods'), { loose: true }],
         [loadModule('@babel/plugin-proposal-private-property-in-object'), { loose: true }]
