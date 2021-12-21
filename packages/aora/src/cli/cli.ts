@@ -27,7 +27,7 @@ yargs
     await aora.parseRoutes()
     spinner.stop()
     await aora.startClient()
-    await aora.clean()
+    // await aora.clean()
     await aora.startServer()
   })
   .command('build', 'Build server and client files', {}, async () => {
@@ -38,7 +38,7 @@ yargs
     await aora.parseRoutes()
     spinner.stop()
     await aora.buildClient()
-    await aora.clean()
+    // await aora.clean()
     await aora.buildServer()
   })
   .demandCommand(1, 'You need at least one command before moving on')

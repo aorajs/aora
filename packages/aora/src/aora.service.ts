@@ -32,7 +32,6 @@ export class AoraRenderService {
   }
 
   async csr(data?: unknown, options: Exclude<RenderOptions, 'ssr'> = {}) {
-    console.log('csr', data)
     return this.render(data, {
       ...options,
       ssr: false
@@ -40,7 +39,6 @@ export class AoraRenderService {
   }
 
   async ssr(data?: unknown, options: Exclude<RenderOptions, 'ssr'> = {}) {
-    console.log('ssr', data)
     return this.render(data, {
       ...options,
       ssr: true

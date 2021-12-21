@@ -1,5 +1,5 @@
 import { IConfig } from '@aora/types';
 
-export function defineConfig(config: IConfig): IConfig {
+export function defineConfig(config: Partial<IConfig>): Partial<IConfig> {
   return config;
 }

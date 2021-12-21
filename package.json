@@ -9,7 +9,8 @@
     "build": "lerna run build --stream --parallel"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "installConfig": {
     "hoistingLimits": [

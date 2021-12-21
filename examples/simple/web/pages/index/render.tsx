@@ -5,7 +5,7 @@ import Rectangle from "@/components/rectangle";
 import Search from "@/components/search";
 import { IData } from "~/typings/data";
 import { IndexData } from "~/typings/data";
-import NoSsr from 'aora/noSsr'
+import NoSsr from 'aora/no-ssr'
 
 const Home = (props: SProps & IData) => {
   // const { state, dispatch } = useContext<IContext<IData>>(STORE_CONTEXT);

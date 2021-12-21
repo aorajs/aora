@@ -16,3 +16,5 @@
 examples/*/build
 examples/*/dist
 install-state.gz
+
+**/.yarn/cache

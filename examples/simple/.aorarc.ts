@@ -1,3 +1,5 @@
 import { defineConfig } from "aora";
 
-export default defineConfig({} as any);
+export default defineConfig({
+    serverPort: 3001
+});

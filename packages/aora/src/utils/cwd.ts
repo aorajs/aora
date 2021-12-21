@@ -3,6 +3,8 @@ import { resolve } from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import { UserConfig, IPlugin } from '@aora/types'
+// @ts-ignore
+import { jitiImport } from '../cli/preprocess'
 
 const getCwd = () => {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')
@@ -15,9 +17,12 @@ const getFeDir = () => {
 const getPagesDir = () => {
   return resolve(getFeDir(), 'pages')
 }
-
+// @ts-ignore
+const rootDir = resolve(process.cwd(), '.')
 const getUserConfig = (): UserConfig => {
-  // const config = require(resolve(getCwd(), './build/config'))
+  // const config = require(resolve(getCwd(), './.aora/.aorarc'))
+  // // const config = jitiImport(rootDir, resolve(getCwd(),'.aorarc.ts'))
+  // console.log('config', config.default)
   // return config.userConfig ?? config
   return {}
 }

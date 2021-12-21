@@ -4,6 +4,25 @@ import { transform } from 'esbuild'
 import { Argv, IConfig } from '@aora/types'
 import { loadConfig } from '..'
 
+export interface ResolveModuleOptions {
+  paths?: string | string[]
+}
+
+export interface RequireModuleOptions extends ResolveModuleOptions {
+  // TODO: use create-require for jest environment
+  // native?: boolean
+  /** Clear the require cache (force fresh require) but only if not within `node_modules` */
+  clearCache?: boolean
+
+  /** Automatically de-default the result of requiring the module. */
+  interopDefault?: boolean
+}
+
+export function isNodeModules (id: string) {
+  // TODO: Follow symlinks
+  return /[/\\]node_modules[/\\]/.test(id)
+}
+
 export const handleEnv = async (_argv: Argv, _spinner: any, https: IConfig['https']) => {
   process.env.BUILD_TOOL = 'webpack'
   process.env.NODE_ENV = 'development'
@@ -15,20 +34,20 @@ export const handleEnv = async (_argv: Argv, _spinner: any, https: IConfig['http
 export const transformConfig = async () => {
   const { accessFile, getCwd } = await import('../utils')
   const cwd = getCwd()
-  if (!await accessFile(join(cwd, './build'))) {
-    await fsp.mkdir(join(cwd, './build'))
-  }
-  if (await accessFile(join(cwd, './config.js'))) {
-    await fsp.copyFile(`${join(cwd, './config.js')}`, `${join(cwd, './build/config.js')}`)
-  }
-  const configWithTs = await accessFile(join(cwd, './config.ts'))
+  // if (!await accessFile(join(cwd, './build'))) {
+    await fsp.mkdir(join(cwd, './build'), { recursive: true })
+    await fsp.mkdir(join(cwd, './.aora'), {recursive: true})
+
+    // }
+  const configWithTs = await accessFile(join(cwd, './.aorarc.ts'))
   if (configWithTs) {
-    const fileContent = (await fsp.readFile(join(cwd, './config.ts'))).toString()
+    const fileContent = (await fsp.readFile(join(cwd, './.aorarc.ts'))).toString()
     const { code } = await transform(fileContent, {
       loader: 'ts',
-      format: 'cjs'
+      format: 'cjs',
+      charset: 'utf8',
     })
-    await fsp.writeFile(join(cwd, './build/config.js'), code)
+    await fsp.writeFile(join(cwd, './.aora/.aorarc.js'), code)
   }
   return loadConfig()
 }
