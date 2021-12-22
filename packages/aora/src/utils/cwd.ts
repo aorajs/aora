@@ -20,11 +20,11 @@ const getPagesDir = () => {
 // @ts-ignore
 const rootDir = resolve(process.cwd(), '.')
 const getUserConfig = (): UserConfig => {
-  // const config = require(resolve(getCwd(), './.aora/.aorarc'))
-  // // const config = jitiImport(rootDir, resolve(getCwd(),'.aorarc.ts'))
-  // console.log('config', config.default)
+  const config = require(resolve(getCwd(), './.aora/.aorarc'))
+  // const config = jitiImport(rootDir, resolve(getCwd(),'.aorarc.ts'))
+  console.log('config', config.default)
   // return config.userConfig ?? config
-  return {}
+  return config?.default ?? {}
 }
 
 const loadPlugin = (): IPlugin => {

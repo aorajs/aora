@@ -7,7 +7,7 @@ import * as serialize from 'serialize-javascript'
 import * as Routes from '_build/ssr-temporary-routes'
 // @ts-ignore
 import { STORE_CONTEXT as Context } from 'aora/context'
-// @ts-expect-error
+// @ts-ignore
 import Layout from '@/layouts/index.tsx'
 
 const { FeRoutes, layoutFetch, PrefixRouterBase, state } = Routes as ReactRoutesType
