@@ -10,7 +10,7 @@
   <a href="https://github.com/loyep/aora" target="_blank">
     <img src="https://github.com/loyep/aora/workflows/CodeQL/badge.svg" alt="build status"  />
   </a>
-  <a href="https://www.npmjs.com/package/nuxt3">
+  <a href="https://www.npmjs.com/package/aora">
     <img src="https://badgen.net/npm/license/aora" alt="License">
   </a>
   <a href="https://github.com/loyep/aora/pulls">
