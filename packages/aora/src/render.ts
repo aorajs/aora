@@ -5,20 +5,20 @@ import { ISSRContext, UserConfig, ExpressContext } from '@aora/types'
 
 const cwd = getCwd()
 const defaultConfig = loadConfig()
+const { chunkName } = defaultConfig
+const serverFile = resolve(cwd, `./.aora/server/${chunkName}.server.js`)
+const { serverRender } = require(serverFile)
 
 export function render (ctx: ISSRContext, options?: UserConfig): Promise<string>
 export function render<T> (ctx: ISSRContext, options?: UserConfig): Promise<T>
 export async function render (ctx: ISSRContext, options?: UserConfig) {
   const config = Object.assign({}, defaultConfig, options ?? {})
-  const { isDev, chunkName, stream } = config
-  const isLocal = isDev || process.env.NODE_ENV !== 'production'
-  const serverFile = resolve(cwd, `./.aora/server/${chunkName}.server.js`)
-  if (isLocal) {
-    // clear cache in development environment
-    delete require.cache[serverFile]
-  }
-
-  const { serverRender } = require(serverFile)
+  const { stream } = config
+  // const isLocal = isDev || process.env.NODE_ENV !== 'production'
+  // if (isLocal) {
+  //   // clear cache in development environment
+  //   delete require.cache[serverFile]
+  // }
   const serverRes = await serverRender(ctx, config)
 
   if (!(ctx as ExpressContext).response.hasHeader?.('content-type')) {
