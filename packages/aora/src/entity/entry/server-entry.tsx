@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import { findRoute, getManifest, normalizePath, addAsyncChunk } from '../../utils'
-import { ISSRContext, IGlobal, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '@aora/types'
+import { ISSRContext, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '@aora/types'
 import * as serialize from 'serialize-javascript'
 // @ts-expect-error
 import * as Routes from '_build/ssr-temporary-routes'
@@ -12,11 +12,11 @@ import Layout from '@/layouts/index.tsx'
 
 const { FeRoutes, layoutFetch, PrefixRouterBase, state } = Routes as ReactRoutesType
 
-declare const global: IGlobal
+// declare const global: IGlobal
 
 const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.ReactElement> => {
-  const { cssOrder, jsOrder, dynamic, ssr = true, parallelFetch, disableClientRender, prefix } = config
-  global.window = global.window ?? {} // 防止覆盖上层应用自己定义的 window 对象
+  const { cssOrder, jsOrder, dynamic, ssr = true, parallelFetch, prefix } = config
+  // global.window = global.window ?? {} // 防止覆盖上层应用自己定义的 window 对象
   let path = ctx.request.path // 这里取 pathname 不能够包含 queryString
   const base = prefix ?? PrefixRouterBase // 以开发者实际传入的为最高优先级
   if (base) {
@@ -48,11 +48,11 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
     }
   })
 
-  if (disableClientRender) {
-    injectCss.push(<script key="disableClientRender" dangerouslySetInnerHTML={{
-      __html: 'window.__disableClientRender__ = true'
-    }}/>)
-  }
+  // if (disableClientRender) {
+  //   injectCss.push(<script key="disableClientRender" dangerouslySetInnerHTML={{
+  //     __html: 'window.__disableClientRender__ = true'
+  //   }}/>)
+  // }
 
   const injectScript = jsOrder.map((js: string) => manifest[js]).map((item: string) => <script key={item} src={item} />)
 

@@ -10,7 +10,6 @@ const loadConfig = (): IConfig => {
       ...cacheConfig
     }
   }
-  const start = new Date()
   const userConfig = getUserConfig()
   const cwd = getCwd()
   const ssr = true
@@ -77,8 +76,8 @@ const loadConfig = (): IConfig => {
 
   const corejs = false
   const getOutput = () => ({
-    clientOutPut: join(cwd, './build/client'),
-    serverOutPut: join(cwd, './build/server')
+    clientOutPut: join(cwd, './.aora/client'),
+    serverOutPut: join(cwd, './.aora/server')
   })
 
   const webpackDevServerConfig = Object.assign({
@@ -144,7 +143,6 @@ const loadConfig = (): IConfig => {
   }, userConfig)
 
   config.webpackDevServerConfig = webpackDevServerConfig // 防止把整个 webpackDevServerConfig 全量覆盖了
-  console.log('load config', Date.now() - start.getTime())
   cacheConfig = config
   return config
 }

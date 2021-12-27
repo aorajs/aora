@@ -42,7 +42,7 @@ const loadPlugin = (): IPlugin => {
 const readAsyncChunk = async (): Promise<Record<string, string>> => {
   const cwd = getCwd()
   try {
-    const str = (await promises.readFile(resolve(cwd, './build/asyncChunkMap.json'))).toString()
+    const str = (await promises.readFile(resolve(cwd, './.aora/asyncChunkMap.json'))).toString()
     return JSON.parse(str)
   } catch (error) {
     return {}
@@ -106,7 +106,7 @@ const accessFile = async (file: string) => {
 }
 
 const copyReactContext = async () => {
-  await promises.copyFile(resolve(__dirname, '../../context.ts'), resolve(getCwd(), './build/create-context.ts'))
+  await promises.copyFile(resolve(__dirname, '../../context.ts'), resolve(getCwd(), './.aora/create-context.ts'))
 }
 
 const execPromisify = promisify(exec)

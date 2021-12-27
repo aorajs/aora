@@ -19,7 +19,7 @@ const _getManiFest = async (config: IConfig): Promise<Record<string, string>> =>
     manifest = res.data
   } else {
     manifest = JSON.parse(
-      await promises.readFile(join(cwd, "./build/client/asset-manifest.json"), {
+      await promises.readFile(join(cwd, "./.aora/client/asset-manifest.json"), {
         encoding: "utf-8",
       })
     );

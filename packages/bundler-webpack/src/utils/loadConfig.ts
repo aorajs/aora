@@ -144,7 +144,6 @@ const loadConfig = (): IConfig => {
   }, userConfig)
 
   config.webpackDevServerConfig = webpackDevServerConfig // 防止把整个 webpackDevServerConfig 全量覆盖了
-  console.log('load config', Date.now() - start.getTime())
   cacheConfig = config
   return config
 }

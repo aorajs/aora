@@ -91,7 +91,7 @@ export const getBaseConfig = (chain: WebpackChain, config: IConfig, isServer: bo
     .end()
   chain.resolve.alias
     .set('@', getFeDir())
-    .set('_build', join(getCwd(), './build'))
+    .set('_build', join(getCwd(), './.aora'))
     .set('react', loadModule('react')) // 用cwd的路径alias，否则可能会出现多个react实例
     .set('react-router', loadModule('react-router'))
     .set('react-router-dom', loadModule('react-router-dom'))

@@ -8,7 +8,7 @@ import { join } from 'path'
 import { promises as fsp } from 'fs'
 
 const cacache = require('cacache')
-const cachePath = join(getCwd(), './build/caches')
+const cachePath = join(getCwd(), './.aora/cache')
 const crypto = require('crypto');
 
 const md5 = (value: string) => {
@@ -68,7 +68,9 @@ export class AoraRenderService {
         response: this.response,
         data: data,
       };
+      console.time('render')
       const res = await render(ctx, opts as any);
+      console.timeEnd('render')
       if (cache) {
         cacache.put(cachePath, cacheKey, res);
       }

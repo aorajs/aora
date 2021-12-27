@@ -104,7 +104,7 @@ export const getClientWebpack = (config: IConfig) => {
         compiler.hooks.done.tapAsync(
           'WriteAsyncChunkManifest',
           async (_params: any, callback: any) => {
-            await promises.writeFile(resolve(getCwd(), './build/asyncChunkMap.json'), JSON.stringify(asyncChunkMap))
+            await promises.writeFile(resolve(getCwd(), './.aora/asyncChunkMap.json'), JSON.stringify(asyncChunkMap))
             callback()
           }
         )

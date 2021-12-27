@@ -124,7 +124,7 @@ const parseFeRoutes = async (config: IConfig) => {
 }
 
 const writeRoutes = async (routes: string) => {
-  await fs.writeFile(resolve(cwd, './build/ssr-temporary-routes.js'), routes)
+  await fs.writeFile(resolve(cwd, './.aora/ssr-temporary-routes.js'), routes)
 }
 
 const renderRoutes = async (pageDir: string, pathRecord: string[], route: ParseFeRouteItem): Promise<ParseFeRouteItem[]> => {

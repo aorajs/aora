@@ -34,11 +34,9 @@ export const handleEnv = async (_argv: Argv, _spinner: any, https: IConfig['http
 export const transformConfig = async () => {
   const { accessFile, getCwd } = await import('../utils')
   const cwd = getCwd()
-  // if (!await accessFile(join(cwd, './build'))) {
-    await fsp.mkdir(join(cwd, './build'), { recursive: true })
+  if (!await accessFile(join(cwd, './aora'))) {
     await fsp.mkdir(join(cwd, './.aora'), {recursive: true})
-
-    // }
+    }
   const configWithTs = await accessFile(join(cwd, './.aorarc.ts'))
   if (configWithTs) {
     const fileContent = (await fsp.readFile(join(cwd, './.aorarc.ts'))).toString()
