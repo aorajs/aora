@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { StaticRouter } from 'react-router-dom'
-import { findRoute, getManifest, normalizePath, addAsyncChunk } from '../../utils'
+// @ts-ignore
+import { findRoute, getManifest, normalizePath, addAsyncChunk } from 'aora'
 import { ISSRContext, IConfig, ReactRoutesType, ReactESMFeRouteItem } from '@aora/types'
 import * as serialize from 'serialize-javascript'
 // @ts-expect-error

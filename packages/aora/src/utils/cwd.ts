@@ -83,13 +83,6 @@ const cryptoAsyncChunkName = (chunks: any, asyncChunkMap: Record<string, string>
   return cryptoAllChunksNames
 }
 
-const isFaaS = async (fun?: boolean) => {
-  const result = await promises.access(resolve(getCwd(), fun ? 'template.yml' : 'f.yml'))
-    .then(() => true)
-    .catch(() => false)
-  return result
-}
-
 const getLocalNodeModules = () => resolve(__dirname, '../../../node_modules')
 
 const processError = (err: any) => {
@@ -131,7 +124,6 @@ export {
   getFeDir,
   getPagesDir,
   getUserConfig,
-  isFaaS,
   loadPlugin,
   getLocalNodeModules,
   processError,

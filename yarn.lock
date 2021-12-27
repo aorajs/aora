@@ -81,76 +81,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aora/bundler-webpack@workspace:packages/bundler-webpack":
-  version: 0.0.0-use.local
-  resolution: "@aora/bundler-webpack@workspace:packages/bundler-webpack"
-  dependencies:
-    "@aora/types": ^0.0.22
-    "@babel/core": ^7.0.0
-    "@babel/plugin-transform-runtime": ^7.9.6
-    "@babel/preset-env": ^7.5.5
-    "@types/express": ^4.17.11
-    "@types/node": ">=14.0.0"
-    "@types/react": ^17.0.0
-    "@types/react-dom": ^17.0.11
-    "@types/react-router-dom": ^5.1.3
-    "@types/serialize-javascript": ^1.5.0
-    "@types/shelljs": ^0.8.9
-    "@types/tapable": ^1.0.6
-    "@types/webpack": ^4.41.10
-    "@types/yargs": ^13.0.12
-    axios: ^0.21.1
-    babel-loader: 8.0.4
-    babel-plugin-import: ^1.13.0
-    babel-preset-react-app: ^9.0.2
-    concurrently: ^5.1.0
-    core-js: ^3.6.4
-    css-hot-loader: ^1.4.4
-    css-loader: ^5.2.7
-    debug: ^4.1.1
-    esbuild: ^0.13.14
-    file-loader: ^6.2.0
-    generic-names: ^2.0.1
-    http-proxy-middleware: ^1.0.6
-    ignore-loader: ^0.1.2
-    less: ^4.1.1
-    less-loader: ^7.3.0
-    mini-css-extract-plugin: ^1.0.0
-    optimize-css-assets-webpack-plugin: 5.0.4
-    ora: ^5.0.0
-    path-to-regexp: ^6.2.0
-    postcss: ^7.0.0
-    postcss-discard-comments: ^4.0.2
-    postcss-flexbugs-fixes: 4.1.0
-    postcss-loader: ^4.0.0
-    postcss-modules: ^3.0.0
-    postcss-preset-env: ^6.0.5
-    postcss-safe-parser: 4.0.1
-    react: ^17.0.0
-    react-dev-utils: ^11.0.4
-    react-dom: ^17.0.2
-    react-router-dom: ^5.1.2
-    rimraf: ^3.0.2
-    serialize-javascript: ^3.0.0
-    shelljs: ^0.8.4
-    terser-webpack-plugin: ^2.3.5
-    typescript: 4.5.2
-    url-loader: ^4.1.1
-    v8-compile-cache: ^2.3.0
-    webpack: ^4.0.0
-    webpack-bundle-analyzer: ^3.6.1
-    webpack-chain: ^6.4.0
-    webpack-dev-server-ssr: ^3.10.3
-    webpack-manifest-plugin: ^2.2.0
-    webpackbar: ^5.0.0-3
-    yargs: ^17.3.0
-  peerDependencies:
-    react-dom: ^17.0.2
-  bin:
-    aora-webpack: bin/aora-webpack.js
-  languageName: unknown
-  linkType: soft
-
 "@aora/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@aora/core@workspace:packages/core"
@@ -195,7 +125,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aora/types@^0.0.22, @aora/types@workspace:packages/types":
+"@aora/types@^0.0.23, @aora/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@aora/types@workspace:packages/types"
   dependencies:
@@ -259,6 +189,63 @@ __metadata:
     react-dom: ^17.0.2
   languageName: unknown
   linkType: soft
+
+"@aora/types@npm:^0.0.22":
+  version: 0.0.22
+  resolution: "@aora/types@npm:0.0.22"
+  dependencies:
+    "@babel/core": ^7.0.0
+    "@babel/plugin-transform-runtime": ^7.9.6
+    "@babel/preset-env": ^7.5.5
+    "@types/express": ^4.17.11
+    "@types/node": ">=14.0.0"
+    "@types/tapable": ^1.0.6
+    "@types/webpack": ^4.41.10
+    axios: ^0.21.1
+    babel-loader: 8.0.4
+    babel-plugin-import: ^1.13.0
+    babel-preset-react-app: ^9.0.2
+    concurrently: ^5.1.0
+    core-js: ^3.6.4
+    css-hot-loader: ^1.4.4
+    css-loader: ^5.2.7
+    debug: ^4.1.1
+    esbuild: ^0.13.14
+    file-loader: ^6.2.0
+    generic-names: ^2.0.1
+    http-proxy-middleware: ^1.0.6
+    ignore-loader: ^0.1.2
+    less: ^4.1.1
+    less-loader: ^7.3.0
+    mini-css-extract-plugin: ^1.0.0
+    optimize-css-assets-webpack-plugin: 5.0.4
+    ora: ^5.0.0
+    path-to-regexp: ^6.2.0
+    postcss-discard-comments: ^4.0.2
+    postcss-flexbugs-fixes: 4.1.0
+    postcss-loader: ^4.0.0
+    postcss-modules: ^3.0.0
+    postcss-preset-env: ^6.0.5
+    postcss-safe-parser: 4.0.1
+    react-dev-utils: ^11.0.4
+    react-router-dom: ^5.1.2
+    rimraf: ^3.0.2
+    serialize-javascript: ^3.0.0
+    shelljs: ^0.8.4
+    terser-webpack-plugin: ^2.3.5
+    url-loader: ^4.1.1
+    v8-compile-cache: ^2.3.0
+    webpack-bundle-analyzer: ^3.6.1
+    webpack-chain: ^6.4.0
+    webpack-dev-server-ssr: ^3.10.3
+    webpack-manifest-plugin: ^2.2.0
+    webpackbar: ^5.0.0-3
+    yargs: ^17.3.0
+  peerDependencies:
+    react-dom: ^17.0.2
+  checksum: 0d2f394b5623b101c23416641b89f0b2e0dce078ab4844883256e135dbd308a52cd4ee79716bac3106f716456def1c47f6bfae40f187008029949695d2205ad4
+  languageName: node
+  linkType: hard
 
 "@aora/utils@0.0.1, @aora/utils@workspace:packages/utils":
   version: 0.0.0-use.local
@@ -4777,7 +4764,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aora@workspace:packages/aora"
   dependencies:
-    "@aora/types": ^0.0.22
+    "@aora/types": ^0.0.23
     "@babel/core": ^7.0.0
     "@babel/plugin-transform-runtime": ^7.9.6
     "@babel/preset-env": ^7.5.5
