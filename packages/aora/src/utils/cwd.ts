@@ -14,6 +14,14 @@ const getFeDir = () => {
   return resolve(getCwd(), process.env.FE_ROOT ?? 'web')
 }
 
+export const uniqueWhitelist = (list: (string | RegExp)[]) => {
+  const obj: Record<string, string | RegExp> = {}
+  list.forEach(item => {
+    obj[String(item)] = item
+  })
+  return Object.values(obj)
+}
+
 const getPagesDir = () => {
   return resolve(getFeDir(), 'pages')
 }

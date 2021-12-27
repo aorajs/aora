@@ -1,9 +1,11 @@
 import { IConfig } from '@aora/types'
 import { cleanOutDir } from '../../cli/clean'
+import { promises as fsp } from 'fs'
+import { getCwd } from '../..'
+import { join } from 'path'
 
 export * from './client'
 export * from './server'
-
 
 export class Aora {
     constructor(private config: IConfig) {
@@ -37,5 +39,9 @@ export class Aora {
 
     async clean() {
         await cleanOutDir()
+    }
+
+    async setupBuildId() {
+        await fsp.writeFile(join(getCwd(), './.aora/BUILD_ID'), Math.floor(Math.random() * 100).toString())
     }
 }

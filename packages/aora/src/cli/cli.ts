@@ -29,6 +29,7 @@ yargs
     await aora.startClient()
     // await aora.clean()
     await aora.startServer()
+    await aora.setupBuildId()
   })
   .command('build', 'Build server and client files', {}, async () => {
     spinner.start()
@@ -40,6 +41,7 @@ yargs
     await aora.buildClient()
     // await aora.clean()
     await aora.buildServer()
+    await aora.setupBuildId()
   })
   .demandCommand(1, 'You need at least one command before moving on')
   .fail((msg, err) => {

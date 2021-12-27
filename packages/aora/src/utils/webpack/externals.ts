@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { uniqueWhitelist } from '..'
 import { contains, containsPattern, readFromPackageJson, readDir } from './external-utils'
 
 const scopedModuleRegex = new RegExp('@[a-zA-Z0-9][\\w-.]+\/[a-zA-Z0-9][\\w-.]+([a-zA-Z0-9.\/]+)?', 'g')
@@ -21,7 +22,7 @@ function getModuleName (request, includeAbsolutePaths) {
 
 function nodeExternals (options) {
   options = options || {}
-  const whitelist = [].concat(options.whitelist || [])
+  const whitelist = uniqueWhitelist([].concat(options.whitelist || []))
   const binaryDirs = [].concat(options.binaryDirs || ['.bin'])
   const importType = options.importType || 'commonjs'
   const modulesDir = options.modulesDir || 'node_modules'

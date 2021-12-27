@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { getLocalNodeModules, nodeExternals } from '../../utils'
+import { getLocalNodeModules, nodeExternals, uniqueWhitelist } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'
 import { getBaseConfig } from './base'
@@ -23,7 +23,7 @@ export const getServerWebpack = (config: IConfig) => {
   modulesDir.push(getLocalNodeModules())
 
   chain.externals(nodeExternals({
-  whitelist: [/\.(css|less|sass|scss)$/, /react-vant.*?style/, /antd.*?(style)/, /store$/, /antd-mobile.*/].concat(whiteList || []),
+  whitelist: uniqueWhitelist([/\.(css|less|sass|scss)$/, /react-vant.*?style/, /antd.*?(style)/, /store$/, /antd-mobile.*/].concat(whiteList || [])),
   // externals Dir contains example/xxx/node_modules ssr/node_modules
     modulesDir
   }))
