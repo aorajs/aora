@@ -11,7 +11,9 @@ export interface LayoutProps {
 }
 export interface StaticList {
   injectCss: JSX.Element[]
+  preloadCss: JSX.Element[]
   injectScript: JSX.Element[]
+  preloadScript: JSX.Element[]
 }
 
 export interface ProvisionalFeRouteItem {

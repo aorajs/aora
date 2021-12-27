@@ -125,7 +125,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aora/types@^0.0.23, @aora/types@workspace:packages/types":
+"@aora/types@^0.0.24, @aora/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@aora/types@workspace:packages/types"
   dependencies:
@@ -4764,7 +4764,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "aora@workspace:packages/aora"
   dependencies:
-    "@aora/types": ^0.0.23
+    "@aora/types": ^0.0.24
     "@babel/core": ^7.0.0
     "@babel/plugin-transform-runtime": ^7.9.6
     "@babel/preset-env": ^7.5.5

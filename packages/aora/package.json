@@ -1,6 +1,6 @@
 {
     "name": "aora",
-    "version": "0.3.1-14",
+    "version": "0.3.1-15",
     "description": "aora",
     "homepage": "https://github.com/loyep/aora/tree/master/packages/aora#readme",
     "bugs": "https://github.com/loyep/aora/issues",
@@ -28,7 +28,7 @@
         "dev": "rimraf dist && tsc --watch"
     },
     "dependencies": {
-        "@aora/types": "^0.0.23",
+        "@aora/types": "^0.0.24",
         "@babel/core": "^7.0.0",
         "@babel/plugin-transform-runtime": "^7.9.6",
         "@babel/preset-env": "^7.5.5",

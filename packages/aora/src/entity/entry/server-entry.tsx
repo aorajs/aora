@@ -41,11 +41,13 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   const manifest = await getManifest(config)
 
   const injectCss: JSX.Element[] = []
-  
+  const preloadCss: JSX.Element[] = []
+
   dynamicCssOrder.forEach((css: string) => {
     if (manifest[css]) {
       const item = manifest[css]
       injectCss.push(<link rel='stylesheet' key={item} href={item} />)
+      preloadCss.push(<link rel="preload" key={item} href={item} as="style" />)
     }
   })
 
@@ -55,11 +57,14 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   //   }}/>)
   // }
 
-  const injectScript = jsOrder.map((js: string) => manifest[js]).map((item: string) => <script key={item} src={item} />)
+  const injectScript = jsOrder.map((js: string) => manifest[js]).map((item: string) => <script key={item} src={item} async />)
+  const preloadScript = jsOrder.map((js: string) => manifest[js]).map((item: string) => <link rel="preload" as="script" key={item} href={item} />)
 
   const staticList = {
     injectCss,
-    injectScript
+    injectScript,
+    preloadScript,
+    preloadCss,
   }
 
   const isCsr = !!(!ssr|| ctx.request.query?.csr)
