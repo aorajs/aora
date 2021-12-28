@@ -42,6 +42,6 @@ export class Aora {
     }
 
     async setupBuildId() {
-        await fsp.writeFile(join(getCwd(), './.aora/BUILD_ID'), Math.floor(Math.random() * 100).toString())
+        await fsp.writeFile(join(getCwd(), './.aora/BUILD_ID'), Date.now().toString())
     }
 }
