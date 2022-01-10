@@ -1,7 +1,8 @@
 import { promises as fsp } from 'fs'
 import { join } from 'path'
 import { transform } from 'esbuild'
-import { Argv, IConfig } from '@aora/types'
+// @ts-ignore
+import { Argv, IConfig } from 'aora/types'
 import { loadConfig } from '..'
 
 export interface ResolveModuleOptions {

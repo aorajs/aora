@@ -1,6 +1,7 @@
 import { exec } from 'child_process'
 import * as ora from 'ora';
-import { IConfig } from '@aora/types';
+// @ts-ignore
+import { IConfig } from 'aora/types';
 const spinner = ora('starting')
 
 export const start = (_config: IConfig) => {

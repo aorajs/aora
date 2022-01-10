@@ -1,4 +1,5 @@
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 import { cleanOutDir } from '../../cli/clean'
 import { promises as fsp } from 'fs'
 import { getCwd } from '../..'

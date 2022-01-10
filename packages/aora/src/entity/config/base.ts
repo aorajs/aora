@@ -1,6 +1,7 @@
 
 import { join } from 'path'
-import { IConfig, Mode } from '@aora/types'
+// @ts-ignore
+import { IConfig, Mode } from 'aora/types'
 import { getFeDir, getCwd, getLocalNodeModules, setStyle, addImageChain } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'

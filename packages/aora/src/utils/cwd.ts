@@ -2,7 +2,8 @@ import { promises } from 'fs'
 import { resolve } from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
-import { UserConfig, IPlugin } from '@aora/types'
+// @ts-ignore
+import { UserConfig, IPlugin } from 'aora/types'
 // @ts-ignore
 import { jitiImport } from '../cli/preprocess'
 

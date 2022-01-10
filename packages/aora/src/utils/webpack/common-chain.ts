@@ -1,4 +1,5 @@
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 import * as WebpackChain from 'webpack-chain'
 import { getImageOutputPath } from '../parse'
 

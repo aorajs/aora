@@ -3,7 +3,8 @@ import { resolve, join } from 'path'
 import { getCwd, cryptoAsyncChunkName, getOutputPublicPath } from '../../utils'
 import * as WebpackChain from 'webpack-chain'
 import { getBaseConfig } from './base'
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const safePostCssParser = require('postcss-safe-parser')

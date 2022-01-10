@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useReducer } from 'react'
-import { IProps, Action, IWindow, ReactRoutesType } from '@aora/types'
+// @ts-ignore
+import { IProps, Action, IWindow, ReactRoutesType } from 'aora/types'
 
 // @ts-ignore
 import { STORE_CONTEXT } from 'aora/context'

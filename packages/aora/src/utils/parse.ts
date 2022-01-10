@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import { resolve, join } from 'path'
-import { IConfig, ParseFeRouteItem } from '@aora/types'
+// @ts-ignore
+import { IConfig, ParseFeRouteItem } from 'aora/types'
 import { getCwd, getPagesDir, getFeDir, accessFile, normalizeStartPath } from './cwd'
 
 const debug = require('debug')('ssr:parse')
@@ -58,7 +59,7 @@ const parseFeRoutes = async (config: IConfig) => {
   if (!declaretiveRoutes) {
     // 根据目录结构生成前端路由表
     const pathRecord = [''] // 路径记录
-    // @ts-expect-error
+    // @ts-ignore
     const route: ParseFeRouteItem = {}
     let arr = await renderRoutes(pageDir, pathRecord, route)
     if (routerPriority) {

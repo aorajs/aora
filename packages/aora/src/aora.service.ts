@@ -1,7 +1,6 @@
 import { Inject, Injectable, Scope } from '@nestjs/common'
 import { REQUEST } from '@nestjs/core'
 import type { Request, Response } from 'express'
-// @ts-ignore
 import { render } from './render'
 import { getCwd } from './index'
 import { join } from 'path'

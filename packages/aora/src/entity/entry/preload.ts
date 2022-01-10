@@ -1,4 +1,5 @@
-import { ReactESMFeRouteItem } from '@aora/types'
+// @ts-ignore
+import { ReactESMFeRouteItem } from 'aora/types'
 
 export const normalizePath = (path: string, prefix: string) => {
   path = path.replace(prefix!, '')

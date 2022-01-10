@@ -1,4 +1,5 @@
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 
 export const start = async (config: IConfig) => {
   // 本地开发的时候要做细致的依赖分离， Vite 场景不需要去加载 Webpack 构建客户端应用所需的模块

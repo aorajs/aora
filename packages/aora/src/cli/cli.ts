@@ -2,7 +2,8 @@
 import { resolve } from 'path'
 import { fork } from 'child_process'
 import * as yargs from 'yargs'
-import { Argv } from '@aora/types'
+// @ts-ignore
+import { Argv } from 'aora/types'
 import { transformConfig, handleEnv } from './preprocess'
 import { Aora } from '../entity/config'
 

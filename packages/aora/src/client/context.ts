@@ -1,5 +1,6 @@
 import { Context, createContext, useContext } from "react";
-import { IContext } from '@aora/types'
+// @ts-ignore
+import { IContext } from 'aora/types'
 
 function getContext() {
   let context: Context<IContext>;

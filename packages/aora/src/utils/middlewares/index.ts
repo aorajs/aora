@@ -1,4 +1,5 @@
-import { proxyOptions } from '@aora/types'
+// @ts-ignore
+import { proxyOptions } from 'aora/types'
 import { loadConfig } from '..'
 import { getDevProxyMiddlewaresArr } from './proxy'
 

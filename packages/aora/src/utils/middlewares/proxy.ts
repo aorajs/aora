@@ -1,5 +1,6 @@
 import { createProxyMiddleware } from 'http-proxy-middleware'
-import { IConfig, proxyOptions } from '@aora/types'
+// @ts-ignore
+import { IConfig, proxyOptions } from 'aora/types'
 
 function onProxyReq (proxyReq: any, req: any) {
   Object.keys(req.headers).forEach(function (key) {

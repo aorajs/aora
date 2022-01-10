@@ -1,7 +1,8 @@
 import { resolve } from 'path'
 import { renderToString, renderToNodeStream } from 'react-dom/server'
 import { loadConfig, getCwd, StringToStream, mergeStream2 } from './utils'
-import { ISSRContext, UserConfig, ExpressContext } from '@aora/types'
+// @ts-ignore
+import { ISSRContext, UserConfig, ExpressContext } from 'aora/types'
 
 const cwd = getCwd()
 const defaultConfig = loadConfig()

@@ -3,7 +3,8 @@ import { getLocalNodeModules, nodeExternals, uniqueWhitelist } from '../../utils
 import * as WebpackChain from 'webpack-chain'
 import * as webpack from 'webpack'
 import { getBaseConfig } from './base'
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 
 export const getServerWebpack = (config: IConfig) => {
   const { isDev, cwd, getOutput, chainServerConfig, whiteList, chunkName } = config

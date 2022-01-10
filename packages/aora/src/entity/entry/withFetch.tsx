@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useContext, useEffect, useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { DynamicFC, StaticFC, Action, IWindow, ReactFetch } from "@aora/types";
+// @ts-ignore
+import { DynamicFC, StaticFC, Action, IWindow, ReactFetch } from "aora/types";
 // @ts-ignore
 import { STORE_CONTEXT } from "aora/context";
 

@@ -1,5 +1,6 @@
 import { join } from 'path'
-import { IConfig } from '@aora/types'
+// @ts-ignore
+import { IConfig } from 'aora/types'
 import { getCwd, getUserConfig, normalizeStartPath, normalizeEndPath } from './cwd'
 
 let cacheConfig: IConfig | null = null

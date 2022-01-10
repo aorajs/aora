@@ -1,9 +1,13 @@
-import { IConfig, StyleOptions } from '@aora/types'
-import { Config } from '@aora/types/dist/third-party/webpack-chain'
+// @ts-ignore
+import { IConfig, StyleOptions } from 'aora/types'
+import { Config } from '../../types/third-party/webpack-chain'
 import type { loader } from 'webpack'
+import { join } from 'path'
+import { getCwd } from '../cwd'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const genericNames = require('generic-names')
+const cwd = getCwd()
 
 export const setStyle = (config: IConfig, chain: Config, reg: RegExp, options: StyleOptions) => {
   const { css, isDev } = config
@@ -81,8 +85,19 @@ export const setStyle = (config: IConfig, chain: Config, reg: RegExp, options: S
       loader && rule.use(loader)
         .loader(loadModule(loader))
         .when(loader === 'less-loader', (rule: any) => {
+          const lessToJs = require("less-vars-to-js");
+          const fs = require("fs");
+
+          let modifyVars = {}
+          const variablesFile = join(cwd, "./web/variables.less")
+          if (fs.existsSync(variablesFile)) {
+            modifyVars = (lessToJs.__esModule ? lessToJs.default : lessToJs)(
+              fs.readFileSync(join(cwd, "./web/variables.less"), "utf8")
+            );
+          }
           rule.options(css?.().loaderOptions?.less ?? {
             lessOptions: {
+              modifyVars,
               javascriptEnabled: true
             }
           })

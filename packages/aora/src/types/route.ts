@@ -8,11 +8,12 @@ export interface LayoutProps {
   children?: JSX.Element
   staticList?: StaticList
   injectState?: any
-  state?: any
 }
 export interface StaticList {
   injectCss: JSX.Element[]
+  preloadCss: JSX.Element[]
   injectScript: JSX.Element[]
+  preloadScript: JSX.Element[]
 }
 
 export interface ProvisionalFeRouteItem {
