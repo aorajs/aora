@@ -7,7 +7,7 @@ import { getBaseConfig } from './base'
 import { IConfig } from 'aora/types'
 
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
-const safePostCssParser = require('postcss-safe-parser')
+// const safePostCssParser = require('postcss-safe-parser')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const generateAnalysis = Boolean(process.env.GENERATE_ANALYSIS)
 const loadModule = require.resolve
@@ -47,44 +47,44 @@ export const getClientWebpack = (config: IConfig) => {
         }
       }
     })
-    .when(!isDev, optimization => {
-      optimization.minimizer('terser')
-        .use(loadModule('terser-webpack-plugin'), [{
-          terserOptions: {
-            keep_fnames: true,
-            parse: {
-              ecma: 8
-            },
-            compress: {
-              ecma: 5,
-              warnings: false,
-              comparisons: false,
-              inline: 2
-            },
-            mangle: {
-              safari10: true
-            },
-            output: {
-              ecma: 5,
-              comments: false,
-              ascii_only: true
-            }
-          },
-          extractComments: false,
-          parallel: true,
-          cache: true,
-          sourceMap: shouldUseSourceMap
-        }])
-      optimization.minimizer('optimize-css').use(loadModule('optimize-css-assets-webpack-plugin'), [{
-        cssProcessorOptions: {
-          parser: safePostCssParser,
-          map: shouldUseSourceMap ? {
-            inline: false,
-            annotation: true
-          } : false
-        }
-      }])
-    })
+    // .when(!isDev, optimization => {
+    //   optimization.minimizer('terser')
+    //     .use(loadModule('terser-webpack-plugin'), [{
+    //       terserOptions: {
+    //         keep_fnames: true,
+    //         parse: {
+    //           ecma: 8
+    //         },
+    //         compress: {
+    //           ecma: 5,
+    //           warnings: false,
+    //           comparisons: false,
+    //           inline: 2
+    //         },
+    //         mangle: {
+    //           safari10: true
+    //         },
+    //         output: {
+    //           ecma: 5,
+    //           comments: false,
+    //           ascii_only: true
+    //         }
+    //       },
+    //       extractComments: false,
+    //       parallel: true,
+    //       cache: true,
+    //       sourceMap: shouldUseSourceMap
+    //     }])
+    //   optimization.minimizer('optimize-css').use(loadModule('optimize-css-assets-webpack-plugin'), [{
+    //     cssProcessorOptions: {
+    //       parser: safePostCssParser,
+    //       map: shouldUseSourceMap ? {
+    //         inline: false,
+    //         annotation: true
+    //       } : false
+    //     }
+    //   }])
+    // })
 
   chain.plugin('moduleNotFound').use(ModuleNotFoundPlugin, [cwd])
 
