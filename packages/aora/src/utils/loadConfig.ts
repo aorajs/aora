@@ -77,7 +77,7 @@ const loadConfig = (): IConfig => {
 
   const corejs = false
   const getOutput = () => ({
-    clientOutPut: join(cwd, './.aora/client'),
+    clientOutPut: join(cwd, './public/_aora'),
     serverOutPut: join(cwd, './.aora/server')
   })
 

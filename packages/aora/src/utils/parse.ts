@@ -38,14 +38,14 @@ export const normalizePublicPath = (path: string) => {
 
 export const getOutputPublicPath = (publicPath: string, isDev: boolean) => {
   const path = normalizePublicPath(publicPath)
-  return isDev ? path : `${path}client/`
+  return isDev ? path : `${path}_aora/`
 }
 
 export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
   const imagePath = 'static/images'
   const normalizePath = normalizePublicPath(publicPath)
   return {
-    publicPath: isDev ? `${normalizePath}${imagePath}` : `${normalizePath}client/${imagePath}`,
+    publicPath: isDev ? `${normalizePath}${imagePath}` : `${normalizePath}_aora/${imagePath}`,
     imagePath
   }
 }

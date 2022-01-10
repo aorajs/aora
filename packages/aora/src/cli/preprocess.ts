@@ -48,5 +48,7 @@ export const transformConfig = async () => {
     })
     await fsp.writeFile(join(cwd, './.aora/.aorarc.js'), code)
   }
+  await fsp.mkdir(join(cwd, '.aora/client'), { recursive: true })
+  // await fsp.link(join(cwd, '.aora/client'), join(cwd, 'public/_aora'))
   return loadConfig()
 }

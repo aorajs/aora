@@ -54,6 +54,7 @@
         "generic-names": "^2.0.1",
         "http-proxy-middleware": "^1.0.6",
         "ignore-loader": "^0.1.2",
+        "mitt": "^3.0.0",
         "jiti": "^1.12.9",
         "less": "^4.1.1",
         "less-loader": "^7.3.0",
