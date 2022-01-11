@@ -19,13 +19,12 @@ export interface ParseFeRouteItem {
 }
 
 import type { ReactChild } from "react";
-import type { RouteComponentProps } from "react-router-dom";
 
 export type IProps<T = {}> = T & {
   children: ReactChild;
 };
 
-export type SProps<T = {}> = T & RouteComponentProps;
+export type SProps<T = {}> = T & any;
 
 export interface Action {
   type: string;

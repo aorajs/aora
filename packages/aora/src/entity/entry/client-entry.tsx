@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+// @ts-ignore
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { preloadComponent } from './preload'
 import { withFetch } from './withFetch'
@@ -35,6 +36,7 @@ const clientRender = async (): Promise<void> => {
                   component.layoutFetch = layoutFetch
                   const WrappedComponent = withFetch(component)
                   return (
+                    // @ts-ignore
                     <Route exact={true} key={path} path={path} render={() => <WrappedComponent key={location.pathname}/>}/>
                   )
                 })

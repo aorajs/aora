@@ -1,4 +1,3 @@
-import { RouteComponentProps } from 'react-router-dom'
 import { ISSRContext } from './ctx'
 import { IConfig } from './config'
 
@@ -25,7 +24,7 @@ export interface ProvisionalFeRouteItem {
 
 export interface Params<T, U> {
   ctx?: ISSRContext<T>
-  routerProps?: RouteComponentProps<U>
+  routerProps?: any & U
   state?: any
 }
 

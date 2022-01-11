@@ -67,9 +67,7 @@ export class AoraRenderService {
         response: this.response,
         data: data,
       };
-      console.time('render')
       const res = await render(ctx, opts as any);
-      console.timeEnd('render')
       if (cache) {
         cacache.put(cachePath, cacheKey, res);
       }

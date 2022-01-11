@@ -1,4 +1,5 @@
 import * as React from 'react'
+// @ts-ignore
 import { StaticRouter } from 'react-router-dom'
 // @ts-ignore
 import { findRoute, getManifest, normalizePath, addAsyncChunk } from 'aora'

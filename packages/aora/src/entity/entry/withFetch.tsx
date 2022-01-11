@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect, useState } from "react";
+// @ts-ignore
 import { withRouter, RouteComponentProps } from "react-router-dom";
 // @ts-ignore
 import { DynamicFC, StaticFC, Action, IWindow, ReactFetch } from "aora/types";
@@ -40,7 +41,7 @@ const fetchAndDispatch = async (
 };
 
 export function withFetch(WrappedComponent: DynamicFC | StaticFC) {
-  return withRouter(function withRouter(props) {
+  return withRouter(function withRouter(props: any) {
     const { state, dispatch } = useContext(STORE_CONTEXT);
     // @ts-ignore
     const [pageProps, setPageProps] = useState({...window.pageProps || {}});
