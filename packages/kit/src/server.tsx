@@ -1,14 +1,17 @@
-import { ReactElement } from "react";
+import type { ReactElement } from 'react';
+import * as React from 'react';
 
 export interface AoraServerProps {
-    context: any;
-    url: string | URL;
-    base: string;
-  }
-export function RemixServer({ context, url }: AoraServerProps): ReactElement {
-    if (typeof url === "string") {
-        url = new URL(url);
-      }
+  context: any;
+  url: string | URL;
+  base: string;
+}
 
-      
+export function RemixServer({ context, url }: AoraServerProps): ReactElement {
+  if (typeof url === 'string') {
+    url = new URL(url);
+  }
+  console.log(context);
+
+  return (<div>fff</div>);
 }
