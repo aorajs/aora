@@ -4,7 +4,7 @@ import { loadConfig, getCwd } from './utils'
 // @ts-ignore
 import { ISSRContext, UserConfig, ExpressContext } from 'aora/types'
 import * as React from 'react'
-import { AoraServer } from './server'
+import { AoraServer } from '@aora/kit'
 
 const cwd = getCwd()
 const defaultConfig = loadConfig()

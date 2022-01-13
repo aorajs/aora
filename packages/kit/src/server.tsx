@@ -7,9 +7,9 @@ export interface AoraServerProps {
   base: string;
 }
 
-export function RemixServer({ context, url }: AoraServerProps): ReactElement {
+export function AoraServer({ context, url }: AoraServerProps): ReactElement {
   if (typeof url === 'string') {
-    url = new URL(url);
+    // url = new URL(url);
   }
   console.log(context);
 

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import type { Location } from 'history'
 import type { Navigator } from "react-router";
-import { join } from 'path'
+// import { join } from 'path'
 
 // @ts-ignore
-const Document = require(join(process.cwd(), 'app/layouts/index.tsx'))
+// const Document = require(join(process.cwd(), 'app/layouts/index.tsx'))
 import {
     Router,
   } from "react-router-dom";
@@ -37,7 +37,7 @@ export function AoraEntry({location: historyLocation, base,
     static: staticProp = false
   }: {
     location: Location
-     base: string 
+     base: string
     navigator: Navigator
     static?: boolean
   }) {
@@ -51,10 +51,11 @@ export function AoraEntry({location: historyLocation, base,
     return <AoraEntryContext.Provider value={{
 
     }}>
-        <Router location={historyLocation} navigator={navigator} 
+        <Router location={historyLocation} navigator={navigator}
         basename={base}
             static={staticProp}>
-              <Document.default />
+          fffffff
+              {/*<Document.default />*/}
         { historyLocation.pathname}
         </Router>
     </AoraEntryContext.Provider>

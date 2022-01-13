@@ -1,12 +1,12 @@
 import * as React from 'react';
 import type { Location } from 'history';
 import type { Navigator } from 'react-router';
-import { join } from 'path';
+// import { join } from 'path';
 import { Router } from 'react-router-dom';
-import * as process from 'process';
+// import * as process from 'process';
 
 // @ts-ignore
-const Document = require(join(process.cwd(), 'app/layouts/index.tsx'));
+// const Document = require(join(process.cwd(), 'app/layouts/index.tsx'));
 
 interface AoraEntryContextType extends Record<string, any> {
   // manifest: AssetsManifest;
@@ -49,7 +49,8 @@ export function AoraEntry({
     <Router location={historyLocation} navigator={navigator}
             basename={base}
             static={staticProp}>
-      <Document.default />
+      {/*<Document.default />*/}
+      Components
       {historyLocation.pathname}
     </Router>
   </AoraEntryContext.Provider>;
