@@ -1,4 +1,3 @@
-// import * as mitt from "mitt";
 
 export class Aora {
 }

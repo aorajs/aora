@@ -1,4 +1,4 @@
-import * as ora from 'ora';
+import ora from 'ora';
 const spinner = ora('正在构建')
 
 interface Message {

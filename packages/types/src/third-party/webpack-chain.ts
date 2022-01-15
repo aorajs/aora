@@ -1,6 +1,6 @@
-import { Tapable } from 'tapable'
-import * as webpack from 'webpack'
-import * as https from 'https'
+import type { Tapable } from 'tapable'
+import type {  Plugin as WebpackPlugin, Compiler, ExternalsElement, Options, Configuration, ResolvePlugin, RuleSetCondition  } from 'webpack'
+// import https from 'https'
 
 declare namespace __Config {
   class Chained<Parent> {
@@ -52,7 +52,7 @@ declare class Config extends __Config.ChainedMap<void> {
   output: Config.Output
   optimization: Config.Optimization
   performance: Config.Performance
-  plugins: Config.Plugins<this, webpack.Plugin>
+  plugins: Config.Plugins<this, WebpackPlugin>
   resolve: Config.Resolve
   resolveLoader: Config.ResolveLoader
 
@@ -61,7 +61,7 @@ declare class Config extends __Config.ChainedMap<void> {
   cache (value: boolean | any): this;
   devtool (value: Config.DevTool): this;
   context (value: string): this;
-  externals (value: webpack.ExternalsElement | webpack.ExternalsElement[]): this;
+  externals (value: ExternalsElement | ExternalsElement[]): this;
   loader (value: any): this;
   name (value: string): this;
   mode (value: 'none' | 'development' | 'production'): this;
@@ -70,15 +70,15 @@ declare class Config extends __Config.ChainedMap<void> {
   recordsPath (value: string): this;
   recordsInputPath (value: string): this;
   recordsOutputPath (value: string): this;
-  stats (value: webpack.Options.Stats): this;
+  stats (value: Options.Stats): this;
   target (value: string): this;
   watch (value: boolean): this;
-  watchOptions (value: webpack.Options.WatchOptions): this;
+  watchOptions (value: Options.WatchOptions): this;
 
   entry (name: string): Config.EntryPoint;
-  plugin (name: string): Config.Plugin<this, webpack.Plugin>;
+  plugin (name: string): Config.Plugin<this, WebpackPlugin>;
 
-  toConfig (): webpack.Configuration;
+  toConfig (): Configuration;
 }
 
 declare namespace Config {
@@ -96,10 +96,10 @@ declare namespace Config {
 
   class Plugins<
     Parent,
-    PluginType extends Tapable.Plugin = webpack.Plugin
+    PluginType extends Tapable.Plugin = WebpackPlugin
   > extends TypedChainedMap<Parent, Plugin<Parent, PluginType>> {}
 
-  class Plugin<Parent, PluginType extends Tapable.Plugin = webpack.Plugin>
+  class Plugin<Parent, PluginType extends Tapable.Plugin = WebpackPlugin>
     extends ChainedMap<Parent>
     implements Orderable {
     init<P extends PluginType | PluginClass<PluginType>>(
@@ -166,10 +166,10 @@ declare namespace Config {
     allowedHosts: TypedChainedSet<this, string>
 
     after (
-      value: (app: any, server: any, compiler: webpack.Compiler) => void,
+      value: (app: any, server: any, compiler: Compiler) => void,
     ): this;
     before (
-      value: (app: any, server: any, compiler: webpack.Compiler) => void,
+      value: (app: any, server: any, compiler: Compiler) => void,
     ): this;
     bonjour (value: boolean): this;
     clientLogLevel (value: 'none' | 'error' | 'warning' | 'info'): this;
@@ -184,7 +184,7 @@ declare namespace Config {
     hot (value: boolean): this;
     hotOnly (value: boolean): this;
     http2 (value: boolean): this;
-    https (value: boolean | https.ServerOptions): this;
+    // https (value: boolean | https.ServerOptions): this;
     index (value: string): this;
     info (value: boolean): this;
     inline (value: boolean): this;
@@ -208,7 +208,7 @@ declare namespace Config {
     sockPath (value: string): this;
     sockPort (value: number): this;
     staticOptions (value: any): this;
-    stats (value: webpack.Options.Stats): this;
+    stats (value: Options.Stats): this;
     stdin (value: boolean): this;
     useLocalIp (value: boolean): this;
     watchContentBase (value: boolean): this;
@@ -233,7 +233,7 @@ declare namespace Config {
     mainFields: TypedChainedSet<this, string>
     mainFiles: TypedChainedSet<this, string>
     modules: TypedChainedSet<this, string>
-    plugins: TypedChainedMap<this, Plugin<this, webpack.ResolvePlugin>>
+    plugins: TypedChainedMap<this, Plugin<this, ResolvePlugin>>
 
     enforceExtension (value: boolean): this;
     enforceModuleExtension (value: boolean): this;
@@ -244,7 +244,7 @@ declare namespace Config {
     ): this;
     cacheWithContext (value: boolean): this;
 
-    plugin (name: string): Plugin<this, webpack.ResolvePlugin>;
+    plugin (name: string): Plugin<this, ResolvePlugin>;
   }
 
   class ResolveLoader extends Resolve {
@@ -256,12 +256,12 @@ declare namespace Config {
     rules: TypedChainedMap<this, Rule<Rule>>
     oneOfs: TypedChainedMap<this, Rule<Rule>>
     uses: TypedChainedMap<this, Use>
-    include: TypedChainedSet<this, webpack.Condition>
-    exclude: TypedChainedSet<this, webpack.Condition>
+    include: TypedChainedSet<this, RuleSetCondition>
+    exclude: TypedChainedSet<this, RuleSetCondition>
     resolve: Resolve<Rule<T>>
 
     parser (value: { [optName: string]: any }): this;
-    test (value: webpack.Condition | webpack.Condition[]): this;
+    test (value: RuleSetCondition | RuleSetCondition[]): this;
     type (
       value:
       | 'javascript/auto'
@@ -279,7 +279,7 @@ declare namespace Config {
     post (): this;
     before (name: string): this;
     after (name: string): this;
-    resourceQuery (value: webpack.Condition | webpack.Condition[]): this;
+    resourceQuery (value: RuleSetCondition | RuleSetCondition[]): this;
   }
 
   class Optimization extends ChainedMap<Config> {
@@ -287,7 +287,7 @@ declare namespace Config {
     flagIncludedChunks (value: boolean): this;
     mergeDuplicateChunks (value: boolean): this;
     minimize (value: boolean): this;
-    minimizer (name: string): Config.Plugin<this, webpack.Plugin>;
+    minimizer (name: string): Config.Plugin<this, WebpackPlugin>;
     namedChunks (value: boolean): this;
     namedModules (value: boolean): this;
     nodeEnv (value: boolean | string): this;
@@ -375,7 +375,7 @@ declare namespace Config {
     | '#@nosources-source-map'
     | boolean
 
-  type PluginClass<PluginType extends Tapable.Plugin = webpack.Plugin> = new (...opts: any[]) => PluginType
+  type PluginClass<PluginType extends Tapable.Plugin = WebpackPlugin> = new (...opts: any[]) => PluginType
 
   interface Orderable {
     before(name: string): this

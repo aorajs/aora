@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { getLocalNodeModules, nodeExternals, uniqueWhitelist } from '../../utils'
-import * as WebpackChain from 'webpack-chain'
-import * as webpack from 'webpack'
+import WebpackChain from 'webpack-chain'
+import webpack from 'webpack'
 import { getBaseConfig } from './base'
 // @ts-ignore
 import { IConfig } from 'aora/types'

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from 'path'
 import { fork } from 'child_process'
-import * as yargs from 'yargs'
+import yargs from 'yargs'
 // @ts-ignore
 import { Argv } from 'aora/types'
 import { transformConfig, handleEnv } from './preprocess'

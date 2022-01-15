@@ -5,15 +5,13 @@ import { StaticRouter } from 'react-router-dom'
 import { findRoute, getManifest, normalizePath, addAsyncChunk } from 'aora'
 // @ts-ignore
 import { ISSRContext, IConfig, ReactRoutesType, ReactESMFeRouteItem } from 'aora/types'
-import * as serialize from 'serialize-javascript'
+import serialize from 'serialize-javascript'
 // @ts-expect-error
-import * as Routes from '_build/ssr-temporary-routes'
+import { FeRoutes, layoutFetch, PrefixRouterBase, state } from '_build/ssr-temporary-routes'
 // @ts-ignore
 import { STORE_CONTEXT as Context } from 'aora/context'
 // @ts-ignore
 import Layout from '@/layouts/index.tsx'
-
-const { FeRoutes, layoutFetch, PrefixRouterBase, state } = Routes as ReactRoutesType
 
 // declare const global: IGlobal
 
@@ -76,7 +74,7 @@ const serverRender = async (ctx: ISSRContext, config: IConfig): Promise<React.Re
   let layoutFetchData = {}
   let fetchData = {}
   if (!isCsr) {
-    const currentFetch = compFetch ? compFetch : (fetch ? (await fetch()).default : null) 
+    const currentFetch = compFetch ? compFetch : (fetch ? (await fetch()).default : null)
 
     // csr 下不需要服务端获取数据
     if (parallelFetch) {

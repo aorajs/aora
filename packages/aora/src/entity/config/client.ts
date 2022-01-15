@@ -1,7 +1,7 @@
 import { promises } from 'fs'
 import { resolve, join } from 'path'
 import { getCwd, cryptoAsyncChunkName, getOutputPublicPath } from '../../utils'
-import * as WebpackChain from 'webpack-chain'
+import WebpackChain from 'webpack-chain'
 import { getBaseConfig } from './base'
 // @ts-ignore
 import { IConfig } from 'aora/types'

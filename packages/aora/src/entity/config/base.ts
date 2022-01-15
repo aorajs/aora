@@ -3,8 +3,8 @@ import { join } from 'path'
 // @ts-ignore
 import { IConfig, Mode } from 'aora/types'
 import { getFeDir, getCwd, getLocalNodeModules, setStyle, addImageChain } from '../../utils'
-import * as WebpackChain from 'webpack-chain'
-import * as webpack from 'webpack'
+import WebpackChain from 'webpack-chain'
+import webpack from 'webpack'
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackBar = require('webpackbar')
@@ -92,6 +92,7 @@ export const getBaseConfig = (chain: WebpackChain, config: IConfig, isServer: bo
     .end()
   chain.resolve.alias
     .set('@', getFeDir())
+    .set('_aora', getFeDir())
     .set('_build', join(getCwd(), './.aora'))
     .set('react', loadModule('react')) // 用cwd的路径alias，否则可能会出现多个react实例
     .set('react-router', loadModule('react-router'))

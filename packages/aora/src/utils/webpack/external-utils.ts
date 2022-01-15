@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import * as fs from 'fs'
-import * as path from 'path'
+import fs from 'fs'
+import path from 'path'
 import { getCwd } from '../cwd'
 
 const contains = function contains (arr, val) {

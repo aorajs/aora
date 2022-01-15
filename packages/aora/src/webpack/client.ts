@@ -1,6 +1,6 @@
 // @ts-ignore
 import { IConfig } from 'aora/types'
-import * as webpack from 'webpack'
+import webpack from 'webpack'
 import { getClientWebpack } from '../entity/config'
 import { webpackPromisify } from './utils/promisify'
 

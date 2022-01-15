@@ -1,4 +1,3 @@
+import type { Arguments } from 'yargs';
 
-import * as yargs from 'yargs'
-
-export type Argv = yargs.Arguments<{ tencent?: boolean, vite?: boolean, test?: boolean } >
+export type Argv = Arguments<{ tencent?: boolean, vite?: boolean, test?: boolean }>

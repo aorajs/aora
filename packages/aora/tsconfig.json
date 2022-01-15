@@ -10,6 +10,7 @@
     "strict": true,
     "skipLibCheck": true,
     "target": "es2018",
+    "esModuleInterop": true,
     "jsx": "react",
     "paths": {},
     "outDir": "./dist",

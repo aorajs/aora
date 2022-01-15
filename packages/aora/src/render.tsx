@@ -31,8 +31,12 @@ export async function render (ctx: ISSRContext, options?: UserConfig) {
     (ctx as ExpressContext).response.setHeader?.('Content-type', 'text/html;charset=utf-8')
   }
 
+  console.log(ctx.request.path)
+  // console.log(ctx.request)
+  const { request } = ctx
+  const url = new URL(request.url, `http://${request.headers.host}`)
   const markup = renderToString(
-    <AoraServer context={{}} url={ctx.request.url} base="/" />,
+    <AoraServer context={{}} url={url} base="/" />,
   )
 
   // if (stream) {

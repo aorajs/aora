@@ -1,6 +1,6 @@
 // @ts-ignore
 import { IConfig } from 'aora/types'
-import * as WebpackChain from 'webpack-chain'
+import WebpackChain from 'webpack-chain'
 import { getImageOutputPath } from '../parse'
 
 const loadModule = require.resolve
