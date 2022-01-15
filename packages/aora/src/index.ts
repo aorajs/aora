@@ -1,6 +1,7 @@
-export * from './defineConfig'
-export * from './types'
-export * from './utils'
-export * from './aora'
+export * from './defineConfig';
+export * from './types';
+export * from './utils';
+export * from './aora';
 
-export { STORE_CONTEXT } from './client/context'
+export { useAoraEntryContext } from './components';
+export { STORE_CONTEXT } from './client/context';

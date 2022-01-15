@@ -13,7 +13,7 @@ export const getServerWebpack = (config: IConfig) => {
   chain.devtool(isDev ? 'inline-source-map' : false)
   chain.target('node')
   chain.entry(chunkName)
-    .add(join(__dirname, '../entry/server-entry'))
+    .add(join(__dirname, '../../entry.server'))
     .end()
     .output
     .path(getOutput().serverOutPut)

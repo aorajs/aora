@@ -49,23 +49,25 @@ export function AoraEntry(
     action: Action;
     static?: boolean
   }) {
-  let navigator: Navigator = React.useMemo(() => {
-    let push: Navigator['push'] = (to, state) => {
-      return _navigator.push(to, state);
-    };
-    return { ..._navigator, push };
-  }, [_navigator]);
+  // let navigator: Navigator = React.useMemo(() => {
+  //   let push: Navigator['push'] = (to, state) => {
+  //     return _navigator.push(to, state);
+  //   };
+  //   return { ..._navigator, push };
+  // }, [_navigator]);
 
-  const _document = React.useMemo(async () => {
-    return <div>ffff</div>;
-  }, []);
+  // const _document = React.useMemo(async () => {
+  //   return <div>ffff</div>;
+  // }, []);
 
-  return <AoraEntryContext.Provider value={{}}>
-    {/*<Router location={historyLocation} navigator={navigator}*/}
-    {/*        basename={base}*/}
-    {/*        static={staticProp}>*/}
-    1111111
-    <Document />
-    {/*</Router>*/}
-  </AoraEntryContext.Provider>;
+  return (
+    <AoraEntryContext.Provider value={{}}>
+      {/*<Router location={historyLocation} navigator={navigator}*/}
+      {/*        basename={base}*/}
+      {/*        static={staticProp}>*/}
+      1111111
+      <Document />
+      {/*</Router>*/}
+    </AoraEntryContext.Provider>
+  );
 }
