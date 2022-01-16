@@ -23,14 +23,14 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 
-// function Routes() {
-//   // TODO: Add `renderMatches` function to RR that we can use and then we don't
-//   // need this component, we can just `renderMatches` from RemixEntry
-//   let { clientRoutes } = useAoraEntryContext();
-//   // fallback to the root if we don't have a match
-//   let element = useRoutes(clientRoutes) || (clientRoutes[0].element as any);
-//   return element;
-// }
+function Routes() {
+  // TODO: Add `renderMatches` function to RR that we can use and then we don't
+  // need this component, we can just `renderMatches` from RemixEntry
+  let { clientRoutes } = useAoraEntryContext();
+  // fallback to the root if we don't have a match
+  let element = useRoutes(clientRoutes) || (clientRoutes[0].element as any);
+  return element;
+}
 
 interface AoraEntryContextType extends Record<string, any> {
   // manifest: AssetsManifest;
@@ -54,6 +54,7 @@ function dedupe(array: any[]) {
 export function useAoraEntryContext(): AoraEntryContextType {
   // invariant(context, "You must render this element inside a <Remix> element");
   let context = React.useContext(AoraEntryContext)!;
+  console.log('context', context)
   invariant(context, 'You must render this element inside a <Aora> element');
   return context;
 }
@@ -104,8 +105,8 @@ export function AoraEntry(
             navigator={_navigator}
             static={staticProp}
           >
-            {/*<Routes />*/}
-            {children}
+            <Routes />
+            {/*{children}*/}
           </Router>
         </AoraCatchBoundary>
         {/*<Router location={historyLocation} navigator={navigator} static={true}>*/}
