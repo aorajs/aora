@@ -46,7 +46,6 @@
     "cacache": "^15.3.0",
     "concurrently": "^5.1.0",
     "core-js": "^3.6.4",
-    "crypto": "^1.0.1",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^5.2.7",
     "debug": "^4.1.1",

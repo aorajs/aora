@@ -2,9 +2,10 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "ignoreChanges": [
     "**/src",
     "**/*.md",

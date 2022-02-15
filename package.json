@@ -11,16 +11,19 @@
   "workspaces": [
     "packages/*"
   ],
-  "installConfig": {
-    "hoistingLimits": [
-      "**/core-js"
+  "lint-staged": {
+    "*.{jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
     ]
   },
   "homepage": "https://github.com/loyep/aora#readme",
   "devDependencies": {
     "@types/jest": "^27.0.3",
-    "husky": "7.0.4",
-    "jest": "^27.4.3",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
     "lerna": "^4.0.0",
     "prettier": "^2.5.0",
     "prettier-plugin-organize-imports": "^2.3.4",
@@ -28,5 +31,6 @@
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.5.2"
-  }
+  },
+  "packageManager": "pnpm"
 }
