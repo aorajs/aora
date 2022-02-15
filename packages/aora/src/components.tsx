@@ -27,6 +27,12 @@ function Routes() {
   // TODO: Add `renderMatches` function to RR that we can use and then we don't
   // need this component, we can just `renderMatches` from RemixEntry
   let { clientRoutes } = useAoraEntryContext();
+  if (!clientRoutes) {
+clientRoutes = [{
+  element: <div>ffff</div>,
+  location: '/'
+}]
+  }
   // fallback to the root if we don't have a match
   let element = useRoutes(clientRoutes) || (clientRoutes[0].element as any);
   return element;

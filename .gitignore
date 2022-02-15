@@ -15,6 +15,7 @@
 .DS_Store
 examples/*/build
 examples/*/dist
+packages/*/dist
 install-state.gz
 
 **/.yarn/cache
