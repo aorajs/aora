@@ -1,1 +1,0 @@
-{"version":3,"file":"string-stream.d.ts","sourceRoot":"","sources":["../../../../packages/aora/src/utils/string-stream.ts"],"names":[],"mappings":";AACA,OAAO,EAAE,QAAQ,EAAe,MAAM,QAAQ,CAAA;AAI9C,cAAM,cAAe,SAAQ,QAAQ;gBACtB,GAAG,EAAE,MAAM;IAMxB,KAAK;CASN;AAED,iBAAS,YAAY,CAAE,GAAG,GAAG,EAAE,GAAG,EAAE,GAAG,QAAQ,CA6G9C;AAoBD,OAAO,EACL,cAAc,EACd,YAAY,EACb,CAAA"}

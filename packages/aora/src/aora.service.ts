@@ -2,12 +2,6 @@ import { Inject, Injectable, Scope } from '@nestjs/common'
 import { REQUEST } from '@nestjs/core'
 import type { Request, Response } from 'express'
 import { render } from './render'
-import { getCwd } from './index'
-import { join } from 'path'
-import { promises as fsp } from 'fs'
-
-const cacache = require('cacache')
-const cachePath = join(getCwd(), './.aora/cache')
 
 type RenderOptions = Partial<{
   ssr: Boolean
@@ -22,7 +16,6 @@ export class AoraRenderService {
   constructor(@Inject(REQUEST) private readonly request: Request) {
     this.response = request.res!
     this.request = request
-    fsp.mkdir(cachePath, { recursive: true })
   }
 
   async csr(data?: unknown, options: Exclude<RenderOptions, 'ssr'> = {}) {

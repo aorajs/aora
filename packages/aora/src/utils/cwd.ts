@@ -4,15 +4,13 @@ import { exec } from 'child_process'
 import { promisify } from 'util'
 // @ts-ignore
 import { UserConfig, IPlugin } from 'aora/types'
-// @ts-ignore
-import { jitiImport } from '../cli/preprocess'
 
 const getCwd = () => {
   return resolve(process.cwd(), process.env.APP_ROOT ?? '')
 }
 
 const getFeDir = () => {
-  return resolve(getCwd(), process.env.FE_ROOT ?? 'app')
+  return resolve(getCwd(), process.env.FE_ROOT ?? 'web')
 }
 
 export const uniqueWhitelist = (list: (string | RegExp)[]) => {
@@ -26,13 +24,10 @@ export const uniqueWhitelist = (list: (string | RegExp)[]) => {
 const getPagesDir = () => {
   return resolve(getFeDir(), 'pages')
 }
-// @ts-ignore
-const rootDir = resolve(process.cwd(), '.')
+
 const getUserConfig = (): UserConfig => {
   const config = require(resolve(getCwd(), './.aora/.aorarc'))
-  // const config = jitiImport(rootDir, resolve(getCwd(),'.aorarc.ts'))
   console.log('config', config.default)
-  // return config.userConfig ?? config
   return config?.default ?? {}
 }
 

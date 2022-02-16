@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "paths": {},
-    "outDir": "../../build/aora/dist",
+    "outDir": "./dist",
     "rootDir": "./src"
   },
   "include": ["src/**/*"],
