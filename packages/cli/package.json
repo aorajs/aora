@@ -1,6 +1,6 @@
 {
   "name": "@aora/cli",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "aora cli",
   "homepage": "https://github.com/aorajs/aora/tree/master/packages/cli#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
