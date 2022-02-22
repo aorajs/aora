@@ -1,0 +1,40 @@
+{
+  "name": "@aora/cli",
+  "version": "0.0.1",
+  "description": "aora cli",
+  "homepage": "https://github.com/aorajs/aora/tree/master/packages/cli#readme",
+  "bugs": "https://github.com/aorajs/aora/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aorajs/aora"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "dev": "rimraf dist && tsc --watch"
+  },
+  "dependencies": {
+    "colorette": "^2.0.16",
+    "cacache": "^15.0.5",
+    "meow": "^7.1.1"
+  },
+  "devDependencies": {
+    "typescript": "4.5.2",
+    "rimraf": "^3.0.2",
+    "@types/cacache": "^15.0.0",
+    "@aora/types": "workspace:*"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Loyep",
+    "email": "mwl@live.com",
+    "url": "https://github.com/loyep"
+  }
+}

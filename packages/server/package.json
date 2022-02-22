@@ -1,0 +1,47 @@
+{
+  "name": "@aora/server",
+  "version": "0.0.1",
+  "description": "aora plugin nest",
+  "homepage": "https://github.com/aorajs/aora/tree/master/packages/plugin/plugin-nest#readme",
+  "bugs": "https://github.com/aorajs/aora/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aorajs/aora"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "@types/tapable": "^1.0.6",
+    "@types/webpack": "^4.41.10",
+    "path-to-regexp": "^6.2.0",
+    "webpack-chain": "^6.5.1"
+  },
+  "devDependencies": {
+    "typescript": "4.5.2",
+    "@nestjs/common": "^8.3.1",
+    "@nestjs/platform-express": "^8.3.1",
+    "rxjs": "^7.5.4",
+    "reflect-metadata": "^0.1.13",
+    "@nestjs/core": "^8.3.1",
+    "webpack": "^4.46.0"
+  },
+  "peerDependencies": {
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Loyep",
+    "email": "mwl@live.com",
+    "url": "https://github.com/loyep"
+  }
+}

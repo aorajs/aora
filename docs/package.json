@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "dumi-app",
+  "scripts": {
+    "start": "dumi dev",
+    "build": "dumi build",
+    "deploy": "gh-pages -d docs-dist",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "devDependencies": {
+    "dumi": "1.1.35",
+    "gh-pages": "3.2.3",
+    "lint-staged": "10.5.4",
+    "prettier": "2.5.1",
+    "yorkie": "2.0.0"
+  }
+}

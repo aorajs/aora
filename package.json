@@ -1,0 +1,38 @@
+{
+  "name": "aorajs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A universal framework based on React.js",
+  "author": "loyep",
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm -r --filter ./packages run build",
+    "build:release": "pnpm -r --filter ./packages run build -- --declarationMap false",
+    "dep:update": "npx only-allow pnpm && pnpm up --interactive --latest --recursive",
+    "dev": "pnpm -r --filter ./packages --parallel run dev"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "installConfig": {
+    "hoistingLimits": [
+      "**/core-js"
+    ]
+  },
+  "homepage": "https://github.com/aorajs/aora#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "aora": "workspace:*",
+    "husky": "7.0.4",
+    "jest": "^27.5.1",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "prettier-plugin-packagejson": "^2.2.15",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.5.5"
+  },
+  "packageManager": "yarn@3.1.1"
+}

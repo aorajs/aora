@@ -1,0 +1,23 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "ignoreChanges": [
+    "**/src",
+    "**/*.md",
+    "**/*.test.ts",
+    "**/*.e2e.ts"
+  ],
+  "command": {
+    "version": {
+      "message": "chore(release): publish",
+      "conventionalCommits": true
+    },
+    "public": {
+      "conventionalCommits": true
+    }
+  }
+}
