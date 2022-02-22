@@ -2,7 +2,7 @@
   "name": "aorajs",
   "version": "0.0.0",
   "private": true,
-  "description": "A universal framework based on React.js",
+  "description": "A universal framework based on React.js and NestJs",
   "author": "loyep",
   "license": "MIT",
   "scripts": {
