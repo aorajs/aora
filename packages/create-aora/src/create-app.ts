@@ -1,6 +1,6 @@
-import * as path from 'path';
+import path from 'path';
 import { execSync } from 'child_process';
-import * as fse from 'fs-extra';
+import fse from 'fs-extra';
 
 export async function createApp(projectDir: string) {
   let relativeProjectDir = path.relative(process.cwd(), projectDir);

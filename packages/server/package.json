@@ -15,6 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "esbuild": "esno ../../scripts/bundleDeps.ts",
     "dev": "tsc --watch",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },

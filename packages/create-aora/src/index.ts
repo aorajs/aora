@@ -1,6 +1,6 @@
-import * as meow from 'meow';
-import * as path from 'path';
-import * as inquirer from 'inquirer';
+import meow from 'meow';
+import path from 'path';
+import inquirer from 'inquirer';
 import { createApp } from './create-app';
 
 const help = `

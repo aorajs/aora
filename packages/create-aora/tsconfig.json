@@ -1,10 +1,21 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "declaration": true,
+    "module": "commonjs",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "es2018",
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "outDir": "./dist"
   },
   "include": [
-    "src"
+    "src/**/*.ts"
   ]
 }

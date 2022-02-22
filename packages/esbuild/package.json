@@ -1,8 +1,8 @@
 {
-  "name": "@aora/cli",
+  "name": "@aora/esbuild",
   "version": "0.4.0",
-  "description": "aora cli",
-  "homepage": "https://github.com/aorajs/aora/tree/master/packages/cli#readme",
+  "description": "aora esbuild",
+  "homepage": "https://github.com/aorajs/aora/tree/master/packages/runtime#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
   "repository": {
     "type": "git",
@@ -14,21 +14,24 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "tsc",
     "esbuild": "esno ../../scripts/bundleDeps.ts",
-    "dev": "rimraf dist && tsc --watch",
+    "dev": "tsc --watch",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {
-    "colorette": "^2.0.16",
-    "cacache": "^15.0.5",
-    "meow": "^7.1.1"
+    "@types/express": "^4.17.11",
+    "@types/tapable": "^1.0.6",
+    "@types/webpack": "^4.41.10",
+    "path-to-regexp": "^6.2.0",
+    "webpack-chain": "^6.5.1"
   },
   "devDependencies": {
     "typescript": "4.5.2",
     "rimraf": "^3.0.2",
-    "@types/cacache": "^15.0.0",
-    "@aora/types": "workspace:*"
+    "esno": "^0.14.0",
+    "esbuild": "^0.14.23",
+    "webpack": "^4.46.0"
   },
   "license": "MIT",
   "publishConfig": {
