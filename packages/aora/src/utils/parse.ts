@@ -1,5 +1,5 @@
 import { IConfig, ParseFeRouteItem } from '@aora/types';
-import { lstatSync, promises as fsp, readdirSync } from 'fs';
+import { lstatSync, promises as fsp, readdirSync, existsSync, mkdirSync } from 'fs';
 import * as path from 'path';
 import {
   accessFile,
@@ -442,7 +442,15 @@ function byLongestFirst(a: string, b: string): number {
   return b.length - a.length;
 }
 
+export function checkOutputDir() {
+  const dir = path.resolve(cwd, './.aora');
+  if (!existsSync(dir)) {
+    mkdirSync(dir);
+  }
+}
+
 const writeRoutes = async (routes: string) => {
+  checkOutputDir();
   await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
 };
 

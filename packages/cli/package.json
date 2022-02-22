@@ -1,6 +1,6 @@
 {
   "name": "@aora/cli",
-  "version": "0.0.3",
+  "version": "0.4.0",
   "description": "aora cli",
   "homepage": "https://github.com/aorajs/aora/tree/master/packages/cli#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
@@ -16,7 +16,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "rimraf dist && tsc --watch",
-    "release": "pnpm version patch && pnpm publish"
+    "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "colorette": "^2.0.16",

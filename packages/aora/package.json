@@ -1,6 +1,6 @@
 {
   "name": "aora",
-  "version": "0.3.3",
+  "version": "0.4.1",
   "description": "aora",
   "homepage": "https://github.com/aorajs/aora/tree/master/packages/aora#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
@@ -26,7 +26,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "rimraf dist && tsc --watch",
-    "release": "pnpm version patch && pnpm publish"
+    "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@aora/types": "workspace:*",

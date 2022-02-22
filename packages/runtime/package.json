@@ -1,6 +1,6 @@
 {
   "name": "@aora/runtime",
-  "version": "0.0.1",
+  "version": "0.4.0",
   "description": "aora runtime",
   "homepage": "https://github.com/aorajs/aora/tree/master/packages/runtime#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
@@ -8,19 +8,15 @@
     "type": "git",
     "url": "https://github.com/aorajs/aora"
   },
-  "bin": {
-    "aora-webpack": "bin/aora-webpack.js"
-  },
   "files": [
-    "dist",
-    "bin"
+    "dist"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "release": "pnpm version patch && pnpm publish"
+    "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {
     "@types/express": "^4.17.11",
