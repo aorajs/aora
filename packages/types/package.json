@@ -1,6 +1,6 @@
 {
   "name": "@aora/types",
-  "version": "0.3.1",
+  "version": "0.3.4",
   "description": "aora types",
   "homepage": "https://github.com/aorajs/aora/tree/master/packages/types#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
@@ -15,7 +15,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "dev": "rimraf dist && tsc --watch"
+    "dev": "rimraf dist && tsc --watch",
+    "release": "pnpm version patch && pnpm publish"
   },
   "dependencies": {
     "@types/express": "^4.17.11",

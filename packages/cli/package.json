@@ -15,7 +15,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "dev": "rimraf dist && tsc --watch"
+    "dev": "rimraf dist && tsc --watch",
+    "release": "pnpm version patch && pnpm publish"
   },
   "dependencies": {
     "colorette": "^2.0.16",

@@ -15,7 +15,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "release": "pnpm version patch && pnpm publish"
   },
   "dependencies": {
     "@types/express": "^4.17.11",
