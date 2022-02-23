@@ -28,8 +28,13 @@
     "@typescript-eslint/parser": "^4.0.0",
     "eslint": "^7.0.0",
     "eslint-config-standard-react-ts": "^1.0.5",
+    "esbuild-plugin-less": "^1.1.6",
+    "esbuild-plugin-sass": "^1.0.1",
     "path-to-regexp": "^6.2.0",
     "typescript": "^4.0.0",
+    "esno": "^0.14.0",
+    "esbuild-css-modules-plugin": "^2.1.6",
+    "esbuild": "^0.14.23",
     "webpack": "^4.46.0"
   },
   "scripts": {
@@ -37,6 +42,7 @@
     "stop": "pm2 stop pm2.config.js",
     "start": "aora dev",
     "serve": "aora serve",
+    "esbuild": "esno scripts/build.ts",
     "routes": "aora routes",
     "build": "aora build",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",

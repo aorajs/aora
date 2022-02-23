@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "esbuild": "esno ../../scripts/bundleDeps.ts",
+    "esbuild": "esno ../../scripts/build.ts",
     "dev": "rimraf dist && tsc --watch",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },

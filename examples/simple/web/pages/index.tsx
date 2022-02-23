@@ -2,11 +2,12 @@ import { ReactFetch, SProps } from 'aora';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IData, IndexData } from '~/typings/data';
+import './index.less'
 
 const Home = (props: SProps & IData) => {
   // const { state, dispatch } = useContext<IContext<IData>>(STORE_CONTEXT);
   return (
-    <div>
+    <div className="home">
       <NavLink to="/posts">Posts</NavLink>
     </div>
   );

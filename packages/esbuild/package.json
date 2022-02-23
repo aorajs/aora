@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "esbuild": "esno ../../scripts/bundleDeps.ts",
+    "esbuild": "esno ../../scripts/build.ts",
     "dev": "tsc --watch",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
@@ -29,7 +29,6 @@
   "devDependencies": {
     "typescript": "4.5.2",
     "rimraf": "^3.0.2",
-    "esno": "^0.14.0",
     "esbuild": "^0.14.23",
     "webpack": "^4.46.0"
   },

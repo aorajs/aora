@@ -10,7 +10,9 @@ import {
 import { addAsyncChunk, findRoute, getManifest, normalizePath } from 'aora';
 import * as React from 'react';
 import { StaticRouter } from 'react-router-dom/server';
+import { resolve} from 'path'
 import * as serialize from 'serialize-javascript';
+import { readFileSync } from 'fs'
 // @ts-expect-error
 import * as Routes from '_build/routes';
 
@@ -42,6 +44,7 @@ const serverRender = async (
   const routeItem: any = findRoute(FeRoutes, path);
   console.log('jsOrder', jsOrder);
   console.log('cssOrder', cssOrder);
+  const assets = JSON.parse(readFileSync(resolve(process.cwd(), './public/build/assets.json'), { encoding: 'utf8'}))
 
   let dynamicCssOrder = cssOrder;
 
@@ -54,25 +57,32 @@ const serverRender = async (
   }
   const manifest = await getManifest(config);
 
-  const injectCss: JSX.Element[] = [];
+  // const injectCss: JSX.Element[] = [];
   const preloadCss: JSX.Element[] = [];
 
-  dynamicCssOrder.forEach((css: string) => {
-    if (manifest[css]) {
-      const item = manifest[css];
-      injectCss.push(<link rel="stylesheet" key={item} href={item} />);
-      preloadCss.push(<link rel="preload" key={item} href={item} as="style" />);
-    }
-  });
+  // dynamicCssOrder.forEach((css: string) => {
+  //   if (manifest[css]) {
+  //     const item = manifest[css];
+  //     injectCss.push(<link rel="stylesheet" key={item} href={item} />);
+  //     preloadCss.push(<link rel="preload" key={item} href={item} as="style" />);
+  //   }
+  // });
 
-  const injectScript = jsOrder
-    .map((js: string) => manifest[js])
-    .map((item: string) => <script key={item} src={item} async />);
-  const preloadScript = jsOrder
-    .map((js: string) => manifest[js])
-    .map((item: string) => (
-      <link rel="preload" as="script" key={item} href={item} />
-    ));
+  console.log(routeItem)
+
+  const injectScript = [
+    ...assets.root.shared,
+    ...(assets.pages[routeItem.id]?.js || []),
+  ].map((item: string) => <script type="module" key={item} src={item} async />);
+
+  const preloadScript: JSX.Element[] = []
+    // .map((js: string) => manifest[js])
+    // .map((item: string) => (
+    //   <link rel="preload" as="script" key={item} href={item} />
+    // ));
+  const injectCss: JSX.Element[] = [
+    ...(assets.pages[routeItem.id]?.css || []),
+  ].map((item: string) => <link rel="stylesheet" key={item} href={item} />);
 
   const staticList = {
     injectCss,

@@ -11,4 +11,4 @@ interface Action {
   payload: object;
 }
 
-export { IProps, Action, SProps };
+export type { IProps, Action, SProps };
