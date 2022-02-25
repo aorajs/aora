@@ -188,7 +188,7 @@ export const getBaseConfig = (
       color: isServer ? '#f173ac' : '#45b97c',
     }),
   );
-  chain.plugin('ssrDefine').use(webpack.DefinePlugin, [
+  chain.plugin('aoraDefine').use(webpack.DefinePlugin, [
     {
       __isBrowser__: !isServer,
     },

@@ -3,6 +3,7 @@ export * from './config';
 export * from './ctx';
 export * from './route';
 export * from './yargs';
+import * as React from 'react'
 
 export type Mode = 'development' | 'production';
 

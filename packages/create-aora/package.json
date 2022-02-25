@@ -15,8 +15,8 @@
   "bin": {
     "create-aora": "./bin/create-aora.js"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
     "esbuild": "esno ../../scripts/bundleDeps.ts",

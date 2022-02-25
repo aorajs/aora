@@ -1,5 +1,6 @@
 import { IConfig, ParseFeRouteItem } from '@aora/types';
 import { lstatSync, promises as fsp, readdirSync, existsSync, mkdirSync } from 'fs';
+import * as esbuild from 'esbuild'
 import * as path from 'path';
 import {
   accessFile,
@@ -8,6 +9,7 @@ import {
   getPagesDir,
   normalizeStartPath,
 } from './cwd';
+import { config } from 'rxjs';
 
 const debug = require('debug')('ssr:parse');
 const pageDir = getPagesDir();
@@ -101,13 +103,16 @@ const parseFeRoutes = async (config: IConfig) => {
   const pathRecord = ['']; // 路径记录
   // @ts-expect-error
   const route: ParseFeRouteItem = {};
-  let arr = getRoutes(config).map((r: any) => ({
-    component: `@/${r.file}`,
-    path: path.join('/', r.path),
-    webpackChunkName: r.id.slice('pages'.length + 1),
-    id: r.id,
-    index: r.index,
-  }));
+  let arr = getRoutes(config).map((r: any) => {
+    const item = {
+      component: `@/${r.file}`,
+      path: path.join('/', r.path),
+      webpackChunkName: r.id.slice('pages'.length + 1),
+      id: r.id,
+      index: r.index,
+    }
+    return item
+  });
   console.log(arr);
   debug('Before the result that parse web folder to routes is: ', arr);
 
@@ -386,11 +391,14 @@ export const parseFeRoutes2 = async (config: IConfig) => {
   const prefix = getPrefix(config.prefix);
 
   let routes = '';
-  const arr = Object.values(uniqueRoutes).map((r: any) => ({
-    component: `@/${r.file}`,
-    path: path.join('/', r.path),
-    webpackChunkName: r.id,
-  }));
+  const arr = Object.values(uniqueRoutes).map((r: any) => {
+    const item = {
+      component: `@/${r.file}`,
+      path: path.join('/', r.path),
+      webpackChunkName: r.id,
+    }
+    return item
+  });
   debug('Before the result that parse web folder to routes is: ', arr);
 
   // React 场景
@@ -435,6 +443,10 @@ ${prefix ? `export const PrefixRouterBase='${prefix}'` : ''} \n
   });
   re.lastIndex = 0;
   debug('After the result that parse web folder to routes is: ', routes);
+  const routesCode = await esbuild.transform(routes, {
+    format: "esm",
+  })
+  await fsp.writeFile(path.resolve(cwd, './.aora/routes2.js'), routesCode.code);
   await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
 };
 
@@ -451,7 +463,15 @@ export function checkOutputDir() {
 
 const writeRoutes = async (routes: string) => {
   checkOutputDir();
-  await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
+  const routesCode = await esbuild.transform(routes, {
+    format: "esm",
+    target: 'es6',
+    keepNames: true,
+    minifySyntax: true,
+    // minify: true,
+  })
+  await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routesCode.code);
+  // await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
 };
 
 function findParentRouteId(

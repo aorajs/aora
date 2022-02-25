@@ -8,6 +8,8 @@
 /examples/*/node_modules
 /packages/*/node_modules
 /packages/*/dist
+/packages/*/lib
+/packages/*/es
 /packages/*/tsconfig.tsbuildinfo
 /packages/*/src/**/fixtures/*/dist
 /packages/*/src/**/fixtures/*/.aora
