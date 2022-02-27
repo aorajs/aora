@@ -1,7 +1,7 @@
 import { IConfig, Mode } from '@aora/types';
 import { join } from 'path';
 import * as webpack from 'webpack';
-import * as WebpackChain from 'webpack-chain';
+import * as WebpackChain from 'webpack-5-chain';
 import {
   addImageChain,
   getCwd,

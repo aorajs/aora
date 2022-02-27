@@ -11,8 +11,8 @@
   "files": [
     "dist"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
     "esbuild": "esno ../../scripts/bundleDeps.ts",

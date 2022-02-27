@@ -11,9 +11,8 @@
   "files": [
     "dist"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "module": "es/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
     "dev": "rimraf dist && tsc --watch",

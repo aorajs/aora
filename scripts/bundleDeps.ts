@@ -32,7 +32,7 @@ const buildEsm = async () => {
 }
 
 const buildLib = async () => {
-  const outDir = path.join(cwd, 'lib');
+  const outDir = path.join(cwd, 'dist');
   if (existsSync(outDir)) {
     await rmdir(outDir, { recursive: true });
   }

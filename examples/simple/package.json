@@ -4,6 +4,7 @@
   "dependencies": {
     "@aora/react": "^0.4.1",
     "@aora/server": "^0.4.0",
+    "@nestjs/axios": "^0.0.6",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
@@ -20,7 +21,7 @@
     "swiper": "6.7.5"
   },
   "devDependencies": {
-    "@nestjs/cli": "^7.5.5",
+    "@nestjs/cli": "^8.0.0",
     "@aora/cli": "^0.4.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -29,8 +30,7 @@
     "eslint": "^7.0.0",
     "eslint-config-standard-react-ts": "^1.0.5",
     "path-to-regexp": "^6.2.0",
-    "typescript": "^4.0.0",
-    "webpack": "^4.46.0"
+    "typescript": "^4.0.0"
   },
   "scripts": {
     "prod": "aora build && pm2 start pm2.config.js",

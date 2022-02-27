@@ -1,9 +1,10 @@
 import { IConfig } from '@aora/types';
-import { promises } from 'fs';
 import { join, resolve } from 'path';
-import * as WebpackChain from 'webpack-chain';
+import * as WebpackChain from 'webpack-5-chain';
+import type { Configuration } from "webpack";
 import { cryptoAsyncChunkName, getCwd, getOutputPublicPath } from '../../utils';
 import { getBaseConfig } from './base';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin'
 
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -13,7 +14,7 @@ const generateAnalysis = Boolean(process.env.GENERATE_ANALYSIS);
 const loadModule = require.resolve;
 let asyncChunkMap: Record<string, string> = {};
 
-export const getClientWebpack = (config: IConfig) => {
+export const getClientWebpack = (config: IConfig): Configuration  => {
   const { isDev, chunkName, getOutput, cwd, useHash, chainClientConfig } =
     config;
   const chain = new WebpackChain();
@@ -94,25 +95,21 @@ export const getClientWebpack = (config: IConfig) => {
           },
         ]);
       optimization
-        .minimizer('optimize-css')
-        .use(loadModule('optimize-css-assets-webpack-plugin'), [
+        .minimizer('css-minimizer')
+        .use(loadModule('css-minimizer-webpack-plugin'), [
           {
-            cssProcessorOptions: {
-              parser: safePostCssParser,
-              map: shouldUseSourceMap
-                ? {
-                    inline: false,
-                    annotation: true,
-                  }
-                : false,
-            },
+            // optimization: {
+            //   minimizer: true
+            // },
+            minimizerOptions: {},
+            parallel: true,
           },
         ]);
     });
 
   chain.plugin('moduleNotFound').use(ModuleNotFoundPlugin, [cwd]);
 
-  chain.plugin('manifest').use(loadModule('webpack-manifest-plugin'), [
+  chain.plugin('manifest-plugin').use(WebpackManifestPlugin, [
     {
       fileName: 'asset-manifest.json',
     },
@@ -142,7 +139,7 @@ export const getClientWebpack = (config: IConfig) => {
   //   },
   // );
   chainClientConfig(chain); // 合并用户自定义配置
-  chain.optimization.get('splitChunks').chunks = 'initial';
+  // chain.optimization.get('splitChunks').chunks = 'initial';
 
   return chain.toConfig();
 };

@@ -1,7 +1,7 @@
 import { IConfig } from '@aora/types';
 import { join } from 'path';
 import * as webpack from 'webpack';
-import * as WebpackChain from 'webpack-chain';
+import * as WebpackChain from 'webpack-5-chain';
 import {
   getLocalNodeModules,
   nodeExternals,
@@ -38,12 +38,26 @@ export const getServerWebpack = (config: IConfig) => {
           /store$/,
           /antd-mobile.*/,
           /@babel*/,
-        ].concat(whiteList || []),
+          ...(whiteList || [])
+        ],
       ),
       // externals Dir contains example/xxx/node_modules ssr/node_modules
       modulesDir,
     }),
   );
+//   externals?:
+// | string
+//   | RegExp
+//   | ExternalItem[]
+//   | (ExternalItemObjectKnown & ExternalItemObjectUnknown)
+//   | ((
+//     data: ExternalItemFunctionData,
+//     callback: (
+//       err?: Error,
+//       result?: string | boolean | string[] | { [index: string]: any }
+//     ) => void
+//   ) => void)
+//   | ((data: ExternalItemFunctionData) => Promise<ExternalItemValue>);
 
   chain.when(isDev, () => {
     chain.watch(true);

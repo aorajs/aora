@@ -13,7 +13,7 @@ const getFeDir = () => {
 };
 
 export const uniqueWhitelist = (list: (string | RegExp)[]) => {
-  const obj: Record<string, string | RegExp> = {};
+  const obj: Record<string, (string | RegExp)> = {};
   list.forEach((item) => {
     obj[String(item)] = item;
   });
