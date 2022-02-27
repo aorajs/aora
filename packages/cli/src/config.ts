@@ -31,6 +31,8 @@ export function readConfig(aoraRoot?: string): IConfig {
     ? publicPath.replace(/^http(s)?:\/\/(.*)?\d/, '')
     : publicPath; // 本地开发不使用 http://localhost:3000 这样的 path 赋值给 webpack-dev-server 会很难处理
 
+  console.log('devPublicPath', devPublicPath)
+
   const moduleFileExtensions = [
     '.web.mjs',
     '.mjs',
@@ -99,17 +101,12 @@ export function readConfig(aoraRoot?: string): IConfig {
     clientOutPut: join(cwd, './public/build'),
     serverOutPut: join(cwd, './.aora/server'),
   });
-  console.log('devPublicPath', devPublicPath)
 
   const webpackDevServerConfig = {
     allowedHosts: "all",
     devMiddleware: {
       stats: webpackStatsOption,
-      publicPath: '/build',
-
-    },
-    static: {
-      publicPath: '/build'
+      publicPath: devPublicPath,
     },
     hot: "only",
     host,

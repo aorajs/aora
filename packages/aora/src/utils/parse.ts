@@ -81,7 +81,7 @@ export const normalizePublicPath = (path: string) => {
 export const getOutputPublicPath = (publicPath: string, isDev: boolean) => {
   const path = normalizePublicPath(publicPath);
   console.log('isDev', isDev);
-  return `${path}build/`;
+  return isDev ? path : `${path}build/`;
 };
 
 export const getImageOutputPath = (publicPath: string, isDev: boolean) => {

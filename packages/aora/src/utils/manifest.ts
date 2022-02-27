@@ -18,7 +18,7 @@ const _getManiFest = async (
   const cwd = getCwd();
   if (isDev) {
     const res = await instance.get(
-      `${https ? 'https' : 'http'}://localhost:${fePort}/build${manifestPath}`,
+      `${https ? 'https' : 'http'}://localhost:${fePort}${manifestPath}`,
     );
     manifest = res.data;
   } else {
