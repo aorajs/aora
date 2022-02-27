@@ -5,17 +5,17 @@ env:
 
 on:
   push:
-    branches: [master]
+    branches: [ main ]
   pull_request:
-    branches: [master]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [14.x]
-        os: [ubuntu-latest]
+        node_version: [ 14.x ]
+        os: [ ubuntu-latest ]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
