@@ -1,5 +1,4 @@
 import { IContext } from '@aora/types';
-import { join } from 'path';
 import { Context, createContext, useContext } from 'react';
 
 function getContext() {
@@ -26,9 +25,8 @@ export const useAoraContext = () => {
 };
 
 export function getLayout() {
-  return import(
-    require.resolve(join(process.cwd(), './web/layouts/index.tsx'))
-  );
+  // @ts-ignore
+  return import('@/layouts/index.tsx');
 }
 
 export { AoraEntryContext, Metas, Scripts } from './components';

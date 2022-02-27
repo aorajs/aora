@@ -21,11 +21,11 @@ export const preloadComponent = async (
     if (PrefixRouterBase) {
       pathname = normalizePath(pathname, PrefixRouterBase);
     }
-    if (component.name === 'dynamicComponent') {
+    // if (component.name === 'dynamicComponent') {
       const Component = await component();
       route.component = Component.default;
       route.fetch = Component.fetch;
-    }
+    // }
   }
   return Routes;
 };

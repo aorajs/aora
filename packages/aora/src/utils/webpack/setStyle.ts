@@ -1,6 +1,6 @@
 import { IConfig, StyleOptions } from '@aora/types';
-import { Config } from '@aora/types/dist/third-party/webpack-chain';
-import type { loader } from 'webpack';
+import * as Config from 'webpack-5-chain'
+import type { LoaderContext } from 'webpack';
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const genericNames = require('generic-names');
@@ -23,7 +23,7 @@ export const setStyle = (
       auto: true,
       // 对齐vite 场景 css-loader 与 postcss-modules 生成 hash 方式
       getLocalIdent: (
-        context: loader.LoaderContext,
+        context: LoaderContext<any>,
         _localIdentName: any,
         localName: any,
         _options: any,
@@ -39,7 +39,7 @@ export const setStyle = (
     },
   };
 
-  const finalCssloaderOptions = Object.assign(
+  const finalCssLoaderOptions = Object.assign(
     {},
     defaultCssloaderOptions,
     userCssloaderOptions,
@@ -87,7 +87,7 @@ export const setStyle = (
     .end()
     .use('css-loader')
     .loader(loadModule('css-loader'))
-    .options(finalCssloaderOptions)
+    .options(finalCssLoaderOptions)
     .end()
     .use('postcss-loader')
     .loader(loadModule('postcss-loader'))

@@ -1,5 +1,5 @@
 import { IConfig } from '@aora/types';
-import * as WebpackChain from 'webpack-chain';
+import * as WebpackChain from 'webpack-5-chain';
 import { getImageOutputPath } from '../parse';
 
 const loadModule = require.resolve;

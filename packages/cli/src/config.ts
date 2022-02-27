@@ -22,7 +22,7 @@ export function readConfig(aoraRoot?: string): IConfig {
   const cwd = getCwd();
   const ssr = true;
   const stream = false;
-  type ClientLogLevel = 'error';
+  // type ClientLogLevel = 'error';
 
   const publicPath = appConfig.publicPath?.startsWith('http')
     ? appConfig.publicPath
@@ -67,7 +67,7 @@ export function readConfig(aoraRoot?: string): IConfig {
 
   const chunkName = 'aora';
 
-  const clientLogLevel: ClientLogLevel = 'error';
+  // const clientLogLevel: ClientLogLevel = 'error';
 
   const useHash = !isDev; // 生产环境默认生成hash
 
@@ -99,30 +99,41 @@ export function readConfig(aoraRoot?: string): IConfig {
     clientOutPut: join(cwd, './public/build'),
     serverOutPut: join(cwd, './.aora/server'),
   });
+  console.log('devPublicPath', devPublicPath)
 
-  const webpackDevServerConfig = Object.assign(
-    {
+  const webpackDevServerConfig = {
+    allowedHosts: "all",
+    devMiddleware: {
       stats: webpackStatsOption,
-      disableInfo: true, // 关闭webpack-dev-server 自带的server Info信息
-      disableHostCheck: true,
-      publicPath: devPublicPath,
-      hotOnly: true,
-      host,
-      sockPort: fePort,
-      hot: true,
-      port: fePort,
-      https,
-      clientLogLevel: clientLogLevel,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods':
-          'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-        'Access-Control-Allow-Headers':
-          'X-Requested-With, content-type, Authorization',
-      },
+      publicPath: '/build',
+
     },
-    appConfig.webpackDevServerConfig,
-  );
+    static: {
+      publicPath: '/build'
+    },
+    hot: "only",
+    host,
+    // sockPort: fePort,
+    port: fePort,
+    https: false,
+    client: {
+      webSocketURL: {
+        hostname: "0.0.0.0",
+        pathname: "/ws",
+        port: fePort,
+      },
+      logging: "info",
+    },
+    // clientLogLevel: clientLogLevel,
+    headers: () => ({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods':
+        'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, content-type, Authorization',
+    }),
+    ...(appConfig.webpackDevServerConfig || {}),
+  };
 
   const chainBaseConfig = () => {
     // 覆盖默认webpack配置

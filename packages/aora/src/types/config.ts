@@ -1,6 +1,5 @@
-import { Configuration, Options, RuleSetCondition } from 'webpack';
-import { ISSRContext } from './ctx';
-import { Config } from './third-party/webpack-chain';
+import { Configuration, Stats, RuleSetCondition } from 'webpack';
+import * as Config from 'webpack-5-chain';
 import { Argv } from './yargs';
 
 export type Script = Array<{
@@ -44,7 +43,7 @@ export interface IConfig {
   chainBaseConfig: (config: Config) => Configuration;
   chainServerConfig: (config: Config) => Configuration;
   chainClientConfig: (config: Config) => Configuration;
-  webpackStatsOption: Options.Stats;
+  webpackStatsOption: Stats;
   moduleFileExtensions: string[];
   whiteList: (RegExp | string)[];
   cloudIDE?: boolean;
@@ -53,8 +52,6 @@ export interface IConfig {
   ssr: boolean;
   webpackDevServerConfig?: any;
   stream: boolean;
-  customeHeadScript?: (ctx: ISSRContext) => Script | Script;
-  customeFooterScript?: (ctx: ISSRContext) => Script | Script;
   locale?: {
     enable: false;
   };
