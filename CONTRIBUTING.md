@@ -9,18 +9,18 @@ Loving `Aora` and want to get involved? Thanks!
 $ git clone git@github.com:aorajs/aora.git
 $ cd aora
 # Install Dependencies
-$ yarn
+$ pnpm
 # Compile Src
-$ yarn build
+$ pnpm build
 # Start dev server for boilerplate example
 $ cd examples/simple
-$ yarn dev
+$ pnpm dev
 ```
 
 ## Test
 
 ```bash
-$ yarn test
+$ pnpm test
 ```
 
 ## Release
@@ -34,7 +34,5 @@ $ npm run release
 ```bash
 $ cd examples/simple
 # Must start with pnpm
-$ yarn dev
-# Switch to the vite mode
-$ yarn dev -- --vite
+$ pnpm dev
 ```
