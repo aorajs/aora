@@ -81,7 +81,7 @@ export const normalizePublicPath = (path: string) => {
 export const getOutputPublicPath = (publicPath: string, isDev: boolean) => {
   const path = normalizePublicPath(publicPath);
   console.log('isDev', isDev);
-  return isDev ? path : `${path}build/`;
+  return `${path}build/`;
 };
 
 export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
@@ -102,7 +102,7 @@ const parseFeRoutes = async (config: IConfig) => {
   let routes = '';
   // 根据目录结构生成前端路由表
   const pathRecord = ['']; // 路径记录
-  // @ts-expect-error
+  // @ts-ignore
   const route: ParseFeRouteItem = {};
   let arr = getRoutes(config).map((r: any) => {
     const item = {
@@ -114,7 +114,6 @@ const parseFeRoutes = async (config: IConfig) => {
     }
     return item
   });
-  console.log(arr);
   debug('Before the result that parse web folder to routes is: ', arr);
 
   // React 场景
