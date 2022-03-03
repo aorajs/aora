@@ -1,7 +1,8 @@
 import { ReactFetch, SProps } from 'aora';
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import { IData, IndexData } from '~/typings/data';
+import {STORE_CONTEXT} from "@aora/react";
 
 const Home = (props: SProps & IData) => {
   // const { state, dispatch } = useContext<IContext<IData>>(STORE_CONTEXT);

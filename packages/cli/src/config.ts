@@ -63,8 +63,6 @@ export function readConfig(aoraRoot?: string): IConfig {
     https = false;
   }
 
-  const serverPort = process.env.SERVER_PORT ?? 3000;
-
   const host = '0.0.0.0';
 
   const chunkName = 'aora';
@@ -161,7 +159,6 @@ export function readConfig(aoraRoot?: string): IConfig {
       host,
       moduleFileExtensions,
       fePort,
-      serverPort,
       chunkName,
       jsOrder,
       cssOrder,
