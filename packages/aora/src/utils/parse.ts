@@ -102,7 +102,7 @@ const parseFeRoutes = async (config: IConfig) => {
   let routes = '';
   // 根据目录结构生成前端路由表
   const pathRecord = ['']; // 路径记录
-  // @ts-expect-error
+  // @ts-ignore
   const route: ParseFeRouteItem = {};
   let arr = getRoutes(config).map((r: any) => {
     const item = {
@@ -114,7 +114,6 @@ const parseFeRoutes = async (config: IConfig) => {
     }
     return item
   });
-  console.log(arr);
   debug('Before the result that parse web folder to routes is: ', arr);
 
   // React 场景

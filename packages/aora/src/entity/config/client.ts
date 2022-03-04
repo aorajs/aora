@@ -1,5 +1,6 @@
 import { IConfig } from '@aora/types';
 import { join, resolve } from 'path';
+import { promises } from 'fs'
 import * as WebpackChain from 'webpack-5-chain';
 import type { Configuration } from "webpack";
 import { cryptoAsyncChunkName, getCwd, getOutputPublicPath } from '../../utils';
