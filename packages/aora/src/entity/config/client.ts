@@ -119,26 +119,26 @@ export const getClientWebpack = (config: IConfig): Configuration  => {
   chain.when(generateAnalysis, (chain) => {
     chain.plugin('analyze').use(BundleAnalyzerPlugin);
   });
-  chain.plugin('WriteAsyncManifest').use(
-    class WriteAsyncChunkManifest {
-      apply(compiler: any) {
-        compiler.hooks.watchRun.tap('thisCompilation', async () => {
-          // 每次构建前清空上一次的 chunk 信息
-          asyncChunkMap = {};
-        });
-        compiler.hooks.done.tapAsync(
-          'WriteAsyncChunkManifest',
-          async (_params: any, callback: any) => {
-            await promises.writeFile(
-              resolve(getCwd(), './.aora/asyncChunkMap.json'),
-              JSON.stringify(asyncChunkMap),
-            );
-            callback();
-          },
-        );
-      }
-    },
-  );
+  // chain.plugin('WriteAsyncManifest').use(
+  //   class WriteAsyncChunkManifest {
+  //     apply(compiler: any) {
+  //       compiler.hooks.watchRun.tap('thisCompilation', async () => {
+  //         // 每次构建前清空上一次的 chunk 信息
+  //         asyncChunkMap = {};
+  //       });
+  //       compiler.hooks.done.tapAsync(
+  //         'WriteAsyncChunkManifest',
+  //         async (_params: any, callback: any) => {
+  //           await promises.writeFile(
+  //             resolve(getCwd(), './.aora/asyncChunkMap.json'),
+  //             JSON.stringify(asyncChunkMap),
+  //           );
+  //           callback();
+  //         },
+  //       );
+  //     }
+  //   },
+  // );
   chainClientConfig(chain); // 合并用户自定义配置
   // chain.optimization.get('splitChunks').chunks = 'initial';
 

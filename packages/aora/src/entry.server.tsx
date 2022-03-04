@@ -43,9 +43,10 @@ const serverRender = async (
   const { isDev, fePort } = config
 
   let dynamicCssOrder = cssOrder;
+  const devPath = isDev ? `` : ''
 
   if (dynamic) {
-    dynamicCssOrder = cssOrder.concat([`${routeItem.webpackChunkName}.css`]);
+    dynamicCssOrder = cssOrder.concat([`${devPath}${routeItem.webpackChunkName}.css`]);
     dynamicCssOrder = await addAsyncChunk(
       dynamicCssOrder,
       routeItem.webpackChunkName,
@@ -58,17 +59,17 @@ const serverRender = async (
 
   dynamicCssOrder.forEach((css: string) => {
     if (manifest[css]) {
-      const item = manifest[css];
+      const item = `${devPath}${manifest[css]}`;
       injectCss.push(<link rel="stylesheet" key={item} href={item} />);
       preloadCss.push(<link rel="preload" key={item} href={item} as="style" />);
     }
   });
 
   const injectScript = jsOrder
-    .map((js: string) => manifest[js])
+    .map((js: string) => `${devPath}${manifest[js]}`)
     .map((item: string) => <script key={item} src={item} async />);
   const preloadScript = jsOrder
-    .map((js: string) => manifest[js])
+    .map((js: string) => `${devPath}${manifest[js]}`)
     .map((item: string) => (
       <link rel="preload" as="script" key={item} href={item} />
     ));

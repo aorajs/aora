@@ -99,6 +99,7 @@ export function readConfig(aoraRoot?: string): IConfig {
     clientOutPut: join(cwd, './public/build'),
     serverOutPut: join(cwd, './.aora/server'),
   });
+  console.log('devPublicPath', devPublicPath)
 
   const webpackDevServerConfig = {
     allowedHosts: "all",
