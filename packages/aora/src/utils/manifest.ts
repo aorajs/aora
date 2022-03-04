@@ -1,26 +1,21 @@
 import { IConfig } from '@aora/types';
-import axios from 'axios';
 import { promises } from 'fs';
 import { join } from 'path';
 import { getCwd } from './cwd';
-
-// 创建一个实例来请求，防止业务代码的 axios 设置了 defaults 配置导致获取 manifest 失败
-const instance = axios.create({
-  timeout: 3000,
-  proxy: false,
-});
+import fetch from 'node-fetch';
 
 const _getManiFest = async (
   config: IConfig,
 ): Promise<Record<string, string>> => {
-  const { isDev, fePort, serverPort, https, manifestPath } = config;
+  const { isDev, fePort, https, manifestPath } = config;
   let manifest = {};
   const cwd = getCwd();
   if (isDev) {
-    const res = await instance.get(
-      `${https ? 'https' : 'http'}://localhost:${fePort}/build${manifestPath}`,
-    );
-    manifest = res.data;
+    const res: any = await (fetch(
+      `${https ? 'https' : 'http'}://localhost:${fePort}${manifestPath}`,
+    ).then(res => res.json()));
+    console.log(res)
+    manifest = res;
   } else {
     manifest = JSON.parse(
       await promises.readFile(join(cwd, './public/build/asset-manifest.json'), {

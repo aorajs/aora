@@ -31,6 +31,3 @@ export function getLayout() {
 
 export { AoraEntryContext, Metas, Scripts } from './components';
 
-// export {
-//   findEntry
-// } from './utils'

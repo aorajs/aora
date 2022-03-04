@@ -1,6 +1,6 @@
-import { execSync } from 'child_process';
-import { build } from 'esbuild';
-import { existsSync, rmdir } from 'fs-extra';
+import {execSync} from 'child_process';
+import {build} from 'esbuild';
+import {existsSync, rmdir} from 'fs-extra';
 import * as path from 'path';
 
 const cwd: string = process.cwd();
@@ -10,7 +10,7 @@ const tsconfigFilePath = path.join(cwd, './tsconfig.json');
 const buildEsm = async () => {
   const outDir = path.join(cwd, 'es');
   if (existsSync(outDir)) {
-    await rmdir(outDir, { recursive: true });
+    await rmdir(outDir, {recursive: true});
   }
   await build({
     platform: 'node',
@@ -19,7 +19,7 @@ const buildEsm = async () => {
     format: 'esm',
     sourcemap: 'external',
     minify: true,
-    loader: { '.ts': 'ts' },
+    loader: {'.ts': 'ts'},
     outdir: outDir,
     external: Object.keys(pkg.dependencies),
     minifyWhitespace: true,
@@ -34,7 +34,7 @@ const buildEsm = async () => {
 const buildLib = async () => {
   const outDir = path.join(cwd, 'dist');
   if (existsSync(outDir)) {
-    await rmdir(outDir, { recursive: true });
+    await rmdir(outDir, {recursive: true});
   }
   await build({
     platform: 'node',
@@ -42,7 +42,7 @@ const buildLib = async () => {
     bundle: true,
     sourcemap: 'external',
     minify: true,
-    loader: { '.ts': 'ts' },
+    loader: {'.ts': 'ts'},
     outdir: outDir,
     external: Object.keys(pkg.dependencies),
     minifyWhitespace: true,

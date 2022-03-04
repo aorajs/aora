@@ -1,5 +1,5 @@
 import 'zx/globals';
 
 (async () => {
-    await $`pnpm i`;
+  await $`pnpm i`;
 })()

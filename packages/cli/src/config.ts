@@ -2,6 +2,7 @@ import type { IConfig } from '@aora/types';
 import * as path from 'path';
 import { join } from 'path';
 import { getCwd, normalizeEndPath, normalizeStartPath } from './utils/cwd';
+import {getOutputPublicPath} from "aora";
 
 export type AppConfig = Partial<IConfig>;
 
@@ -23,13 +24,15 @@ export function readConfig(aoraRoot?: string): IConfig {
   const ssr = true;
   const stream = false;
   // type ClientLogLevel = 'error';
+  const isDev = appConfig.isDev ?? process.env.NODE_ENV !== 'production';
 
   const publicPath = appConfig.publicPath?.startsWith('http')
     ? appConfig.publicPath
     : normalizeStartPath(appConfig.publicPath ?? '/');
-  const devPublicPath = publicPath.startsWith('http')
+
+  let devPublicPath = publicPath.startsWith('http')
     ? publicPath.replace(/^http(s)?:\/\/(.*)?\d/, '')
-    : publicPath; // 本地开发不使用 http://localhost:3000 这样的 path 赋值给 webpack-dev-server 会很难处理
+    : getOutputPublicPath(publicPath, isDev); // 本地开发不使用 http://localhost:3000 这样的 path 赋值给 webpack-dev-server 会很难处理
 
   const moduleFileExtensions = [
     '.web.mjs',
@@ -46,7 +49,6 @@ export function readConfig(aoraRoot?: string): IConfig {
     '.css',
   ];
 
-  const isDev = appConfig.isDev ?? process.env.NODE_ENV !== 'production';
 
   const fePort = appConfig.fePort ?? 3010;
 
@@ -60,8 +62,6 @@ export function readConfig(aoraRoot?: string): IConfig {
   ) {
     https = false;
   }
-
-  const serverPort = process.env.SERVER_PORT ?? 3000;
 
   const host = '0.0.0.0';
 
@@ -105,11 +105,7 @@ export function readConfig(aoraRoot?: string): IConfig {
     allowedHosts: "all",
     devMiddleware: {
       stats: webpackStatsOption,
-      publicPath: '/build',
-
-    },
-    static: {
-      publicPath: '/build'
+      publicPath: devPublicPath,
     },
     hot: "only",
     host,
@@ -164,7 +160,6 @@ export function readConfig(aoraRoot?: string): IConfig {
       host,
       moduleFileExtensions,
       fePort,
-      serverPort,
       chunkName,
       jsOrder,
       cssOrder,

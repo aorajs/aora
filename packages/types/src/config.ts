@@ -18,7 +18,6 @@ export interface IConfig {
   useHash: boolean;
   host: string;
   fePort: number;
-  serverPort: number;
   chunkName: string;
   getOutput: () => {
     clientOutPut: string;
