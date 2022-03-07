@@ -2,7 +2,7 @@
   "name": "@aora/cli",
   "version": "0.4.0",
   "description": "aora cli",
-  "homepage": "https://github.com/aorajs/aora/tree/master/packages/cli#readme",
+  "homepage": "https://github.com/aorajs/aora/tree/main/packages/cli#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
   "repository": {
     "type": "git",
@@ -15,8 +15,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "esbuild": "esno ../../scripts/bundleDeps.ts",
     "dev": "rimraf dist && tsc --watch",
+    "esbuild": "esno ../../scripts/bundleDeps.ts",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {

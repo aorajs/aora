@@ -2,7 +2,7 @@
   "name": "@aora/types",
   "version": "0.4.0",
   "description": "aora types",
-  "homepage": "https://github.com/aorajs/aora/tree/master/packages/types#readme",
+  "homepage": "https://github.com/aorajs/aora/tree/main/packages/types#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
   "repository": {
     "type": "git",
