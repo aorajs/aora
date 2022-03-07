@@ -9,8 +9,7 @@
     "url": "https://github.com/aorajs/aora"
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
