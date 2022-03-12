@@ -1,5 +1,5 @@
 
 (async () => {
  // @ts-ignore
-  await import('../src/main.ts')
+  require('../src/main.ts')
 })()
