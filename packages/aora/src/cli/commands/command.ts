@@ -1,4 +1,5 @@
 import type {AnyFlags, Result} from 'meow';
+import {TypedFlags} from "meow";
 
 export interface AoraCommandMeta {
   name: string;
@@ -8,8 +9,8 @@ export interface AoraCommandMeta {
   [key: string]: any;
 }
 
-export interface AoraCommand {
+export interface AoraCommand<T extends TypedFlags<AnyFlags> = TypedFlags<AnyFlags>> {
   meta: AoraCommandMeta;
 
-  invoke(args: Result<AnyFlags>['flags']): Promise<void>;
+  invoke(args: Result<AnyFlags>['flags'] & T): Promise<void>;
 }

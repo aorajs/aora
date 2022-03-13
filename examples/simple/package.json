@@ -38,7 +38,7 @@
     "start": "aora dev",
     "dev": "esno ./src/main.ts",
     "serve": "aora serve",
-    "routes": "aora routes -h",
+    "routes": "aora routes",
     "build": "aora build",
     "lint": "eslint . --ext .js,.tsx,.ts --cache",
     "lint:fix": "eslint . --ext .js,.tsx,.ts --cache --fix"
