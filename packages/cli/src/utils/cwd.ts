@@ -149,3 +149,17 @@ export {
   normalizeEndPath,
   copyReactContext,
 };
+
+export const normalizePublicPath = (path: string) => {
+  // 兼容 /pre /pre/ 两种情况
+  if (!path.endsWith('/')) {
+    path = `${path}/`;
+  }
+  return path;
+};
+
+export const getOutputPublicPath = (publicPath: string, isDev: boolean) => {
+  const path = normalizePublicPath(publicPath);
+  console.log('isDev', isDev);
+  return `${path}build/`;
+};
