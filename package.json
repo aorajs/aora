@@ -34,6 +34,7 @@
     "@aora/runtime": "workspace:*",
     "@aora/types": "workspace:*",
     "@aora/server": "workspace:*",
+    "@nestjs/cli": "^8.2.1",
     "esno": "^0.14.1",
     "esbuild": "^0.14.0",
     "husky": "7.0.4",

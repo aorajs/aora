@@ -9,6 +9,7 @@ importers:
       '@aora/runtime': workspace:*
       '@aora/server': workspace:*
       '@aora/types': workspace:*
+      '@nestjs/cli': ^8.2.1
       '@types/jest': ^27.4.0
       aora: workspace:*
       esbuild: ^0.14.0
@@ -29,6 +30,7 @@ importers:
       '@aora/runtime': link:packages/runtime
       '@aora/server': link:packages/server
       '@aora/types': link:packages/types
+      '@nestjs/cli': 8.2.1_esbuild@0.14.23
       '@types/jest': 27.4.0
       aora: link:packages/aora
       esbuild: 0.14.23
@@ -3921,6 +3923,42 @@ packages:
     transitivePeerDependencies:
       - debug
     dev: false
+
+  /@nestjs/cli/8.2.1_esbuild@0.14.23:
+    resolution: {integrity: sha512-GnwpORSIkGl6N6yWPONq1wwZ8+zltr3vF1M/2qzupDnXOAvSSCh1otDQRAmeOf3uIIeCiCsJEEx79kRnT7Zdrw==}
+    engines: {node: '>= 10.13.0', npm: '>= 6.11.0'}
+    hasBin: true
+    dependencies:
+      '@angular-devkit/core': 13.2.3_chokidar@3.5.3
+      '@angular-devkit/schematics': 13.2.3_chokidar@3.5.3
+      '@angular-devkit/schematics-cli': 13.2.3_chokidar@3.5.3
+      '@nestjs/schematics': 8.0.7_chokidar@3.5.3+typescript@4.5.5
+      chalk: 3.0.0
+      chokidar: 3.5.3
+      cli-table3: 0.6.1
+      commander: 4.1.1
+      fork-ts-checker-webpack-plugin: 6.5.0_typescript@4.5.5+webpack@5.66.0
+      inquirer: 7.3.3
+      node-emoji: 1.11.0
+      ora: 5.4.1
+      os-name: 4.0.1
+      rimraf: 3.0.2
+      shelljs: 0.8.5
+      source-map-support: 0.5.21
+      tree-kill: 1.2.2
+      tsconfig-paths: 3.12.0
+      tsconfig-paths-webpack-plugin: 3.5.2
+      typescript: 4.5.5
+      webpack: 5.66.0_esbuild@0.14.23
+      webpack-node-externals: 3.0.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - eslint
+      - uglify-js
+      - vue-template-compiler
+      - webpack-cli
+    dev: true
 
   /@nestjs/cli/8.2.1_esbuild@0.14.23+eslint@7.32.0:
     resolution: {integrity: sha512-GnwpORSIkGl6N6yWPONq1wwZ8+zltr3vF1M/2qzupDnXOAvSSCh1otDQRAmeOf3uIIeCiCsJEEx79kRnT7Zdrw==}
@@ -8335,6 +8373,37 @@ packages:
       cosmiconfig: 6.0.0
       deepmerge: 4.2.2
       eslint: 7.32.0
+      fs-extra: 9.1.0
+      glob: 7.2.0
+      memfs: 3.4.1
+      minimatch: 3.1.2
+      schema-utils: 2.7.0
+      semver: 7.3.5
+      tapable: 1.1.3
+      typescript: 4.5.5
+      webpack: 5.66.0_esbuild@0.14.23
+    dev: true
+
+  /fork-ts-checker-webpack-plugin/6.5.0_typescript@4.5.5+webpack@5.66.0:
+    resolution: {integrity: sha512-cS178Y+xxtIjEUorcHddKS7yCMlrDPV31mt47blKKRfMd70Kxu5xruAFE2o9sDY6wVC5deuob/u/alD04YYHnw==}
+    engines: {node: '>=10', yarn: '>=1.0.0'}
+    peerDependencies:
+      eslint: '>= 6'
+      typescript: '>= 2.7'
+      vue-template-compiler: '*'
+      webpack: '>= 4'
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+      vue-template-compiler:
+        optional: true
+    dependencies:
+      '@babel/code-frame': 7.16.7
+      '@types/json-schema': 7.0.9
+      chalk: 4.1.2
+      chokidar: 3.5.3
+      cosmiconfig: 6.0.0
+      deepmerge: 4.2.2
       fs-extra: 9.1.0
       glob: 7.2.0
       memfs: 3.4.1

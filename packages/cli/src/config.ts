@@ -46,7 +46,8 @@ export function readConfig(aoraRoot?: string): IConfig {
     '.json',
     '.web.jsx',
     '.jsx',
-    '.css',
+    // '.css',
+    '.js', '.jsx', '.ts', '.tsx'
   ];
 
 
