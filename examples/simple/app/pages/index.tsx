@@ -52,7 +52,7 @@ const Home = (props: SProps & IData) => {
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          {/*<img src="/vercel.svg" alt="Vercel" className="logo"/>*/}
+          <img src="/vercel.svg" alt="Vercel" className="logo"/>
         </a>
       </footer>
     </div>
