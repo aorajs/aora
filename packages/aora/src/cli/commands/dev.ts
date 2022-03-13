@@ -1,8 +1,8 @@
-import { readConfig } from "@aora/cli";
-import { Aora } from '../../entity/config';
-import { defineAoraCommand } from './index';
+import {readConfig} from "@aora/cli";
+import {Aora} from '../../entity/config';
+import {AoraCommand, } from './index';
 
-export default defineAoraCommand({
+const aoraDev: AoraCommand = {
   meta: {
     name: 'dev',
     usage: 'npx aora dev',
@@ -17,4 +17,6 @@ export default defineAoraCommand({
     await aora.startServer();
     await aora.setupBuildId();
   },
-});
+}
+
+export default aoraDev

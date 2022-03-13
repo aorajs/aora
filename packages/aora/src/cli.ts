@@ -1,6 +1,8 @@
-import { red } from 'colorette';
+import {red} from 'colorette';
 import * as meow from 'meow';
-import { AoraCommand, Command, commands } from './cli/commands';
+import type {AoraCommand, Command} from './cli/commands';
+import {commands} from './cli/commands';
+import {error} from "./utils/log";
 
 const helpText = `
 Usage
@@ -47,8 +49,9 @@ if (cli.flags.version) {
 process.on('unhandledRejection', (err) =>
   console.error('[unhandledRejection]', err),
 );
+
 process.on('uncaughtException', (err) =>
-  console.error('[uncaughtException]', err),
+  error('[uncaughtException]', err.message),
 );
 
 function onFatalError(err: unknown) {
@@ -67,6 +70,13 @@ export async function main() {
 
   try {
     const cmd: AoraCommand = await commands[command as Command]();
+    if (cli.flags.help) {
+      console.log(`
+Description: ${cmd.meta.description}
+Usage: $ ${cmd.meta.usage}
+`)
+      process.exit(0);
+    }
     await cmd.invoke(cli.flags).catch(onFatalError);
     console.log(`💫 Done in ${Date.now() - start}ms`);
   } catch (err) {
