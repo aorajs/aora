@@ -76,7 +76,6 @@
     "react-dev-utils": "^11.0.4",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
-    "rimraf": "^3.0.2",
     "colorette": "^2.0.16",
     "serialize-javascript": "^3.0.0",
     "terser-webpack-plugin": "^2.3.5",

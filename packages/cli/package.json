@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "typescript": "4.5.2",
-    "rimraf": "^3.0.2",
     "@types/cacache": "^15.0.0",
     "@aora/types": "workspace:*"
   },
