@@ -10,13 +10,11 @@ async function bootstrap(): Promise<NestExpressApplication> {
   await initialSSRDevProxy(app, {
     express: true
   })
-  await app.listen(3000);
+  await app.listen(3001);
   return app;
 }
 
 export default bootstrap();
-console.log('1')
-
 
 // bootstrap().catch((err) => {
 //   console.log(err);
