@@ -15,7 +15,8 @@ const Layout = (props: LayoutProps) => {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <Metas title="AoraJs"></Metas>
+        <link rel="icon" href="/favicon.ico" />
+        <Metas title="AoraJs"/>
         {injectCss}
       </head>
       <body>
