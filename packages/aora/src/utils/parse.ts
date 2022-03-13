@@ -9,7 +9,6 @@ import {
   getPagesDir,
   normalizeStartPath,
 } from './cwd';
-import { config } from 'rxjs';
 
 const debug = require('debug')('ssr:parse');
 const pageDir = getPagesDir();
@@ -171,13 +170,21 @@ const parseFeRoutes = async (config: IConfig) => {
 
 type Route = { id: string; index?: boolean; path?: string; file: string };
 
+const layoutPages = ['_document', '_app']
+const isPageFile = (fileName: string) => {
+  const file = path.parse(fileName)
+  return routeModuleExts.includes(file.ext) && !layoutPages.includes(file.name);
+}
+
+const pageDirName = 'pages'
+
 export function getRoutes(_config: IConfig): Route[] {
   let files: { [routeId: string]: string } = {};
 
-  visitFiles(path.join(getFeDir(), './pages'), (file) => {
-    if (!file.includes('render') && isRouteModuleFile(file)) {
-      const routeId = createRouteId(path.join('pages', file));
-      files[routeId] = path.join('pages', file);
+  visitFiles(path.join(getFeDir(), pageDirName), (file) => {
+    if (isPageFile(file)) {
+      const routeId = createRouteId(path.join(pageDirName, file));
+      files[routeId] = path.join(pageDirName, file);
       return;
     }
   });
@@ -227,7 +234,7 @@ export function getRoutes(_config: IConfig): Route[] {
     let routePath: string | undefined = createRoutePath(
       routeId.slice((parentId || 'pages').length + 1),
     );
-    let fullPath = createRoutePath(routeId.slice('pages'.length + 1));
+    let fullPath = createRoutePath(routeId.slice(pageDirName.length + 1));
     let isIndexRoute = routeId.endsWith('/index');
     let uniqueRouteId = (fullPath || '') + (isIndexRoute ? '?index' : '');
     if (isIndexRoute) {

@@ -6,7 +6,6 @@ import App from './App';
 const Layout = (props: LayoutProps) => {
   // 注：Layout 只会在服务端被渲染，不要在此运行客户端有关逻辑
   const { injectCss, injectScript } = props.staticList!;
-  console.log('222333233');
   return (
     <html lang="en">
       <head>
