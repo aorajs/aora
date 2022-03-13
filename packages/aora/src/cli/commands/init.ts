@@ -1,4 +1,4 @@
-import {AoraCommand} from './index';
+import {AoraCommand} from './command';
 
 const aoraInit: AoraCommand = {
   meta: {

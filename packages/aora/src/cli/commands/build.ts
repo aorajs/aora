@@ -1,5 +1,5 @@
 import {Aora} from '../../entity/config';
-import {AoraCommand} from './index';
+import {AoraCommand} from './command';
 import {readConfig} from "@aora/cli";
 
 const aoraBuild: AoraCommand = {

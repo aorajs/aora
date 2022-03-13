@@ -1,6 +1,6 @@
 import {readConfig} from "@aora/cli";
 import {Aora} from '../../entity/config';
-import {AoraCommand, } from './index';
+import {AoraCommand} from './command';
 
 const aoraDev: AoraCommand = {
   meta: {

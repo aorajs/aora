@@ -1,7 +1,7 @@
 import {readConfig} from '@aora/cli';
 import {startAoraServer} from '@aora/server';
 import {join} from 'path';
-import {AoraCommand} from './index';
+import {AoraCommand} from './command';
 
 const aoraStart: AoraCommand = {
   meta: {

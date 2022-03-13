@@ -1,6 +1,6 @@
 import {readConfig} from "@aora/cli";
 import {formatRoutes} from '../../utils';
-import {AoraCommand} from './index';
+import {AoraCommand} from './command';
 
 const aoraRoutes: AoraCommand = {
   meta: {
