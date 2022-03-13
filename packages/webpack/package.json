@@ -2,7 +2,7 @@
   "name": "@aora/webpack",
   "version": "0.4.0",
   "description": "aora webpack",
-  "homepage": "https://github.com/aorajs/aora/tree/master/packages/runtime#readme",
+  "homepage": "https://github.com/aorajs/aora/tree/main/packages/runtime#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
   "repository": {
     "type": "git",
@@ -14,9 +14,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
+    "dev": "rimraf dist && tsc --watch",
     "esbuild": "esno ../../scripts/bundleDeps.ts",
-    "dev": "tsc --watch",
     "release": "pnpm version patch && pnpm publish --no-git-checks"
   },
   "dependencies": {

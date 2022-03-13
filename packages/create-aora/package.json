@@ -2,7 +2,7 @@
   "name": "create-aora",
   "version": "0.0.4",
   "description": "npm init aora",
-  "homepage": "https://github.com/aorajs/aora/tree/master/packages/create-aora#readme",
+  "homepage": "https://github.com/aorajs/aora/tree/main/packages/create-aora#readme",
   "bugs": "https://github.com/aorajs/aora/issues",
   "repository": {
     "type": "git",

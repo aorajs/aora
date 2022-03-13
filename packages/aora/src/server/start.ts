@@ -1,20 +1,28 @@
-import { IConfig } from '@aora/types';
-import { exec } from 'child_process';
+import {IConfig} from '@aora/types';
+import {exec} from 'child_process';
+import type {ChildProcess} from 'child_process'
 
 export const start = (_config: IConfig) => {
   return new Promise<void>((resolve, reject) => {
-    const { stdout, stderr } = exec('npx nest start --watch', {
-      env: { ...process.env, FORCE_COLOR: '1' },
+    let childProcessRef: ChildProcess | undefined
+    childProcessRef = exec('npx nest start --watch', {
+      env: {...process.env, FORCE_COLOR: '1'},
     });
-    stdout?.on('data', function (data) {
-      console.log(data);
+    childProcessRef?.on('exit', (code) => {
+      if (code && code !== 0) {
+        process.exitCode = code;
+      }
+      childProcessRef = undefined
+    })
+    childProcessRef?.stdout?.on('data', function (data) {
       if (data.match('Nest application successfully started')) {
         resolve();
       }
+      console.log(data)
     });
-    stderr?.on('data', function (data) {
-      console.error(`error: ${data}`);
-      reject(data);
+    childProcessRef.stderr?.on('data', function (err) {
+      console.error(`error: ${err}`);
+      reject(new Error(err));
     });
   });
 };

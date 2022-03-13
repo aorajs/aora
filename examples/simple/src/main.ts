@@ -15,6 +15,8 @@ async function bootstrap(): Promise<NestExpressApplication> {
 }
 
 export default bootstrap();
+console.log('1')
+
 
 // bootstrap().catch((err) => {
 //   console.log(err);
