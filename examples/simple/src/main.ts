@@ -7,10 +7,8 @@ async function bootstrap(): Promise<NestExpressApplication> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // app.disable('x-powered-by');
   app.useStaticAssets('public', { maxAge: '1h', immutable: true });
-  await initialSSRDevProxy(app, {
     express: true
   })
-  await app.listen(3000);
   return app;
 }
 

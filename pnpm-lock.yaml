@@ -9,6 +9,7 @@ importers:
       '@aora/runtime': workspace:*
       '@aora/server': workspace:*
       '@aora/types': workspace:*
+      '@nestjs/cli': ^8.2.1
       '@types/jest': ^27.4.0
       aora: workspace:*
       esbuild: ^0.14.0
@@ -29,6 +30,7 @@ importers:
       '@aora/runtime': link:packages/runtime
       '@aora/server': link:packages/server
       '@aora/types': link:packages/types
+      '@nestjs/cli': 8.2.1_esbuild@0.14.23
       '@types/jest': 27.4.0
       aora: link:packages/aora
       esbuild: 0.14.23
@@ -103,9 +105,69 @@ importers:
       path-to-regexp: 6.2.0
       typescript: 4.5.5
 
+  examples/with-antd:
+    specifiers:
+      '@aora/cli': ^0.4.0
+      '@aora/react': ^0.4.1
+      '@aora/server': ^0.4.0
+      '@nestjs/axios': ^0.0.6
+      '@nestjs/cli': ^8.0.0
+      '@nestjs/common': ^8.0.0
+      '@nestjs/core': ^8.0.0
+      '@nestjs/platform-express': ^8.0.0
+      '@types/react': ^17.0.0
+      '@types/react-dom': ^17.0.0
+      '@typescript-eslint/eslint-plugin': ^4.0.0
+      '@typescript-eslint/parser': ^4.0.0
+      aora: ^0.4.0
+      cross-env: ^7.0.0
+      eslint: ^7.0.0
+      eslint-config-standard-react-ts: ^1.0.5
+      path-to-regexp: ^6.2.0
+      pm2: ^4.5.4
+      react: ^17.0.0
+      react-dom: ^17.0.2
+      react-router: ^6.2.1
+      react-router-dom: ^6.2.1
+      reflect-metadata: ^0.1.13
+      rxjs: ^7.1.10
+      serialize-javascript: ^6.0.0
+      swiper: 6.7.5
+      typescript: ^4.0.0
+    dependencies:
+      '@aora/react': link:../../packages/react
+      '@aora/server': link:../../packages/server
+      '@nestjs/axios': 0.0.6_9a0e39cada075cf8a453083f94ffa5a6
+      '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
+      '@nestjs/core': 8.3.1_3ee156419336b921cef6d2ae294e6e72
+      '@nestjs/platform-express': 8.3.1_dc024985ab89eb73339eca509fad8031
+      aora: link:../../packages/aora
+      cross-env: 7.0.3
+      pm2: 4.5.6
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-router: 6.2.1_react@17.0.2
+      react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.4
+      serialize-javascript: 6.0.0
+      swiper: 6.7.5
+    devDependencies:
+      '@aora/cli': link:../../packages/cli
+      '@nestjs/cli': 8.2.1_esbuild@0.14.23+eslint@7.32.0
+      '@types/react': 17.0.39
+      '@types/react-dom': 17.0.11
+      '@typescript-eslint/eslint-plugin': 4.33.0_959502c0ea240e86d4d2ba8b8c0fee45
+      '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.5.5
+      eslint: 7.32.0
+      eslint-config-standard-react-ts: 1.0.13_a9de66533895efd4fd0fa9cb7cc3e89c
+      path-to-regexp: 6.2.0
+      typescript: 4.5.5
+
   packages/aora:
     specifiers:
       '@aora/cli': workspace:*
+      '@aora/env': workspace:*
       '@aora/react': workspace:*
       '@aora/server': workspace:*
       '@aora/types': workspace:*
@@ -126,6 +188,7 @@ importers:
       babel-plugin-import: ^1.13.0
       babel-preset-react-app: ^9.0.2
       cacache: ^15.3.0
+      chalk: ^4.1.2
       colorette: ^2.0.16
       concurrently: ^5.1.0
       consola: ^2.15.3
@@ -160,7 +223,6 @@ importers:
       react-router: ^6.2.1
       react-router-dom: ^6.2.1
       reflect-metadata: ^0.1.12
-      rimraf: ^3.0.2
       rxjs: ^7.1.10
       serialize-javascript: ^3.0.0
       terser-webpack-plugin: ^2.3.5
@@ -175,6 +237,7 @@ importers:
       webpackbar: ^5.0.0
     dependencies:
       '@aora/cli': link:../cli
+      '@aora/env': link:../env
       '@aora/react': link:../react
       '@aora/server': link:../server
       '@aora/types': link:../types
@@ -190,6 +253,7 @@ importers:
       babel-plugin-import: 1.13.3
       babel-preset-react-app: 9.1.2
       cacache: 15.3.0
+      chalk: 4.1.2
       colorette: 2.0.16
       concurrently: 5.3.0
       consola: 2.15.3
@@ -221,7 +285,6 @@ importers:
       react-dev-utils: 11.0.4
       react-router: 6.2.1_react@17.0.2
       react-router-dom: 6.2.1_react-dom@17.0.2+react@17.0.2
-      rimraf: 3.0.2
       serialize-javascript: 3.1.0
       terser-webpack-plugin: 2.3.8_webpack@5.69.1
       url-loader: 4.1.1_file-loader@6.2.0+webpack@5.69.1
@@ -251,7 +314,6 @@ importers:
       cacache: ^15.0.5
       colorette: ^2.0.16
       meow: ^7.1.1
-      rimraf: ^3.0.2
       typescript: 4.5.2
     dependencies:
       cacache: 15.3.0
@@ -260,8 +322,28 @@ importers:
     devDependencies:
       '@aora/types': link:../types
       '@types/cacache': 15.0.1
+      typescript: 4.5.2
+
+  packages/core:
+    specifiers:
+      '@types/express': ^4.17.11
+      '@types/tapable': ^1.0.6
+      esbuild: ^0.14.23
+      esno: ^0.14.0
+      path-to-regexp: ^6.2.0
+      rimraf: ^3.0.2
+      typescript: 4.5.2
+      webpack: ^5.69.0
+    dependencies:
+      '@types/express': 4.17.13
+      '@types/tapable': 1.0.8
+      path-to-regexp: 6.2.0
+    devDependencies:
+      esbuild: 0.14.23
+      esno: 0.14.1
       rimraf: 3.0.2
       typescript: 4.5.2
+      webpack: 5.69.1_esbuild@0.14.23
 
   packages/core:
     specifiers:
@@ -310,6 +392,27 @@ importers:
       react: 17.0.2
       rimraf: 3.0.2
       typescript: 4.5.2
+
+  packages/env:
+    specifiers:
+      '@types/express': ^4.17.11
+      '@types/tapable': ^1.0.6
+      esbuild: ^0.14.23
+      esno: ^0.14.0
+      path-to-regexp: ^6.2.0
+      rimraf: ^3.0.2
+      typescript: 4.5.2
+      webpack: ^5.69.0
+    dependencies:
+      '@types/express': 4.17.13
+      '@types/tapable': 1.0.8
+      path-to-regexp: 6.2.0
+    devDependencies:
+      esbuild: 0.14.23
+      esno: 0.14.1
+      rimraf: 3.0.2
+      typescript: 4.5.2
+      webpack: 5.69.1_esbuild@0.14.23
 
   packages/esbuild:
     specifiers:
@@ -3810,6 +3913,21 @@ packages:
       write-file-atomic: 3.0.3
     dev: true
 
+  /@nestjs/axios/0.0.6_9a0e39cada075cf8a453083f94ffa5a6:
+    resolution: {integrity: sha512-RgtKUziiEPRtWS3KJNDqq0Epw9ffFdIKAtcj6cXnWeJvgHLwnDkw2rUsmHpDYrhszG+8bc4H8sDygRKwNPPAQA==}
+    peerDependencies:
+      '@nestjs/common': ^7.0.0 || ^8.0.0
+      reflect-metadata: ^0.1.12
+      rxjs: ^6.0.0 || ^7.0.0
+    dependencies:
+      '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
+      axios: 0.26.0
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@nestjs/axios/0.0.6_d023343099a31e7f464b6483c667052d:
     resolution: {integrity: sha512-RgtKUziiEPRtWS3KJNDqq0Epw9ffFdIKAtcj6cXnWeJvgHLwnDkw2rUsmHpDYrhszG+8bc4H8sDygRKwNPPAQA==}
     peerDependencies:
@@ -3824,6 +3942,42 @@ packages:
     transitivePeerDependencies:
       - debug
     dev: false
+
+  /@nestjs/cli/8.2.1_esbuild@0.14.23:
+    resolution: {integrity: sha512-GnwpORSIkGl6N6yWPONq1wwZ8+zltr3vF1M/2qzupDnXOAvSSCh1otDQRAmeOf3uIIeCiCsJEEx79kRnT7Zdrw==}
+    engines: {node: '>= 10.13.0', npm: '>= 6.11.0'}
+    hasBin: true
+    dependencies:
+      '@angular-devkit/core': 13.2.3_chokidar@3.5.3
+      '@angular-devkit/schematics': 13.2.3_chokidar@3.5.3
+      '@angular-devkit/schematics-cli': 13.2.3_chokidar@3.5.3
+      '@nestjs/schematics': 8.0.7_chokidar@3.5.3+typescript@4.5.5
+      chalk: 3.0.0
+      chokidar: 3.5.3
+      cli-table3: 0.6.1
+      commander: 4.1.1
+      fork-ts-checker-webpack-plugin: 6.5.0_typescript@4.5.5+webpack@5.66.0
+      inquirer: 7.3.3
+      node-emoji: 1.11.0
+      ora: 5.4.1
+      os-name: 4.0.1
+      rimraf: 3.0.2
+      shelljs: 0.8.5
+      source-map-support: 0.5.21
+      tree-kill: 1.2.2
+      tsconfig-paths: 3.12.0
+      tsconfig-paths-webpack-plugin: 3.5.2
+      typescript: 4.5.5
+      webpack: 5.66.0_esbuild@0.14.23
+      webpack-node-externals: 3.0.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - eslint
+      - uglify-js
+      - vue-template-compiler
+      - webpack-cli
+    dev: true
 
   /@nestjs/cli/8.2.1_esbuild@0.14.23+eslint@7.32.0:
     resolution: {integrity: sha512-GnwpORSIkGl6N6yWPONq1wwZ8+zltr3vF1M/2qzupDnXOAvSSCh1otDQRAmeOf3uIIeCiCsJEEx79kRnT7Zdrw==}
@@ -3937,7 +4091,6 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - debug
-    dev: true
 
   /@nestjs/core/8.3.0_d023343099a31e7f464b6483c667052d:
     resolution: {integrity: sha512-C6m0hBIKg+xRcZYFDAGkMkZt1izQ7S42LYRyZPoWMO7/tEtW+yEPaUQtqG9CxxeG0wHjgzZ17iNeuxse4KfeIA==}
@@ -4035,7 +4188,6 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - encoding
-    dev: true
 
   /@nestjs/platform-express/8.3.0_3cc80dea73ec320916161aed2bdec5ed:
     resolution: {integrity: sha512-IH9bOkdUq5bcyDeu1D0GCFxNokQ989vv9mKh8q8UZ/Tu2k9E+gIVfHGt8Nrw975jwQnbiio2whIdPkkdF/2Y1Q==}
@@ -4065,7 +4217,6 @@ packages:
       express: 4.17.2
       multer: 1.4.4
       tslib: 2.3.1
-    dev: true
 
   /@nestjs/schematics/8.0.7_chokidar@3.5.3+typescript@4.5.5:
     resolution: {integrity: sha512-7k+eMMBUwvXFp6vwZ5byiLBEQKzjMyIJwO46ginoFugt2AXrOt0iUhR3BKFuWDBZaYQ1l4az86UGw5ohgH3wow==}
@@ -8241,6 +8392,37 @@ packages:
       cosmiconfig: 6.0.0
       deepmerge: 4.2.2
       eslint: 7.32.0
+      fs-extra: 9.1.0
+      glob: 7.2.0
+      memfs: 3.4.1
+      minimatch: 3.1.2
+      schema-utils: 2.7.0
+      semver: 7.3.5
+      tapable: 1.1.3
+      typescript: 4.5.5
+      webpack: 5.66.0_esbuild@0.14.23
+    dev: true
+
+  /fork-ts-checker-webpack-plugin/6.5.0_typescript@4.5.5+webpack@5.66.0:
+    resolution: {integrity: sha512-cS178Y+xxtIjEUorcHddKS7yCMlrDPV31mt47blKKRfMd70Kxu5xruAFE2o9sDY6wVC5deuob/u/alD04YYHnw==}
+    engines: {node: '>=10', yarn: '>=1.0.0'}
+    peerDependencies:
+      eslint: '>= 6'
+      typescript: '>= 2.7'
+      vue-template-compiler: '*'
+      webpack: '>= 4'
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+      vue-template-compiler:
+        optional: true
+    dependencies:
+      '@babel/code-frame': 7.16.7
+      '@types/json-schema': 7.0.9
+      chalk: 4.1.2
+      chokidar: 3.5.3
+      cosmiconfig: 6.0.0
+      deepmerge: 4.2.2
       fs-extra: 9.1.0
       glob: 7.2.0
       memfs: 3.4.1

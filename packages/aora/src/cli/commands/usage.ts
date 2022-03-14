@@ -1,6 +1,6 @@
-import { defineAoraCommand } from './index';
+import {AoraCommand} from './command';
 
-export default defineAoraCommand({
+const aoraUsage: AoraCommand = {
   meta: {
     name: 'usage',
     usage: 'npx aora usage',
@@ -9,4 +9,6 @@ export default defineAoraCommand({
   async invoke(args) {
     console.log(args);
   },
-});
+}
+
+export default aoraUsage

@@ -1,8 +1,8 @@
-import { readConfig } from "@aora/cli";
-import { formatRoutes } from '../../utils';
-import { defineAoraCommand } from './index';
+import {readConfig} from "@aora/cli";
+import {formatRoutes} from '../../utils';
+import {AoraCommand} from './command';
 
-export default defineAoraCommand({
+const aoraRoutes: AoraCommand = {
   meta: {
     name: 'routes',
     usage: 'npx aora routes',
@@ -13,4 +13,6 @@ export default defineAoraCommand({
     const routes = formatRoutes(config, args.jsx ? 'jsx' : 'json');
     console.log(routes);
   },
-});
+};
+
+export default aoraRoutes

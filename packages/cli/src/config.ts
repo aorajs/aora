@@ -1,8 +1,7 @@
-import type { IConfig } from '@aora/types';
+import type {IConfig} from '@aora/types';
 import * as path from 'path';
-import { join } from 'path';
-import { getCwd, normalizeEndPath, normalizeStartPath } from './utils/cwd';
-import {getOutputPublicPath} from "aora";
+import {join} from 'path';
+import {getCwd, normalizeEndPath, normalizeStartPath, getOutputPublicPath} from './utils/cwd';
 
 export type AppConfig = Partial<IConfig>;
 
@@ -46,7 +45,8 @@ export function readConfig(aoraRoot?: string): IConfig {
     '.json',
     '.web.jsx',
     '.jsx',
-    '.css',
+    // '.css',
+    '.js', '.jsx', '.ts', '.tsx'
   ];
 
 

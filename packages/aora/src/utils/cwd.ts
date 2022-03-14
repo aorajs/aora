@@ -9,7 +9,7 @@ const getCwd = () => {
 };
 
 const getFeDir = () => {
-  return resolve(getCwd(), process.env.FE_ROOT ?? 'web');
+  return resolve(getCwd(), process.env.FE_ROOT ?? 'app');
 };
 
 export const uniqueWhitelist = (list: (string | RegExp)[]) => {
