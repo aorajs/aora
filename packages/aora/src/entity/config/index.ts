@@ -31,8 +31,6 @@ export class Aora {
   async parseRoutes() {
     const { parseFeRoutes } = await import('../../utils/parse');
     await parseFeRoutes(this.config);
-    // const routeFile = findEntry(join(process.cwd(), './.aora'), 'routes')
-    // console.log('routeFile', routeFile)
   }
 
   async buildClient() {

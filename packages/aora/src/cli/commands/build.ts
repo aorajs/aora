@@ -15,7 +15,6 @@ const aoraBuild: AoraCommand<{ analyze: boolean }> = {
     const aora = new Aora(config);
     await aora.parseRoutes();
     await aora.buildClient();
-    // await aora.clean()
     await aora.buildServer();
     await aora.setupBuildId();
   },

@@ -1,17 +1,10 @@
-import { IConfig, ParseFeRouteItem } from '@aora/types';
-import { lstatSync, promises as fsp, readdirSync, existsSync, mkdirSync } from 'fs';
+import {IConfig, ParseFeRouteItem} from '@aora/types';
+import {existsSync, lstatSync, mkdirSync, promises as fsp, readdirSync} from 'fs';
 import * as esbuild from 'esbuild'
 import * as path from 'path';
-import {
-  accessFile,
-  getCwd,
-  getFeDir,
-  getPagesDir,
-  normalizeStartPath,
-} from './cwd';
+import {accessFile, getCwd, getFeDir, normalizeStartPath,} from './cwd';
 
 const debug = require('debug')('ssr:parse');
-const pageDir = getPagesDir();
 const cwd = getCwd();
 
 const getPrefix = (prefix: IConfig['prefix']) => {
@@ -30,11 +23,7 @@ function stripFileExtension(file: string) {
   return file.replace(/\.[a-z0-9]+$/i, '');
 }
 
-const routeModuleExts = ['.js', '.jsx', '.ts', '.tsx'];
-
-export function isRouteModuleFile(filename: string): boolean {
-  return routeModuleExts.includes(path.extname(filename));
-}
+const routeModuleExtensions = new Set(['.js', '.jsx', '.ts', '.tsx']);
 
 function visitFiles(
   dir: string,
@@ -95,23 +84,17 @@ export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
 };
 
 const parseFeRoutes = async (config: IConfig) => {
-  const { dynamic, routerPriority, routerOptimize } = config;
+  const {dynamic} = config;
   const prefix = getPrefix(config.prefix);
-
   let routes = '';
-  // 根据目录结构生成前端路由表
-  const pathRecord = ['']; // 路径记录
-  // @ts-ignore
-  const route: ParseFeRouteItem = {};
   let arr = getRoutes(config).map((r: any) => {
-    const item = {
+    return {
       component: `@/${r.file}`,
       path: path.join('/', r.path),
       webpackChunkName: r.id.slice('pages'.length + 1),
       id: r.id,
       index: r.index,
     }
-    return item
   });
   debug('Before the result that parse web folder to routes is: ', arr);
 
@@ -129,18 +112,18 @@ const parseFeRoutes = async (config: IConfig) => {
   routes = `
     // The file is provisional，don't depend on it
       export const FeRoutes = ${JSON.stringify(arr, (_key, value) =>
-        value === '' || value === undefined ? undefined : value,
-      )}
+    value === '' || value === undefined ? undefined : value,
+  )}
       ${
-        accessReactApp
-          ? 'export { default as App, fetch as layoutFetch } from "@/layouts/App.tsx"'
-          : ''
-      }
+    accessReactApp
+      ? 'export { default as App, fetch as layoutFetch } from "@/layouts/App.tsx"'
+      : ''
+  }
       ${
-        layoutFetch
-          ? 'export { default as layoutFetch } from "@/layouts/fetch.ts"'
-          : ''
-      }
+    layoutFetch
+      ? 'export { default as layoutFetch } from "@/layouts/fetch.ts"'
+      : ''
+  }
       ${accessStore ? 'export * from "@/store/index.ts"' : ''}
       ${prefix ? `export const PrefixRouterBase='${prefix}'` : ''}
 
@@ -171,9 +154,10 @@ const parseFeRoutes = async (config: IConfig) => {
 type Route = { id: string; index?: boolean; path?: string; file: string };
 
 const layoutPages = ['_document', '_app']
+
 const isPageFile = (fileName: string) => {
-  const file = path.parse(fileName)
-  return routeModuleExts.includes(file.ext) && !layoutPages.includes(file.name);
+  const {name, ext} = path.parse(fileName)
+  return routeModuleExtensions.has(ext) && !layoutPages.includes(name);
 }
 
 const pageDirName = 'pages'
@@ -234,9 +218,9 @@ export function getRoutes(_config: IConfig): Route[] {
     let routePath: string | undefined = createRoutePath(
       routeId.slice((parentId || 'pages').length + 1),
     );
-    let fullPath = createRoutePath(routeId.slice(pageDirName.length + 1));
+    // let fullPath = createRoutePath(routeId.slice(pageDirName.length + 1));
     let isIndexRoute = routeId.endsWith('/index');
-    let uniqueRouteId = (fullPath || '') + (isIndexRoute ? '?index' : '');
+    // let uniqueRouteId = (fullPath || '') + (isIndexRoute ? '?index' : '');
     if (isIndexRoute) {
       let invalidChildRoutes = routeIds.filter(
         (id) => findParentRouteId(routeIds, id) === routeId,
@@ -320,142 +304,6 @@ export function formatRoutesAsJsx(routes: any) {
   output += '\n</Routes>';
   return output;
 }
-
-export const parseFeRoutes2 = async (config: IConfig) => {
-  let files: { [routeId: string]: string } = {};
-  const pagesDir = 'pages';
-
-  visitFiles(path.join(getFeDir(), pagesDir), (file) => {
-    if (!file.includes('render') && isRouteModuleFile(file)) {
-      const routeId = createRouteId(path.join(pagesDir, file));
-      files[routeId] = path.join(pagesDir, file);
-      return;
-    }
-  });
-
-  let routeIds = Object.keys(files).sort(byLongestFirst);
-  let uniqueRoutes: any = Object.create(null);
-
-  routeIds.forEach((routeId) => {
-    let routePath: string | undefined = createRoutePath(
-      routeId.slice(pageDir.length + 1),
-    );
-    let fullPath = createRoutePath(routeId.slice(pageDir.length + 1));
-    let isIndexRoute = routeId.endsWith('/index');
-    let uniqueRouteId = (fullPath || '') + (isIndexRoute ? '?index' : '');
-    if (isIndexRoute) {
-      let invalidChildRoutes = routeIds.filter(
-        (id) => findParentRouteId(routeIds, id) === routeId,
-      );
-
-      if (invalidChildRoutes.length > 0) {
-        throw new Error(
-          `Child routes are not allowed in index routes. Please remove child routes of ${routeId}`,
-        );
-      }
-
-      // defineRoute(routePath, files[routeId], {
-      //   index: true
-      // });
-
-      let route: any = {
-        path: routePath ? routePath : '',
-        index: true,
-        // caseSensitive: options.caseSensitive ? true : undefined,
-        id: createRouteId(files[routeId]),
-        // parentId:
-        //   parentRoutes.length > 0
-        //     ? parentRoutes[parentRoutes.length - 1].id
-        //     : undefined,
-        file: files[routeId],
-      };
-
-      uniqueRoutes[route.id] = route;
-    } else {
-      // defineRoute(routePath, files[routeId], () => {
-      // defineNestedRoutes(defineRoute, routeId);
-      // });
-      let route: any = {
-        path: routePath ? routePath : '',
-        // caseSensitive: options.caseSensitive ? true : undefined,
-        id: createRouteId(files[routeId]),
-        // parentId:
-        //   parentRoutes.length > 0
-        //     ? parentRoutes[parentRoutes.length - 1].id
-        //     : undefined,
-        file: files[routeId],
-      };
-      uniqueRoutes[route.id] = route;
-    }
-  });
-  console.log(uniqueRoutes);
-  await fsp.writeFile(
-    path.resolve(cwd, './.aora/routes-manifest.json'),
-    JSON.stringify(uniqueRoutes),
-  );
-
-  const { dynamic, routerPriority, routerOptimize } = config;
-  const prefix = getPrefix(config.prefix);
-
-  let routes = '';
-  const arr = Object.values(uniqueRoutes).map((r: any) => {
-    const item = {
-      component: `@/${r.file}`,
-      path: path.join('/', r.path),
-      webpackChunkName: r.id,
-    }
-    return item
-  });
-  debug('Before the result that parse web folder to routes is: ', arr);
-
-  // React 场景
-  const accessReactApp = await accessFile(
-    path.join(getFeDir(), './layouts/App.tsx'),
-  );
-  const layoutFetch = await accessFile(
-    path.join(getFeDir(), './layouts/fetch.ts'),
-  );
-  const accessStore = await accessFile(
-    path.join(getFeDir(), './store/index.ts'),
-  );
-  const re = /"webpackChunkName":("(.+?)")/g;
-  routes = `\n
-// The file is provisional，don't depend on it \n
-export const FeRoutes = ${JSON.stringify(arr)} \n
-${
-  accessReactApp
-    ? 'export { default as App, fetch as layoutFetch } from "@/layouts/App.tsx"'
-    : ''
-} \n
-${
-  layoutFetch
-    ? 'export { default as layoutFetch } from "@/layouts/fetch.ts"'
-    : ''
-} \n
-${accessStore ? 'export * from "@/store/index.ts"' : ''} \n
-${prefix ? `export const PrefixRouterBase='${prefix}'` : ''} \n
-`;
-  routes = routes.replace(/"component":("(.+?)")/g, (_global, _m1, m2) => {
-    const currentWebpackChunkName = re.exec(routes)![2];
-    if (dynamic) {
-      return `"component": function dynamicComponent () {\n
-    return import(/* webpackChunkName: "${currentWebpackChunkName}" */ '${m2.replace(
-        /\^/g,
-        '"',
-      )}')\n
-}`;
-    } else {
-      return `"component": require('${m2.replace(/\^/g, '"')}').default`;
-    }
-  });
-  re.lastIndex = 0;
-  debug('After the result that parse web folder to routes is: ', routes);
-  const routesCode = await esbuild.transform(routes, {
-    format: "esm",
-  })
-  await fsp.writeFile(path.resolve(cwd, './.aora/routes2.js'), routesCode.code);
-  await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
-};
 
 function byLongestFirst(a: string, b: string): number {
   return b.length - a.length;
@@ -554,7 +402,7 @@ const renderRoutes = async (
         // 单 fetch 文件的情况 所有类型的 render 都对应该 fetch
         route.fetch = `${aliasPath}/fetch.ts`;
       }
-      routeArr.push({ ...route });
+      routeArr.push({...route});
     }
   }
   routeArr.forEach((r) => {
@@ -581,7 +429,7 @@ const getDynamicParam = (url: string) => {
     .join('/:');
 };
 
-export { parseFeRoutes };
+export {parseFeRoutes};
 
 let escapeStart = '[';
 let escapeEnd = ']';

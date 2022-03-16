@@ -1,6 +1,6 @@
 import {Controller, Get, Inject } from '@nestjs/common';
 import { ApiDetailService } from './detail.service';
-import {AoraRenderService} from "aora/module";
+import {AoraRenderService} from "@aora/nest";
 
 @Controller('/')
 export class DetailController {

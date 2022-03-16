@@ -183,6 +183,7 @@ importers:
       '@nestjs/common': ^8.0.0
       '@nestjs/core': ^8.0.0
       '@types/express': ^4.17.11
+      '@types/lodash': ^4.14.180
       '@types/node': '>=14.0.0'
       '@types/react': ^17.0.0
       '@types/react-dom': ^17.0.11
@@ -208,6 +209,7 @@ importers:
       ignore-loader: ^0.1.2
       less: ^4.1.1
       less-loader: ^7.3.0
+      lodash: ^4.17.21
       meow: ^7.1.1
       mini-css-extract-plugin: ^1.0.0
       node-fetch: 2.6.7
@@ -272,6 +274,7 @@ importers:
       ignore-loader: 0.1.2
       less: 4.1.2
       less-loader: 7.3.0_less@4.1.2+webpack@5.69.1
+      lodash: 4.17.21
       meow: 7.1.1
       mini-css-extract-plugin: 1.6.2_webpack@5.69.1
       node-fetch: 2.6.7
@@ -299,6 +302,7 @@ importers:
     devDependencies:
       '@nestjs/common': 8.3.0_5ea478ffd02988cbda93d1fe5f8e1bdc
       '@nestjs/core': 8.3.0_d023343099a31e7f464b6483c667052d
+      '@types/lodash': 4.14.180
       '@types/react': 17.0.39
       '@types/react-dom': 17.0.11
       '@types/serialize-javascript': 1.5.0
@@ -422,18 +426,14 @@ importers:
       '@nestjs/core': ^8.0.0
       '@nestjs/platform-express': ^8.3.1
       '@types/express': ^4.17.11
-      '@types/tapable': ^1.0.6
       aora: workspace:*
-      path-to-regexp: ^6.2.0
       reflect-metadata: ^0.1.13
       rxjs: ^7.5.4
       typescript: 4.5.2
       webpack: ^5.69.0
     dependencies:
       '@types/express': 4.17.13
-      '@types/tapable': 1.0.8
       aora: link:../aora
-      path-to-regexp: 6.2.0
     devDependencies:
       '@nestjs/common': 8.3.1_0a8b9973a45cbeaad6b0063efdcaad84
       '@nestjs/core': 8.3.1_3ee156419336b921cef6d2ae294e6e72
@@ -4710,6 +4710,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    dev: true
+
+  /@types/lodash/4.14.180:
+    resolution: {integrity: sha512-XOKXa1KIxtNXgASAnwj7cnttJxS4fksBRywK/9LzRV5YxrF80BXZIGeQSuoESQ/VkUj30Ae0+YcuHc15wJCB2g==}
     dev: true
 
   /@types/mime/1.3.2:
