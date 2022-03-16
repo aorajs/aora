@@ -22,18 +22,25 @@
   "dependencies": {
     "@types/express": "^4.17.11",
     "@types/tapable": "^1.0.6",
+    "aora": "workspace:*",
     "path-to-regexp": "^6.2.0"
   },
   "devDependencies": {
     "typescript": "4.5.2",
+    "@nestjs/core": "^8.0.0",
     "@nestjs/common": "^8.3.1",
     "@nestjs/platform-express": "^8.3.1",
     "rxjs": "^7.5.4",
     "reflect-metadata": "^0.1.13",
-    "@nestjs/core": "^8.3.1",
     "webpack": "^5.69.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/common": "^8.3.1",
+    "@nestjs/platform-express": "^8.3.1",
+    "rxjs": "^7.5.4",
+    "reflect-metadata": "^0.1.13"
+  },
   "license": "MIT",
   "publishConfig": {
     "access": "public"

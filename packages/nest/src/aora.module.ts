@@ -16,8 +16,10 @@ export class AoraModule {
     return {
       module: AoraModule,
       imports: [],
+      global: true,
       providers: [
         createAoraServer(),
+        AoraRenderService,
         {
           provide: AORA_MODULE_OPTIONS,
           useValue: options,

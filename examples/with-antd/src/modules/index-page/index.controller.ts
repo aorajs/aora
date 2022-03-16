@@ -1,7 +1,7 @@
 import {Controller, Get, Inject, Req} from '@nestjs/common';
 import { Request } from 'express';
 import { ApiService } from './index.service';
-import { AoraRenderService } from "aora/module";
+import { AoraRenderService } from "@aora/nest";
 
 @Controller('/')
 export class AppController {
