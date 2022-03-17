@@ -2,11 +2,7 @@ import { IConfig } from '@aora/types';
 import { join } from 'path';
 import * as webpack from 'webpack';
 import * as WebpackChain from 'webpack-5-chain';
-import {
-  getLocalNodeModules,
-  nodeExternals,
-  uniqueWhitelist,
-} from '../../utils';
+import { getLocalNodeModules, nodeExternals, uniqueWhitelist } from '../../utils';
 import { getBaseConfig } from './base';
 
 export const getServerWebpack = (config: IConfig) => {
@@ -25,7 +21,7 @@ export const getServerWebpack = (config: IConfig) => {
     .chunkFilename('js/[name].[contenthash:8].chunk.js')
     .libraryTarget('commonjs');
 
-  const modulesDir = [join(cwd, './node_modules')];
+  const modulesDir = [join(cwd, './node_modules'), join(cwd, './app/pages')];
   modulesDir.push(getLocalNodeModules());
 
   chain.externals(
@@ -38,26 +34,13 @@ export const getServerWebpack = (config: IConfig) => {
           /store$/,
           /antd-mobile.*/,
           /@babel*/,
-          ...(whiteList || [])
+          ...(whiteList || []),
         ],
       ),
       // externals Dir contains example/xxx/node_modules ssr/node_modules
       modulesDir,
     }),
   );
-//   externals?:
-// | string
-//   | RegExp
-//   | ExternalItem[]
-//   | (ExternalItemObjectKnown & ExternalItemObjectUnknown)
-//   | ((
-//     data: ExternalItemFunctionData,
-//     callback: (
-//       err?: Error,
-//       result?: string | boolean | string[] | { [index: string]: any }
-//     ) => void
-//   ) => void)
-//   | ((data: ExternalItemFunctionData) => Promise<ExternalItemValue>);
 
   chain.when(isDev, () => {
     chain.watch(true);

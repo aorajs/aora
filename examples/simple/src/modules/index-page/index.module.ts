@@ -8,4 +8,5 @@ import { ApiService } from './index.service';
   controllers: [AppController, ApiController],
   providers: [ApiService],
 })
-export class indexModule {}
+export class indexModule {
+}

@@ -125,7 +125,7 @@ function mergeStream2(...arg: any[]): Readable {
 
   mergedStream.setMaxListeners(0);
   mergedStream.add = addStream;
-  mergedStream.on('unpipe', function (stream) {
+  mergedStream.on('unpipe', function(stream) {
     stream.emit('merge2UnpipeEnd');
   });
 

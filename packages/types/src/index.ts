@@ -3,7 +3,8 @@ export * from './config';
 export * from './ctx';
 export * from './route';
 export * from './yargs';
-import * as React from 'react'
+import type { ReactChild } from 'react';
+import * as React from 'react';
 
 export type Mode = 'development' | 'production';
 
@@ -18,8 +19,6 @@ export interface ParseFeRouteItem {
   component?: string;
   webpackChunkName: string;
 }
-
-import type { ReactChild } from 'react';
 
 export type IProps<T = {}> = T & {
   children: ReactChild;

@@ -1,9 +1,4 @@
-import {
-  IWindow,
-  LayoutProps,
-  ReactESMFeRouteItem,
-  ReactRoutesType,
-} from '@aora/types';
+import { IWindow, LayoutProps, ReactESMFeRouteItem, ReactRoutesType } from '@aora/types';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -22,7 +17,7 @@ declare const window: IWindow;
 const clientRender = async (): Promise<void> => {
   const IApp =
     App ??
-    function (props: LayoutProps) {
+    function(props: LayoutProps) {
       return props.children!;
     };
   // 客户端渲染||hydrate

@@ -1,4 +1,4 @@
-import { Configuration, Stats, RuleSetCondition } from 'webpack';
+import { Configuration, RuleSetCondition, Stats } from 'webpack';
 import * as Config from 'webpack-5-chain';
 import { Argv } from './yargs';
 
@@ -6,8 +6,8 @@ export type Script = Array<{
   describe:
     | object
     | {
-        attrs: object;
-      };
+    attrs: object;
+  };
   content: string;
 }>;
 

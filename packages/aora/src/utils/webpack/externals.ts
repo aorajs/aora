@@ -1,11 +1,5 @@
-import type { Configuration } from 'webpack';
 import { uniqueWhitelist } from '..';
-import {
-contains,
-containsPattern,
-readDir,
-readFromPackageJson
-} from './external-utils';
+import { contains, containsPattern, readDir, readFromPackageJson } from './external-utils';
 
 const scopedModuleRegex = new RegExp(
   '@[a-zA-Z0-9][\\w-.]+/[a-zA-Z0-9][\\w-.]+([a-zA-Z0-9./]+)?',
@@ -69,7 +63,7 @@ function nodeExternals(options: {
   }
 
   // return an externals function
-  return function (context: any, callback: any) {
+  return function(context: any, callback: any) {
     const { request } = context;
     const moduleName = getModuleName(request, includeAbsolutePaths);
     if (

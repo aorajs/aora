@@ -1,5 +1,5 @@
 import { IConfig, StyleOptions } from '@aora/types';
-import * as Config from 'webpack-5-chain'
+import * as Config from 'webpack-5-chain';
 import type { LoaderContext } from 'webpack';
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -50,21 +50,21 @@ export const setStyle = (
     typeof userPostcssOptions === 'function'
       ? userPostcssOptions
       : Object.assign(
-          {
-            ident: 'postcss',
-            plugins: [
-              require('postcss-flexbugs-fixes'),
-              require('postcss-discard-comments'),
-              require('postcss-preset-env')({
-                autoprefixer: {
-                  flexbox: 'no-2009',
-                },
-                stage: 3,
-              }),
-            ].concat(postCssPlugins),
-          },
-          userPostcssOptions ?? {},
-        ); // 合并用户自定义 postcss options
+        {
+          ident: 'postcss',
+          plugins: [
+            require('postcss-flexbugs-fixes'),
+            require('postcss-discard-comments'),
+            require('postcss-preset-env')({
+              autoprefixer: {
+                flexbox: 'no-2009',
+              },
+              stage: 3,
+            }),
+          ].concat(postCssPlugins),
+        },
+        userPostcssOptions ?? {},
+      ); // 合并用户自定义 postcss options
 
   chain.module
     .rule(options.rule)
@@ -97,21 +97,21 @@ export const setStyle = (
     .end()
     .when(Boolean(loader), (rule: any) => {
       loader &&
-        rule
-          .use(loader)
-          .loader(loadModule(loader))
-          .when(loader === 'less-loader', (rule: any) => {
-            rule.options(
-              css?.().loaderOptions?.less ?? {
-                lessOptions: {
-                  javascriptEnabled: true,
-                },
+      rule
+        .use(loader)
+        .loader(loadModule(loader))
+        .when(loader === 'less-loader', (rule: any) => {
+          rule.options(
+            css?.().loaderOptions?.less ?? {
+              lessOptions: {
+                javascriptEnabled: true,
               },
-            );
-          })
-          .when(loader === 'sass-loader', (rule: any) => {
-            rule.options(css?.().loaderOptions?.sass ?? {});
-          })
-          .end();
+            },
+          );
+        })
+        .when(loader === 'sass-loader', (rule: any) => {
+          rule.options(css?.().loaderOptions?.sass ?? {});
+        })
+        .end();
     });
 };

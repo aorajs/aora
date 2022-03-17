@@ -1,5 +1,5 @@
-import type {AnyFlags, Result} from 'meow';
-import {TypedFlags} from "meow";
+import type { AnyFlags, Result } from 'meow';
+import { TypedFlags } from 'meow';
 
 export interface AoraCommandMeta {
   name: string;

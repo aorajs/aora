@@ -1,4 +1,4 @@
-import {AoraCommand} from './command';
+import { AoraCommand } from './command';
 
 const aoraInfo: AoraCommand = {
   meta: {
@@ -11,4 +11,4 @@ const aoraInfo: AoraCommand = {
   },
 };
 
-export default aoraInfo
+export default aoraInfo;

@@ -1,5 +1,4 @@
 import { IConfig } from '@aora/types';
-import * as esbuild from 'esbuild';
 import * as path from 'path';
 import * as process from 'process';
 
@@ -11,7 +10,7 @@ export const start = async (config: IConfig) => {
 };
 
 export const build = async (config: IConfig) => {
-  console.log(__dirname)
+  console.log(__dirname);
   // const serverCode = await esbuild.build({
   //   entryPoints: [path.resolve(__dirname, '../entry.server')],
   //   format: 'cjs',
@@ -24,5 +23,5 @@ export const build = async (config: IConfig) => {
   const { startServerBuild, startClientBuild } = await import('../webpack');
   await Promise.all([startServerBuild(config), startClientBuild(config)]);
 
-  console.log(path.resolve(process.cwd(), './.aora/server2'))
+  console.log(path.resolve(process.cwd(), './.aora/server2'));
 };

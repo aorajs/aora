@@ -1,5 +1,3 @@
-export default async function build(
+export default async function build() {
 
-) {
-  
 }

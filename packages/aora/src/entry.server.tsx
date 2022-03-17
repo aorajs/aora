@@ -1,11 +1,7 @@
 // @ts-ignore
 import Layout from '@/layouts/index.tsx';
 import { AoraEntryContext, STORE_CONTEXT as Context } from '@aora/react';
-import {
-  IConfig,
-  ISSRContext,
-  ReactRoutesType,
-} from '@aora/types';
+import { IConfig, ISSRContext, ReactRoutesType } from '@aora/types';
 // @ts-ignore
 import { addAsyncChunk, findRoute, getManifest, normalizePath } from 'aora';
 import * as React from 'react';
@@ -19,19 +15,10 @@ const { FeRoutes, layoutFetch, state } =
 
 // declare const global: IGlobal
 
-const serverRender = async (
-  data: unknown,
-  ctx: ISSRContext,
-  config: IConfig,
-  {
-    base,
-    path
-  } : {
-    base: string;
-    path: string;
-    route: any
-  }
-): Promise<React.ReactElement> => {
+const serverRender = async (data: unknown, ctx: ISSRContext, config: IConfig, {
+  base,
+  path,
+}: { base: string; path: string; route: any }): Promise<React.ReactElement> => {
   const {
     cssOrder,
     jsOrder,
@@ -40,10 +27,10 @@ const serverRender = async (
     parallelFetch,
   } = config;
   const routeItem: any = findRoute(FeRoutes, path);
-  const { isDev, fePort } = config
+  const { isDev, fePort } = config;
 
   let dynamicCssOrder = cssOrder;
-  const devPath = isDev ? `` : ''
+  const devPath = isDev ? `` : '';
 
   if (dynamic) {
     dynamicCssOrder = cssOrder.concat([`${devPath}${routeItem.webpackChunkName}.css`]);
@@ -60,8 +47,8 @@ const serverRender = async (
   dynamicCssOrder.forEach((css: string) => {
     if (manifest[css]) {
       const item = `${devPath}${manifest[css]}`;
-      injectCss.push(<link rel="stylesheet" key={item} href={item} />);
-      preloadCss.push(<link rel="preload" key={item} href={item} as="style" />);
+      injectCss.push(<link rel='stylesheet' key={item} href={item} />);
+      preloadCss.push(<link rel='preload' key={item} href={item} as='style' />);
     }
   });
 
@@ -71,7 +58,7 @@ const serverRender = async (
   const preloadScript = jsOrder
     .map((js: string) => `${devPath}${manifest[js]}`)
     .map((item: string) => (
-      <link rel="preload" as="script" key={item} href={item} />
+      <link rel='preload' as='script' key={item} href={item} />
     ));
 
   const staticList = {
@@ -91,8 +78,8 @@ const serverRender = async (
     const currentFetch = compFetch
       ? compFetch
       : fetch
-      ? (await fetch()).default
-      : null;
+        ? (await fetch()).default
+        : null;
     // csr 下不需要服务端获取数据
     if (parallelFetch) {
       [layoutFetchData, fetchData] = await Promise.all([
@@ -115,8 +102,8 @@ const serverRender = async (
         serverHandoffString: isCsr
           ? undefined
           : `window.__USE_SSR__=true;window.__INITIAL_DATA__=${serialize(
-              combineData,
-            )};window.pageProps=${serialize(fetchData)}`,
+            combineData,
+          )};window.pageProps=${serialize(fetchData)}`,
       }}
     >
       <StaticRouter location={ctx.request.url} basename={base}>

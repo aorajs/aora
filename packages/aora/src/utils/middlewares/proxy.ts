@@ -2,7 +2,7 @@ import { IConfig, proxyOptions } from '@aora/types';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 function onProxyReq(proxyReq: any, req: any) {
-  Object.keys(req.headers).forEach(function (key) {
+  Object.keys(req.headers).forEach(function(key) {
     proxyReq.setHeader(key, req.headers[key]);
   });
 }
@@ -34,7 +34,7 @@ const getDevProxyMiddlewaresArr = async (
       onProxyReq,
       logLevel: 'warn',
     };
-    console.log(remoteStaticServerOptions)
+    console.log(remoteStaticServerOptions);
 
     const proxyPathMap: Record<string, any> = {
       '/ws': remoteStaticServerOptions,

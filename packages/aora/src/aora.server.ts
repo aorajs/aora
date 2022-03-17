@@ -1,14 +1,14 @@
-import {getCwd, normalizePath} from "./utils";
-import {readConfig} from "@aora/cli";
-import {cloneDeep} from 'lodash'
-import {resolve} from "path";
-import {renderToString} from "react-dom/server";
-import {ExpressContext, ISSRContext, UserConfig} from '@aora/types';
+import { getCwd, normalizePath } from './utils';
+import { readConfig } from '@aora/cli';
+import { cloneDeep } from 'lodash';
+import { resolve } from 'path';
+import { renderToString } from 'react-dom/server';
+import type { ExpressContext } from '@aora/types';
 
 export class AoraServer {
   protected options: any;
-  protected hasLoadConfig = false
-  protected config: any = {}
+  protected hasLoadConfig = false;
+  protected config: any = {};
 
   constructor(options: any) {
     this.options = options;
@@ -18,19 +18,13 @@ export class AoraServer {
     console.log(11);
   }
 
-  protected async loadConfig() {
-    if (!this.hasLoadConfig) {
-      this.config = await readConfig()
-      this.hasLoadConfig = true
-    }
-    return this.config
-  }
-
   public render(data: unknown, ctx: any, options?: any): Promise<string>;
+
   public render<T>(data: unknown, ctx: any, options?: any): Promise<T>;
+
   public async render(data: unknown, ctx: any, options?: any) {
-    const defaultConfig = await this.loadConfig()
-    const {chunkName} = defaultConfig;
+    const defaultConfig = await this.loadConfig();
+    const { chunkName } = defaultConfig;
     const cwd = getCwd();
     const config = Object.assign(cloneDeep(defaultConfig), options ?? {});
     const isDev = config.isDev || process.env.NODE_ENV !== 'production';
@@ -41,7 +35,7 @@ export class AoraServer {
       delete require.cache[serverFile];
     }
 
-    const {serverRender} = await import(serverFile);
+    const { serverRender } = await import(serverFile);
     const {
       cssOrder,
       jsOrder,
@@ -62,7 +56,7 @@ export class AoraServer {
     //     `查找组件失败，请确认当前 path: ${path} 对应前端组件是否存在\n若创建了新的页面文件夹，请重新执行 npm start 重启服务`,
     //   );
     // }
-    const serverRes = await serverRender(data, ctx, config, {base, path});
+    const serverRes = await serverRender(data, ctx, config, { base, path });
 
     if (!(ctx as ExpressContext).response.hasHeader?.('content-type')) {
       // express 场景
@@ -74,5 +68,13 @@ export class AoraServer {
 
     const markup = renderToString(serverRes);
     return '<!DOCTYPE html>' + markup;
+  }
+
+  protected async loadConfig() {
+    if (!this.hasLoadConfig) {
+      this.config = await readConfig();
+      this.hasLoadConfig = true;
+    }
+    return this.config;
   }
 }

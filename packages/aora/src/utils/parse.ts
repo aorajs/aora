@@ -1,8 +1,8 @@
-import {IConfig, ParseFeRouteItem} from '@aora/types';
-import {existsSync, lstatSync, mkdirSync, promises as fsp, readdirSync} from 'fs';
-import * as esbuild from 'esbuild'
+import { IConfig, ParseFeRouteItem } from '@aora/types';
+import { existsSync, lstatSync, mkdirSync, promises as fsp, readdirSync } from 'fs';
+import * as esbuild from 'esbuild';
 import * as path from 'path';
-import {accessFile, getCwd, getFeDir, normalizeStartPath,} from './cwd';
+import { accessFile, getCwd, getFeDir, normalizeStartPath } from './cwd';
 
 const debug = require('debug')('ssr:parse');
 const cwd = getCwd();
@@ -84,7 +84,7 @@ export const getImageOutputPath = (publicPath: string, isDev: boolean) => {
 };
 
 const parseFeRoutes = async (config: IConfig) => {
-  const {dynamic} = config;
+  const { dynamic } = config;
   const prefix = getPrefix(config.prefix);
   let routes = '';
   let arr = getRoutes(config).map((r: any) => {
@@ -94,7 +94,7 @@ const parseFeRoutes = async (config: IConfig) => {
       webpackChunkName: r.id.slice('pages'.length + 1),
       id: r.id,
       index: r.index,
-    }
+    };
   });
   debug('Before the result that parse web folder to routes is: ', arr);
 
@@ -153,14 +153,14 @@ const parseFeRoutes = async (config: IConfig) => {
 
 type Route = { id: string; index?: boolean; path?: string; file: string };
 
-const layoutPages = ['_document', '_app']
+const layoutPages = ['_document', '_app'];
 
 const isPageFile = (fileName: string) => {
-  const {name, ext} = path.parse(fileName)
+  const { name, ext } = path.parse(fileName);
   return routeModuleExtensions.has(ext) && !layoutPages.includes(name);
-}
+};
 
-const pageDirName = 'pages'
+const pageDirName = 'pages';
 
 export function getRoutes(_config: IConfig): Route[] {
   let files: { [routeId: string]: string } = {};
@@ -319,12 +319,12 @@ export function checkOutputDir() {
 const writeRoutes = async (routes: string) => {
   checkOutputDir();
   const routesCode = await esbuild.transform(routes, {
-    format: "esm",
+    format: 'esm',
     target: 'es6',
     keepNames: true,
     minifySyntax: true,
     // minify: true,
-  })
+  });
   await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routesCode.code);
   // await fsp.writeFile(path.resolve(cwd, './.aora/routes.js'), routes);
 };
@@ -402,7 +402,7 @@ const renderRoutes = async (
         // 单 fetch 文件的情况 所有类型的 render 都对应该 fetch
         route.fetch = `${aliasPath}/fetch.ts`;
       }
-      routeArr.push({...route});
+      routeArr.push({ ...route });
     }
   }
   routeArr.forEach((r) => {
@@ -429,7 +429,7 @@ const getDynamicParam = (url: string) => {
     .join('/:');
 };
 
-export {parseFeRoutes};
+export { parseFeRoutes };
 
 let escapeStart = '[';
 let escapeEnd = ']';

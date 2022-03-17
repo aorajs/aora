@@ -7,9 +7,7 @@ interface AoraEntryContextType {
   serverHandoffString?: string;
 }
 
-export const AoraEntryContext = React.createContext<
-  AoraEntryContextType | undefined
->(undefined);
+export const AoraEntryContext = React.createContext<AoraEntryContextType | undefined>(undefined);
 
 let isHydrated = false;
 
@@ -36,7 +34,7 @@ export function Metas(meta: HtmlMetaDescriptor) {
   return (
     <>
       {Object.entries(meta).map(([name, value]) => {
-        return name === 'title' ? <title key="title">{value}</title> : null;
+        return name === 'title' ? <title key='title'>{value}</title> : null;
       })}
     </>
   );

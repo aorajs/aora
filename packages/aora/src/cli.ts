@@ -1,9 +1,9 @@
-import {red} from 'colorette';
+import { red } from 'colorette';
 import * as meow from 'meow';
-import type {AoraCommand, Command} from './cli/commands';
-import {commands} from './cli/commands';
-import {error} from "./utils/log";
-import {printAndExit} from "./server/lib/utils";
+import type { AoraCommand, Command } from './cli/commands';
+import { commands } from './cli/commands';
+import { error } from './utils/log';
+import { printAndExit } from './server/lib/utils';
 
 const helpText = `
 Usage
@@ -75,7 +75,7 @@ export async function main() {
       printAndExit(`
 Description: ${cmd.meta.description}
 Usage: $ ${cmd.meta.usage}
-`, 0)
+`, 0);
     }
     await cmd.invoke(cli.flags).catch(onFatalError);
     console.log(`💫 Done in ${Date.now() - start}ms`);

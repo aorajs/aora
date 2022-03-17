@@ -14,7 +14,7 @@ const _getManiFest = async (
     const res: any = await (fetch(
       `${https ? 'https' : 'http'}://localhost:${fePort}${manifestPath}`,
     ).then(res => res.json()));
-    console.log(res)
+    console.log(res);
     manifest = res;
   } else {
     manifest = JSON.parse(

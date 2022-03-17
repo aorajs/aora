@@ -1,1 +1,1 @@
-export const runtime = {}
+export const runtime = {};

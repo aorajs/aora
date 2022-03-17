@@ -1,14 +1,15 @@
-import {Controller, Get, Inject, Req} from '@nestjs/common';
+import { Controller, Get, Inject, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { ApiService } from './index.service';
-import { AoraRenderService } from "@aora/nest";
+import { AoraRenderService } from '@aora/nest';
 
 @Controller('/')
 export class AppController {
   constructor(private readonly apiService: ApiService,
               @Inject(AoraRenderService)
-              private readonly render: AoraRenderService
-              ) {}
+              private readonly render: AoraRenderService,
+  ) {
+  }
 
   @Get('/')
   async handlerIndex(): Promise<any> {

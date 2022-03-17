@@ -1,10 +1,5 @@
 import { getLayout, STORE_CONTEXT as Context } from '@aora/react';
-import {
-  IConfig,
-  ISSRContext,
-  ReactESMFeRouteItem,
-  ReactRoutesType,
-} from '@aora/types';
+import { IConfig, ISSRContext, ReactESMFeRouteItem, ReactRoutesType } from '@aora/types';
 // @ts-ignore
 import { addAsyncChunk, findRoute, getManifest, normalizePath } from 'aora';
 import * as React from 'react';
@@ -13,7 +8,7 @@ import * as serialize from 'serialize-javascript';
 // @ts-expect-error
 import * as Routes from '_build/routes';
 
-const { FeRoutes } = require(require.resolve('_build/routes2'))
+const { FeRoutes } = require(require.resolve('_build/routes2'));
 
 const Layout = React.lazy(getLayout);
 
@@ -66,8 +61,8 @@ const serverRender = async (
   dynamicCssOrder.forEach((css: string) => {
     if (manifest[css]) {
       const item = manifest[css];
-      injectCss.push(<link rel="stylesheet" key={item} href={item} />);
-      preloadCss.push(<link rel="preload" key={item} href={item} as="style" />);
+      injectCss.push(<link rel='stylesheet' key={item} href={item} />);
+      preloadCss.push(<link rel='preload' key={item} href={item} as='style' />);
     }
   });
 
@@ -77,7 +72,7 @@ const serverRender = async (
   const preloadScript = jsOrder
     .map((js: string) => manifest[js])
     .map((item: string) => (
-      <link rel="preload" as="script" key={item} href={item} />
+      <link rel='preload' as='script' key={item} href={item} />
     ));
 
   const staticList = {
@@ -97,8 +92,8 @@ const serverRender = async (
     const currentFetch = compFetch
       ? compFetch
       : fetch
-      ? (await fetch()).default
-      : null;
+        ? (await fetch()).default
+        : null;
 
     // csr 下不需要服务端获取数据
     if (parallelFetch) {

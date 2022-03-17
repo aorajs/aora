@@ -15,4 +15,4 @@ export const commands = {
 
 export type Command = keyof typeof commands;
 
-export type { AoraCommand } from './command'
+export type { AoraCommand } from './command';

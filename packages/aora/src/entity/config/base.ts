@@ -1,14 +1,8 @@
-import {IConfig, Mode} from '@aora/types';
-import {join} from 'path';
+import { IConfig, Mode } from '@aora/types';
+import { join } from 'path';
 import * as webpack from 'webpack';
 import * as WebpackChain from 'webpack-5-chain';
-import {
-  addImageChain,
-  getCwd,
-  getFeDir,
-  getLocalNodeModules,
-  setStyle,
-} from '../../utils';
+import { addImageChain, getCwd, getFeDir, getLocalNodeModules, setStyle } from '../../utils';
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
@@ -29,7 +23,7 @@ const addBabelLoader = (
         [loadModule('@babel/preset-env'), envOptions],
         [
           loadModule('babel-preset-react-app'),
-          {flow: false, typescript: true},
+          { flow: false, typescript: true },
         ],
       ],
       plugins: [
@@ -68,10 +62,10 @@ const addBabelLoader = (
           },
           'antd-mobile',
         ],
-        [loadModule('@babel/plugin-proposal-private-methods'), {loose: true}],
+        [loadModule('@babel/plugin-proposal-private-methods'), { loose: true }],
         [
           loadModule('@babel/plugin-proposal-private-property-in-object'),
-          {loose: true},
+          { loose: true },
         ],
       ],
     })

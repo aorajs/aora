@@ -6,8 +6,8 @@ type Log = {
 export function loadEnvConfig(
   dir: string,
   dev?: boolean,
-  log: Log = console
+  log: Log = console,
 ) {
-  log.info(dir, dev)
-  return {}
+  log.info(dir, dev);
+  return {};
 }

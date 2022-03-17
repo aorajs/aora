@@ -8,4 +8,5 @@ import { ApiDetailService } from './detail.service';
   controllers: [DetailController, ApiController],
   providers: [ApiDetailService],
 })
-export class DetailModule {}
+export class DetailModule {
+}

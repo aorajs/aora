@@ -1,8 +1,8 @@
-import {Inject, Injectable, Scope} from '@nestjs/common';
-import {REQUEST} from '@nestjs/core';
-import type {Request, Response} from 'express';
-import {AORA_SERVER} from './aora.constants';
-import type {AoraServer} from 'aora';
+import { Inject, Injectable, Scope } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
+import type { Request, Response } from 'express';
+import { AORA_SERVER } from './aora.constants';
+import type { AoraServer } from 'aora';
 
 type RenderOptions = Partial<{
   ssr: Boolean;
@@ -10,7 +10,7 @@ type RenderOptions = Partial<{
   cache: Boolean;
 }>;
 
-@Injectable({scope: Scope.REQUEST})
+@Injectable({ scope: Scope.REQUEST })
 export class AoraRenderService {
   private readonly response: Response;
 
@@ -34,7 +34,7 @@ export class AoraRenderService {
 
   async render(data?: unknown, options: RenderOptions = {}) {
     try {
-      const {cache = false, ...opts} = options;
+      const { cache = false, ...opts } = options;
       const ctx = {
         request: this.request,
         response: this.response,

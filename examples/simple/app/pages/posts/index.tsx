@@ -8,7 +8,7 @@ const Home = (props: SProps & IData) => {
   return (
     <div>
       Posts
-      <NavLink to="/posts/add">Add</NavLink>
+      <NavLink to='/posts/add'>Add</NavLink>
     </div>
   );
 };

@@ -1,4 +1,6 @@
-import * as React from "react";
+import type { ReactChild } from 'react';
+import * as React from 'react';
+
 export * from './component';
 export * from './config';
 export * from './ctx';
@@ -19,7 +21,6 @@ export interface ParseFeRouteItem {
   webpackChunkName: string;
 }
 
-import type { ReactChild } from 'react';
 // import type { RouteComponentProps } from "react-router-dom";
 
 export type IProps<T = {}> = T & {

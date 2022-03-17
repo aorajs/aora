@@ -8,8 +8,8 @@ async function bootstrap(): Promise<NestExpressApplication> {
   // app.disable('x-powered-by');
   app.useStaticAssets('public', { maxAge: '1h', immutable: true });
   await initialSSRDevProxy(app, {
-    express: true
-  })
+    express: true,
+  });
   await app.listen(3001);
   return app;
 }

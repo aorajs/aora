@@ -8,7 +8,8 @@ import * as Routes from '_build/routes';
 const { reducer, state } = Routes as ReactRoutesType;
 
 const userState = state ?? {};
-const userReducer = reducer ?? function () {};
+const userReducer = reducer ?? function() {
+};
 
 const isDev = process.env.NODE_ENV !== 'production';
 

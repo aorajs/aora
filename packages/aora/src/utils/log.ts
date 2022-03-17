@@ -1,4 +1,4 @@
-import * as colorette from 'colorette'
+import * as colorette from 'colorette';
 
 export const prefixes = {
   wait: colorette.cyan('wait') + '  -',
@@ -8,32 +8,32 @@ export const prefixes = {
   info: colorette.cyan('info') + '  -',
   event: colorette.magenta('event') + ' -',
   trace: colorette.magenta('trace') + ' -',
-}
+};
 
 export function wait(...message: string[]) {
-  console.log(prefixes.wait, ...message)
+  console.log(prefixes.wait, ...message);
 }
 
 export function error(...message: string[]) {
-  console.error(prefixes.error, ...message)
+  console.error(prefixes.error, ...message);
 }
 
 export function warn(...message: string[]) {
-  console.warn(prefixes.warn, ...message)
+  console.warn(prefixes.warn, ...message);
 }
 
 export function ready(...message: string[]) {
-  console.log(prefixes.ready, ...message)
+  console.log(prefixes.ready, ...message);
 }
 
 export function info(...message: string[]) {
-  console.log(prefixes.info, ...message)
+  console.log(prefixes.info, ...message);
 }
 
 export function event(...message: string[]) {
-  console.log(prefixes.event, ...message)
+  console.log(prefixes.event, ...message);
 }
 
 export function trace(...message: string[]) {
-  console.log(prefixes.trace, ...message)
+  console.log(prefixes.trace, ...message);
 }

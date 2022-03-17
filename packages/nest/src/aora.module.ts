@@ -26,6 +26,6 @@ export class AoraModule {
         },
       ],
       exports: [AoraRenderService],
-    }
+    };
   }
 }

@@ -1,4 +1,4 @@
-import {AoraCommand} from './command';
+import { AoraCommand } from './command';
 
 const aoraUsage: AoraCommand = {
   meta: {
@@ -9,6 +9,6 @@ const aoraUsage: AoraCommand = {
   async invoke(args) {
     console.log(args);
   },
-}
+};
 
-export default aoraUsage
+export default aoraUsage;

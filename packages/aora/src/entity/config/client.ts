@@ -1,11 +1,10 @@
 import { IConfig } from '@aora/types';
-import { join, resolve } from 'path';
-import { promises } from 'fs'
+import { join } from 'path';
 import * as WebpackChain from 'webpack-5-chain';
-import type { Configuration } from "webpack";
-import { cryptoAsyncChunkName, getCwd, getOutputPublicPath } from '../../utils';
+import type { Configuration } from 'webpack';
+import { cryptoAsyncChunkName, getOutputPublicPath } from '../../utils';
 import { getBaseConfig } from './base';
-import { WebpackManifestPlugin } from 'webpack-manifest-plugin'
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -15,7 +14,7 @@ const generateAnalysis = Boolean(process.env.GENERATE_ANALYSIS);
 const loadModule = require.resolve;
 let asyncChunkMap: Record<string, string> = {};
 
-export const getClientWebpack = (config: IConfig): Configuration  => {
+export const getClientWebpack = (config: IConfig): Configuration => {
   const { isDev, chunkName, getOutput, cwd, useHash, chainClientConfig } =
     config;
   const chain = new WebpackChain();
@@ -26,8 +25,8 @@ export const getClientWebpack = (config: IConfig): Configuration  => {
     isDev
       ? 'cheap-module-source-map'
       : shouldUseSourceMap
-      ? 'source-map'
-      : false,
+        ? 'source-map'
+        : false,
   );
   chain
     .entry(chunkName)

@@ -1,8 +1,8 @@
 export function printAndExit(message: string, code = 1) {
   if (code === 0) {
-    console.log(message)
+    console.log(message);
   } else {
-    console.error(message)
+    console.error(message);
   }
-  process.exit(code)
+  process.exit(code);
 }

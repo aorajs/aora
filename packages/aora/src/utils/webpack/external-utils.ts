@@ -18,14 +18,14 @@ const readDir = function readDir(dirName: string): string[] {
   try {
     return fs
       .readdirSync(dirName)
-      .map(function (module) {
+      .map(function(module) {
         if (atPrefix.test(module)) {
           // reset regexp
           atPrefix.lastIndex = 0;
           try {
             return fs
               .readdirSync(path.join(dirName, module))
-              .map(function (scopedMod) {
+              .map(function(scopedMod) {
                 return module + '/' + scopedMod;
               });
           } catch (e) {
@@ -34,7 +34,7 @@ const readDir = function readDir(dirName: string): string[] {
         }
         return module;
       })
-      .reduce(function (prev, next) {
+      .reduce(function(prev, next) {
         return prev.concat(next);
       }, []);
   } catch (e) {
@@ -69,14 +69,14 @@ const readFromPackageJson = function readFromPackageJson(options) {
     sections = [].concat(options.include);
   }
   if (options.exclude) {
-    sections = sections.filter(function (section) {
+    sections = sections.filter(function(section) {
       return ![].concat(options.exclude).includes(section);
     });
   }
   // collect dependencies
   const deps = {};
-  sections.forEach(function (section) {
-    Object.keys(packageJson[section] || {}).forEach(function (dep) {
+  sections.forEach(function(section) {
+    Object.keys(packageJson[section] || {}).forEach(function(dep) {
       deps[dep] = true;
     });
   });
@@ -86,7 +86,7 @@ const readFromPackageJson = function readFromPackageJson(options) {
 const containsPattern = function containsPattern(arr, val) {
   return (
     arr &&
-    arr.some(function (pattern) {
+    arr.some(function(pattern) {
       if (pattern instanceof RegExp) {
         return pattern.test(val);
       } else if (typeof pattern === 'function') {

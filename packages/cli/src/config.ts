@@ -1,7 +1,7 @@
-import type {IConfig} from '@aora/types';
+import type { IConfig } from '@aora/types';
 import * as path from 'path';
-import {join} from 'path';
-import {getCwd, normalizeEndPath, normalizeStartPath, getOutputPublicPath} from './utils/cwd';
+import { join } from 'path';
+import { getCwd, getOutputPublicPath, normalizeEndPath, normalizeStartPath } from './utils/cwd';
 
 export type AppConfig = Partial<IConfig>;
 
@@ -46,7 +46,7 @@ export function readConfig(aoraRoot?: string): IConfig {
     '.web.jsx',
     '.jsx',
     // '.css',
-    '.js', '.jsx', '.ts', '.tsx'
+    '.js', '.jsx', '.ts', '.tsx',
   ];
 
 
@@ -99,26 +99,26 @@ export function readConfig(aoraRoot?: string): IConfig {
     clientOutPut: join(cwd, './public/build'),
     serverOutPut: join(cwd, './.aora/server'),
   });
-  console.log('devPublicPath', devPublicPath)
+  console.log('devPublicPath', devPublicPath);
 
   const webpackDevServerConfig = {
-    allowedHosts: "all",
+    allowedHosts: 'all',
     devMiddleware: {
       stats: webpackStatsOption,
       publicPath: devPublicPath,
     },
-    hot: "only",
+    hot: 'only',
     host,
     // sockPort: fePort,
     port: fePort,
     https: false,
     client: {
       webSocketURL: {
-        hostname: "0.0.0.0",
-        pathname: "/ws",
+        hostname: '0.0.0.0',
+        pathname: '/ws',
         port: fePort,
       },
-      logging: "info",
+      logging: 'info',
     },
     // clientLogLevel: clientLogLevel,
     headers: () => ({

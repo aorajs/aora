@@ -1,6 +1,6 @@
-import {readConfig} from "@aora/cli";
-import {formatRoutes} from '../../utils';
-import {AoraCommand} from './command';
+import { readConfig } from '@aora/cli';
+import { formatRoutes } from '../../utils';
+import { AoraCommand } from './command';
 
 const aoraRoutes: AoraCommand = {
   meta: {
@@ -15,4 +15,4 @@ const aoraRoutes: AoraCommand = {
   },
 };
 
-export default aoraRoutes
+export default aoraRoutes;
