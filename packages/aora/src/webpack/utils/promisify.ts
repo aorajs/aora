@@ -4,9 +4,7 @@ import * as webpack from 'webpack';
 export function webpackCompiler(webpackConfig: Configuration) {
   return new Promise<void>((resolve, reject) => {
     try {
-      const compiler = webpack(webpackConfig, () => {
-
-      });
+      const compiler = webpack(webpackConfig);
       compiler.run((err, stats) => {
         if (err || stats?.hasErrors()) {
           if (err) {
