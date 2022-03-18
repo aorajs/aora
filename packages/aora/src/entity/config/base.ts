@@ -100,6 +100,7 @@ export const getBaseConfig = (
     });
   }
   chain.mode(mode);
+  chain.stats('minimal')
   chain.module.strictExportPresence(true);
   chain.resolve.modules
     .add('node_modules')

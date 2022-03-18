@@ -1,4 +1,4 @@
-import { Configuration, RuleSetCondition, Stats } from 'webpack';
+import { Configuration, RuleSetCondition } from 'webpack';
 import * as Config from 'webpack-5-chain';
 import { Argv } from './yargs';
 
@@ -42,7 +42,6 @@ export interface IConfig {
   chainBaseConfig: (config: Config) => Configuration;
   chainServerConfig: (config: Config) => Configuration;
   chainClientConfig: (config: Config) => Configuration;
-  webpackStatsOption: Stats;
   moduleFileExtensions: string[];
   whiteList: (RegExp | string)[];
   cloudIDE?: boolean;

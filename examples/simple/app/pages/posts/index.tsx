@@ -1,10 +1,14 @@
-import { ReactFetch, SProps } from '@aora/types';
-import React from 'react';
+import { ReactFetch } from '@aora/types';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IData, IndexData } from '~/typings/data';
+import { IndexData } from '~/typings/data';
+import type { AoraPage } from 'aora';
 
-const Home = (props: SProps & IData) => {
-  // const { state, dispatch } = useContext<IContext<IData>>(STORE_CONTEXT);
+const PostsList: AoraPage<any> = (props) => {
+  useEffect(() => {
+    console.log(props);
+  }, []);
+
   return (
     <div>
       Posts
@@ -13,7 +17,7 @@ const Home = (props: SProps & IData) => {
   );
 };
 
-export default Home;
+export default PostsList;
 
 export const fetch: ReactFetch<{
   apiService: {

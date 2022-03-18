@@ -22,7 +22,6 @@ export function readConfig(aoraRoot?: string): IConfig {
   const cwd = getCwd();
   const ssr = true;
   const stream = false;
-  // type ClientLogLevel = 'error';
   const isDev = appConfig.isDev ?? process.env.NODE_ENV !== 'production';
 
   const publicPath = appConfig.publicPath?.startsWith('http')
@@ -46,9 +45,11 @@ export function readConfig(aoraRoot?: string): IConfig {
     '.web.jsx',
     '.jsx',
     // '.css',
-    '.js', '.jsx', '.ts', '.tsx',
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
   ];
-
 
   const fePort = appConfig.fePort ?? 3010;
 
@@ -81,17 +82,6 @@ export function readConfig(aoraRoot?: string): IConfig {
 
   const cssOrder = [`${chunkName}.css`].concat(appConfig.extraCssOrder ?? []);
 
-  const webpackStatsOption = {
-    assets: true, // 添加资源信息
-    cachedAssets: false, // 显示缓存的资源（将其设置为 `false` 则仅显示输出的文件）
-    children: false, // 添加 children 信息
-    chunks: false, // 添加 chunk 信息（设置为 `false` 能允许较少的冗长输出）
-    colors: true, // 以不同颜色区分构建信息
-    modules: false, // 添加构建模块信息
-    warnings: false,
-    entrypoints: false,
-  };
-
   const dynamic = !process.env.SPA; // SPA 部署模式下不开启 dynamic
 
   const corejs = false;
@@ -99,37 +89,6 @@ export function readConfig(aoraRoot?: string): IConfig {
     clientOutPut: join(cwd, './public/build'),
     serverOutPut: join(cwd, './.aora/server'),
   });
-  console.log('devPublicPath', devPublicPath);
-
-  const webpackDevServerConfig = {
-    allowedHosts: 'all',
-    devMiddleware: {
-      stats: webpackStatsOption,
-      publicPath: devPublicPath,
-    },
-    hot: 'only',
-    host,
-    // sockPort: fePort,
-    port: fePort,
-    https: false,
-    client: {
-      webSocketURL: {
-        hostname: '0.0.0.0',
-        pathname: '/ws',
-        port: fePort,
-      },
-      logging: 'info',
-    },
-    // clientLogLevel: clientLogLevel,
-    headers: () => ({
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods':
-        'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'X-Requested-With, content-type, Authorization',
-    }),
-    ...(appConfig.webpackDevServerConfig || {}),
-  };
 
   const chainBaseConfig = () => {
     // 覆盖默认webpack配置
@@ -164,7 +123,6 @@ export function readConfig(aoraRoot?: string): IConfig {
       jsOrder,
       cssOrder,
       getOutput,
-      webpackStatsOption,
       whiteList,
       dynamic,
       ssr,
@@ -177,6 +135,5 @@ export function readConfig(aoraRoot?: string): IConfig {
     appConfig,
   );
 
-  config.webpackDevServerConfig = webpackDevServerConfig; // 防止把整个 webpackDevServerConfig 全量覆盖了
-  return config;
+  return config
 }
