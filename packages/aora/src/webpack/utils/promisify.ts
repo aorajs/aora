@@ -3,26 +3,18 @@ import * as webpack from 'webpack';
 
 export function webpackCompiler(webpackConfig: Configuration) {
   return new Promise<void>((resolve, reject) => {
-    try {
-      const compiler = webpack(webpackConfig);
-      compiler.run((err, stats) => {
-        if (err || stats?.hasErrors()) {
-          if (err) {
-            reject(err);
-          } else if (stats) {
-            const errorMsg = stats.toString('errors-only');
-            // console.error(errorMsg);
-            reject(new Error(errorMsg));
-          }
-        } else {
-          resolve();
+    webpack(webpackConfig, (err, stats) => {
+      console.log(err);
+      if (err || stats?.hasErrors()) {
+        if (err) {
+          reject(err);
+        } else if (stats) {
+          const errMsg = stats.toString();
+          console.error(errMsg);
+          reject(new Error(errMsg));
         }
-        compiler.close(() => {
-        });
-      });
-    } catch (e) {
-      reject(e);
-    }
-
+      }
+      resolve();
+    });
   });
 }
